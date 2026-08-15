@@ -1,0 +1,8 @@
+:dimorph:
+	:name:
+		Dimorph
+
+	:phonebook:
+		The first successful feat of genetic engineering on a live subject. A valued asset of the Party in life, it was granted priority access to the Bureau of Proficiency's gene alteration technology. Small chunks of it are commonly used as batteries.
+		
+		She's quite cute when she holds herself together!

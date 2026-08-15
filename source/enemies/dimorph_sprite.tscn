@@ -1,0 +1,409 @@
+[gd_scene format=3 uid="uid://4a57twep65ka"]
+
+[ext_resource type="PackedScene" uid="uid://dmg180a1myio" path="res://source/battle_unit/battle_unit_sprite.tscn" id="1_5xrak"]
+[ext_resource type="Texture2D" uid="uid://c4075ttgqf27m" path="res://mods/mutagenic/arte/dimorph/dimorph.png" id="2_fugul"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pslta"]
+radius = 39.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wmfk5"]
+radius = 32.0
+height = 74.0
+
+[sub_resource type="Animation" id="Animation_4rmnv"]
+resource_name = "RESET"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite:offset")
+tracks/3/interp = 0
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(11, -51)]
+}
+
+[sub_resource type="Animation" id="Animation_rnk0d"]
+resource_name = "die"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-8, 0), Vector2(8, 0), Vector2(-6, 0), Vector2(6, 0), Vector2(-2, 0), Vector2(2, 0), Vector2(-2, 0), Vector2(2, 0), Vector2(-1, 0), Vector2(1, 0), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.7, 0.9, 1),
+"transitions": PackedFloat32Array(1, 0.31864, 2.14355, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1), Vector2(0.8, 1.2), Vector2(1.2, 0.8)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"bleed"
+}, {
+"args": [],
+"method": &"bleed"
+}, {
+"args": [],
+"method": &"bleed"
+}, {
+"args": [],
+"method": &"bleed"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite:frame")
+tracks/3/interp = 0
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_cmmxp"]
+resource_name = "dying"
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.25, 0.3, 0.35, 0.5, 0.7, 0.75, 0.8, 0.85, 1),
+"transitions": PackedFloat32Array(3.0314376, 1, 1, 1, 1, 3.0314376, 1, 1, 1, 1, 0.29730177),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(12, 0), Vector2(4, 0), Vector2(10, 0), Vector2(8, 0), Vector2(8, 0), Vector2(-4, 0), Vector2(4, 0), Vector2(-2, 0), Vector2(0, 0), Vector2(0, 0)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.20000002, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"bleed"
+}, {
+"args": [],
+"method": &"bleed"
+}, {
+"args": [],
+"method": &"bleed"
+}, {
+"args": [],
+"method": &"bleed"
+}, {
+"args": [],
+"method": &"bleed"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.4, 0.5, 0.5999999, 0.79999995, 0.9, 1),
+"transitions": PackedFloat32Array(0.40612632, 0.40612632, 0.40612632, 1, 0.40612632, 0.40612632, 0.40612632, 1, 0.40612632),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.1, 0.9), Vector2(0.95, 1.05), Vector2(1, 1), Vector2(1, 1), Vector2(1.1, 0.9), Vector2(0.95, 1.05), Vector2(1, 1), Vector2(1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:event")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["animation_looped"]
+}
+
+[sub_resource type="Animation" id="Animation_pslta"]
+resource_name = "flinch"
+length = 0.41
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.15, 0.2, 0.25, 0.35, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(8, 0), Vector2(-6, 0), Vector2(4, 0), Vector2(-2, 0), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(0.25, 2.2974, 1.8025, 0.659754, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 0.8), Vector2(0.8, 1.2), Vector2(1.1, 0.9), Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:sound")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["RUBBER_ANIMAL/FLINCH"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:event")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["editor_star"]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite:frame")
+tracks/4/interp = 0
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_44ctu"]
+resource_name = "flinch_parry"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.15, 0.2, 0.25, 0.35, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(8, 0), Vector2(-9.295, 0), Vector2(8, 0), Vector2(-2, 0), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(0.25, 2.2974, 1.8025, 0.659754, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 0.8), Vector2(0.8, 1.4), Vector2(1.3, 0.9), Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:sound")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["RUBBER_ANIMAL/FLINCH_BREAK"]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:event")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["editor_star"]
+}
+
+[sub_resource type="Animation" id="Animation_o1ksj"]
+resource_name = "idle"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wsfgl"]
+_data = {
+&"RESET": SubResource("Animation_4rmnv"),
+&"die": SubResource("Animation_rnk0d"),
+&"dying": SubResource("Animation_cmmxp"),
+&"flinch": SubResource("Animation_pslta"),
+&"flinch_parry": SubResource("Animation_44ctu"),
+&"idle": SubResource("Animation_o1ksj")
+}
+
+[node name="RubberAnimalSprite" unique_id=714641121 instance=ExtResource("1_5xrak")]
+sound_groups = PackedStringArray("RUBBER_ANIMAL")
+
+[node name="Sprite" type="Sprite2D" parent="." index="0" unique_id=2080200226]
+z_index = 5
+texture = ExtResource("2_fugul")
+offset = Vector2(11, -51)
+hframes = 3
+vframes = 2
+
+[node name="HitMarker" parent="." index="1" unique_id=1651044017]
+visible = true
+position = Vector2(-72, -74)
+
+[node name="IntentMarker" parent="." index="2" unique_id=444731721]
+visible = true
+position = Vector2(0, -81)
+
+[node name="BleedZone" parent="BleedArea" parent_id_path=PackedInt32Array(1768612656) index="0" unique_id=659443964]
+position = Vector2(0, -29)
+shape = SubResource("CircleShape2D_pslta")
+
+[node name="CollisionShape2D" parent="HoverArea" parent_id_path=PackedInt32Array(1946856293) index="0" unique_id=2067959912]
+position = Vector2(-1, -21)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_wmfk5")
+
+[node name="AnimPlayer" parent="." index="5" unique_id=1026464875]
+libraries/ = SubResource("AnimationLibrary_wsfgl")
+autoplay = &"idle"
+
+[node name="PhonebookPortrait" parent="." index="6" unique_id=512451111]
+anchors_preset = -1
+offset_top = -122.0
+offset_bottom = 18.0

@@ -1,0 +1,16 @@
+:mutagen:
+	:name:
+		Mutagen
+		
+	:tile_name:
+		Mutagen Tile
+		
+	:description:
+		Must have valid words to either side of it (including itself).
+		Can be used to combine multiple words.
+		
+	:exclusive_with:
+		{:space_statuses:}
+		
+	:flags:
+		no_faceless_effect
