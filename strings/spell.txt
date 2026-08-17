@@ -14,3 +14,34 @@
 
 	:charge_category:
 		very_common
+
+
+:superposition:
+	:name:
+		Superposition
+	
+	:charge_category:
+		very_common
+		
+	:max_charge:
+		3
+	:description:
+		Choose two tiles to combine into a shimmering enhanced tile.
+		
+	:label:
+		Shimmer any tiles
+
+
+
+:pda:
+	:name:
+		PDA
+	
+	:charge_category:
+		unlimited
+	
+	:description:
+		Gives helpful info.
+		
+	:label:
+		Analyze

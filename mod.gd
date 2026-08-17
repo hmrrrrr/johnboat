@@ -5,16 +5,24 @@ const MUTAGEN_BUBBLES = preload("uid://xd5bu6sw7c6k")
 
 
 var SPELLS: Dictionary[String, String] = {
-	DATAMOSH = "datamosh"
+	DATAMOSH = "datamosh",
+	SUPERPOSITION = "superposition",
+	PDA = "pda"
 }
 
 var SPELL_POOL: Dictionary[String, float] = {
-	SPELLS.DATAMOSH: 200.0,
+	SPELLS.DATAMOSH: 1.0,
+	SPELLS.SUPERPOSITION: 1.,
+	SPELLS.PDA: 1.
 }
 
 var SPELL_CATEGORIES: Dictionary[String, Array] = {
 	Globals.SPELL_CATEGORY.SUPPORT: [
-		SPELLS.DATAMOSH
+		SPELLS.DATAMOSH,
+		SPELLS.PDA
+	],
+	Globals.SPELL_CATEGORY.OFFENSIVE: [
+		SPELLS.SUPERPOSITION
 	]
 }
 
@@ -39,11 +47,11 @@ var SPELL_CATEGORIES: Dictionary[String, Array] = {
 	#
 
 func _ready() -> void:
-	CustomIntent.custom_status_intent_icons["mutagen"]=preload("uid://dukxvsrifradw")
+	#CustomIntent.custom_status_intent_icons["mutagen"]=preload("uid://dukxvsrifradw")
 	#update_remove_other_enemies()
 	
-	if "dimorph" not in EnemyLoader.enemy_pools[0][0]:
-		EnemyLoader.add_enemy("dimorph",2,3,"res://mods/mutagenic/arte/dimorph/miniface_dimorph.png")
+	#if "dimorph" not in EnemyLoader.enemy_pools[0][0]:
+		#EnemyLoader.add_enemy("dimorph",2,3,"res://mods/mutagenic/arte/dimorph/miniface_dimorph.png")
 		
 	await Game.main_scene_loaded
 	Game.main.game_state_updated.connect(_game_state_updated)

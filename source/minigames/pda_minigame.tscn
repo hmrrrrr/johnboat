@@ -1,0 +1,522 @@
+[gd_scene format=3 uid="uid://cygupy706xode"]
+
+[ext_resource type="Script" uid="uid://76yi3m6s235j" path="res://mods/mutagenic/source/minigames/pda_minigame.gd" id="1_juycg"]
+[ext_resource type="Texture2D" uid="uid://clibm6y4h6b6w" path="res://mods/mutagenic/arte/minigames/pda_put_away.png" id="2_fi7x6"]
+[ext_resource type="Script" uid="uid://cfpkpmdehkp8u" path="res://source/ui/generic/shadow_cloner.gd" id="3_ltu60"]
+[ext_resource type="PackedScene" uid="uid://dgtvtcn5lo1dl" path="res://source/ui/tooltip/menu_tooltip_collision.tscn" id="4_aajvx"]
+[ext_resource type="PackedScene" uid="uid://d4a7isuy7vbow" path="res://source/ui/generic/action_glyph.tscn" id="5_l2cxp"]
+[ext_resource type="Texture2D" uid="uid://8iglrsysppcx" path="res://mods/mutagenic/arte/minigames/pda_panel.png" id="7_fi7x6"]
+[ext_resource type="Script" uid="uid://7xvadspst3p5" path="res://source/ui/generic/hover_handler.gd" id="7_k5hkf"]
+[ext_resource type="FontFile" uid="uid://bpyduf7k307hv" path="res://mods/mutagenic/fonts/Undead Pixel 8.ttf" id="8_aajvx"]
+[ext_resource type="Texture2D" uid="uid://b8o5rasmnb4hn" path="res://mods/mutagenic/arte/minigames/pda_bar_separator.png" id="8_juycg"]
+[ext_resource type="Shader" uid="uid://bndf21yybr2pa" path="res://mods/mutagenic/source/minigames/pda_inside.gdshader" id="8_ltu60"]
+[ext_resource type="Texture2D" uid="uid://i7gug4rimjhl" path="res://arte/ui/enemy_icons.png" id="8_no5s6"]
+[ext_resource type="Script" uid="uid://drgtw8sp4tp8n" path="res://source/library/anim_player.gd" id="9_iyoni"]
+[ext_resource type="Texture2D" uid="uid://bk87bspywa63u" path="res://mods/mutagenic/source/minigames/pda_gradient_map.png" id="10_l2cxp"]
+
+[sub_resource type="Animation" id="Animation_ssyko"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_v6jqj"]
+resource_name = "appear"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 5), Vector2(0, -2), Vector2(0, 1), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_42xj7"]
+resource_name = "disappear"
+length = 0.3
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.25),
+"transitions": PackedFloat32Array(1.56917, 1.56917, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.25),
+"transitions": PackedFloat32Array(0.366021, 1, 0.366021, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 2), Vector2(0, 2), Vector2(0, -3)]
+}
+
+[sub_resource type="Animation" id="Animation_1ugjr"]
+resource_name = "hidden"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ssyko"]
+_data = {
+&"RESET": SubResource("Animation_ssyko"),
+&"appear": SubResource("Animation_v6jqj"),
+&"disappear": SubResource("Animation_42xj7"),
+&"hidden": SubResource("Animation_1ugjr")
+}
+
+[sub_resource type="Theme" id="Theme_gt427"]
+default_font = ExtResource("8_aajvx")
+default_font_size = 8
+Label/colors/font_color = Color(1, 1, 1, 1)
+Label/constants/line_spacing = -1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_no5s6"]
+shader = ExtResource("8_ltu60")
+shader_parameter/gradient = ExtResource("10_l2cxp")
+shader_parameter/threshold = 0.40000000596048
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_no5s6"]
+viewport_path = NodePath("BoardOffset/PDA/SubViewport")
+
+[sub_resource type="Animation" id="Animation_r0sxd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_clf3h"]
+resource_name = "appear"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3),
+"transitions": PackedFloat32Array(0.30778608, 2.0705302, 1),
+"update": 0,
+"values": [Vector2(0, 210), Vector2(0, -4), Vector2(0, 0)]
+}
+tracks/1/type = "animation"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HBoxContainer/PutAway/AnimPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": PackedStringArray("appear"),
+"times": PackedFloat32Array(0.26)
+}
+
+[sub_resource type="Animation" id="Animation_i01po"]
+resource_name = "disappear"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.3, 0.4, 0.6),
+"transitions": PackedFloat32Array(0.3077861, 2.0705302, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -4), Vector2(0, 210)]
+}
+tracks/1/type = "animation"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HBoxContainer/PutAway/AnimPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": PackedStringArray("disappear"),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_w3vyy"]
+resource_name = "hidden"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 210)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1ugjr"]
+_data = {
+&"RESET": SubResource("Animation_r0sxd"),
+&"appear": SubResource("Animation_clf3h"),
+&"disappear": SubResource("Animation_i01po"),
+&"hidden": SubResource("Animation_w3vyy")
+}
+
+[node name="PDAMinigame" type="Node2D" unique_id=2044216600 groups=["minigame"]]
+z_index = 100
+position = Vector2(240, 151)
+script = ExtResource("1_juycg")
+
+[node name="BoardOffset" type="Node2D" parent="." unique_id=1029622226]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BoardOffset" unique_id=1097540088]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -43.0
+offset_top = -96.0
+offset_right = 43.0
+offset_bottom = -70.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="PutAway" type="Control" parent="BoardOffset/HBoxContainer" unique_id=2077306257]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+
+[node name="PutAwaySprite" type="Sprite2D" parent="BoardOffset/HBoxContainer/PutAway" unique_id=1246214754]
+unique_name_in_owner = true
+texture = ExtResource("2_fi7x6")
+centered = false
+
+[node name="ShadowCloner" type="Node2D" parent="BoardOffset/HBoxContainer/PutAway/PutAwaySprite" unique_id=212649276]
+position = Vector2(2, 2)
+script = ExtResource("3_ltu60")
+metadata/_custom_type_script = "uid://cfpkpmdehkp8u"
+
+[node name="ActionGlyph" parent="BoardOffset/HBoxContainer/PutAway/PutAwaySprite" unique_id=1094403238 instance=ExtResource("5_l2cxp")]
+custom_minimum_size = Vector2(20, 16)
+offset_left = 19.0
+offset_top = -2.0
+offset_right = 39.0
+offset_bottom = 14.0
+action = &"end_action"
+controller_mode_only = true
+with_setting_only = true
+glyph_type = 1
+glyph_id = 6
+
+[node name="PutAwayButton" type="Button" parent="BoardOffset/HBoxContainer/PutAway" unique_id=591333459]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 0
+offset_right = 24.0
+offset_bottom = 24.0
+flat = true
+
+[node name="PutAwayButtonTooltip" parent="BoardOffset/HBoxContainer/PutAway/PutAwayButton" unique_id=1904204366 node_paths=PackedStringArray("focus_source") instance=ExtResource("4_aajvx")]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+string_identifier = "misc/pda/put_away"
+position_offset = Vector2(0, -4)
+focus_source = NodePath("..")
+
+[node name="HoverHandler" type="Node2D" parent="BoardOffset/HBoxContainer/PutAway" unique_id=90994302 node_paths=PackedStringArray("hovering", "source")]
+script = ExtResource("7_k5hkf")
+hovering = NodePath("../PutAwaySprite")
+source = NodePath("../PutAwayButton")
+hovered_position = Vector2(0, -2)
+pressed_position = Vector2(0, 0)
+metadata/_custom_type_script = "uid://7xvadspst3p5"
+
+[node name="AnimPlayer" type="AnimationPlayer" parent="BoardOffset/HBoxContainer/PutAway" unique_id=816104293]
+root_node = NodePath("../PutAwaySprite")
+libraries/ = SubResource("AnimationLibrary_ssyko")
+autoplay = &"hidden"
+
+[node name="PDA" type="NinePatchRect" parent="BoardOffset" unique_id=1368829834]
+unique_name_in_owner = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -46.0
+offset_top = -69.0
+offset_right = 46.0
+offset_bottom = 69.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_fi7x6")
+patch_margin_left = 9
+patch_margin_top = 9
+patch_margin_right = 9
+patch_margin_bottom = 21
+
+[node name="ShadowCloner" type="Node2D" parent="BoardOffset/PDA" unique_id=1847263050]
+position = Vector2(2, 2)
+script = ExtResource("3_ltu60")
+metadata/_custom_type_script = "uid://cfpkpmdehkp8u"
+
+[node name="PDAInside" type="Control" parent="BoardOffset/PDA" unique_id=1950844796]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 9.0
+offset_top = 9.0
+offset_right = -9.0
+offset_bottom = -21.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_gt427")
+
+[node name="TextureRect" type="TextureRect" parent="BoardOffset/PDA/PDAInside" unique_id=1666904898]
+material = SubResource("ShaderMaterial_no5s6")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("ViewportTexture_no5s6")
+
+[node name="SubViewport" type="SubViewport" parent="BoardOffset/PDA" unique_id=713920249]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(74, 108)
+render_target_update_mode = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BoardOffset/PDA/SubViewport" unique_id=475518796]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_gt427")
+theme_override_constants/separation = 0
+
+[node name="TopRow" type="Control" parent="BoardOffset/PDA/SubViewport/VBoxContainer" unique_id=1696915443]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+
+[node name="TimeLabel" type="RichTextLabel" parent="BoardOffset/PDA/SubViewport/VBoxContainer/TopRow" unique_id=292266447]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[color=white]23[color=black]:[color=white]54[/color]"
+horizontal_alignment = 2
+
+[node name="CurrentTimeTimer" type="Timer" parent="BoardOffset/PDA/SubViewport/VBoxContainer/TopRow/TimeLabel" unique_id=38745020]
+autostart = true
+
+[node name="NewsLabel" type="RichTextLabel" parent="BoardOffset/PDA/SubViewport/VBoxContainer/TopRow" unique_id=1281611842]
+custom_maximum_size = Vector2(51, 8)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -4.0
+offset_right = 51.0
+offset_bottom = 4.0
+grow_vertical = 2
+bbcode_enabled = true
+text = "[color=white]THE WHOLE CONTINENT NOW FALLS VICTIM TO ONSLAUGHT OF DRIVING WINDS, HEAVY RAINS AND SWOLLEN RI"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="NewsTimer" type="Timer" parent="BoardOffset/PDA/SubViewport/VBoxContainer/TopRow/NewsLabel" unique_id=2063675736]
+wait_time = 0.2
+autostart = true
+
+[node name="Separator2" type="TextureRect" parent="BoardOffset/PDA/SubViewport/VBoxContainer" unique_id=8185437]
+layout_mode = 2
+texture = ExtResource("8_juycg")
+stretch_mode = 3
+
+[node name="EnemyIcon" type="Control" parent="BoardOffset/PDA/SubViewport/VBoxContainer" unique_id=1765924471]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="BoardOffset/PDA/SubViewport/VBoxContainer/EnemyIcon" unique_id=1652500485]
+position = Vector2(10, 12)
+scale = Vector2(0.66, 0.66)
+texture = ExtResource("8_no5s6")
+hframes = 11
+vframes = 3
+frame = 26
+
+[node name="Label" type="Label" parent="BoardOffset/PDA/SubViewport/VBoxContainer/EnemyIcon" unique_id=49193019]
+custom_minimum_size = Vector2(52.585, 24)
+custom_maximum_size = Vector2(57, 24)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -52.894997
+offset_top = -11.0
+offset_right = 4.1050034
+offset_bottom = 13.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "Pink Rubber Animal"
+vertical_alignment = 1
+autowrap_mode = 3
+metadata/_edit_lock_ = true
+
+[node name="Label2" type="Label" parent="BoardOffset/PDA/SubViewport/VBoxContainer" unique_id=1360922425]
+layout_mode = 2
+text = "Hated Word:
+'Quiet'
+Hated Letter: W"
+
+[node name="Separator3" type="TextureRect" parent="BoardOffset/PDA/SubViewport/VBoxContainer" unique_id=1346007270]
+layout_mode = 2
+texture = ExtResource("8_juycg")
+stretch_mode = 3
+
+[node name="MiscInfo" type="Control" parent="BoardOffset/PDA/SubViewport/VBoxContainer" unique_id=2145726709]
+custom_minimum_size = Vector2(0, 34)
+layout_mode = 2
+
+[node name="MiscInfoLabel" type="RichTextLabel" parent="BoardOffset/PDA/SubViewport/VBoxContainer/MiscInfo" unique_id=1131987196]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1.0
+offset_right = 1.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[color=white]RADIATION: HIGH
+"
+
+[node name="Separator" type="TextureRect" parent="BoardOffset/PDA/SubViewport/VBoxContainer" unique_id=437670916]
+layout_mode = 2
+texture = ExtResource("8_juycg")
+stretch_mode = 3
+
+[node name="Reminder" type="Control" parent="BoardOffset/PDA/SubViewport/VBoxContainer" unique_id=841763467]
+custom_minimum_size = Vector2(0, 17)
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="BoardOffset/PDA/SubViewport/VBoxContainer/Reminder" unique_id=507711205]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 1
+offset_top = 1.0
+offset_right = 74.0
+offset_bottom = 16.0
+text = "OBJECT THOUGHTFULNESS"
+autowrap_mode = 3
+
+[node name="AddictTimer" type="Label" parent="BoardOffset" unique_id=1739056228]
+unique_name_in_owner = true
+offset_left = -20.0
+offset_top = -113.0
+offset_right = 18.0
+offset_bottom = -94.88
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_type_variation = &"BoldOutlineLabel"
+theme_override_font_sizes/font_size = 10
+text = "99:99:99"
+metadata/_edit_use_anchors_ = true
+
+[node name="ShadowCloner" type="Node2D" parent="BoardOffset/AddictTimer" unique_id=402594394]
+position = Vector2(2, 2)
+script = ExtResource("3_ltu60")
+metadata/_custom_type_script = "uid://cfpkpmdehkp8u"
+
+[node name="AnimPlayer" type="AnimationPlayer" parent="." unique_id=411869505]
+unique_name_in_owner = true
+root_node = NodePath("../BoardOffset")
+libraries/ = SubResource("AnimationLibrary_1ugjr")
+autoplay = &"hidden"
+script = ExtResource("9_iyoni")
+metadata/_custom_type_script = "uid://drgtw8sp4tp8n"
+
+[connection signal="pressed" from="BoardOffset/HBoxContainer/PutAway/PutAwayButton" to="." method="_on_confirm_button_pressed"]
+[connection signal="timeout" from="BoardOffset/PDA/SubViewport/VBoxContainer/TopRow/TimeLabel/CurrentTimeTimer" to="." method="_on_current_time_timer_timeout"]
+[connection signal="timeout" from="BoardOffset/PDA/SubViewport/VBoxContainer/TopRow/NewsLabel/NewsTimer" to="." method="_on_news_timer_timeout"]
