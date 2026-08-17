@@ -1,0 +1,16 @@
+:datamosh:
+	:name:
+		Datamosh
+
+	:description:
+		Convert letters in a spelled word to cursed numbers.
+		Can't curse crits.
+
+	:label:
+		Cursed numbers
+
+	:max_charge:
+		3
+
+	:charge_category:
+		very_common

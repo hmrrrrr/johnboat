@@ -1,0 +1,82 @@
+[gd_scene format=3 uid="uid://dsrrhj6sxkvad"]
+
+[ext_resource type="Script" uid="uid://b74mxdfobsw4w" path="res://mods/mutagenic/source/datamosh/datamosh_effect_instance.gd" id="1_jv6fc"]
+[ext_resource type="Texture2D" uid="uid://5rmj76byr2s4" path="res://arte/tiles/wood_tiles_a.png" id="2_eqq8s"]
+[ext_resource type="Shader" uid="uid://qpys61e5u7hy" path="res://mods/mutagenic/source/datamosh/datamosh_effect.gdshader" id="2_ro78d"]
+[ext_resource type="Script" uid="uid://cfpkpmdehkp8u" path="res://source/ui/generic/shadow_cloner.gd" id="3_ro78d"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_0j7j3"]
+seed = 12
+frequency = 0.3385
+fractal_octaves = 1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_hx1rf"]
+width = 226
+height = 128
+generate_mipmaps = false
+noise = SubResource("FastNoiseLite_0j7j3")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eqq8s"]
+shader = ExtResource("2_ro78d")
+shader_parameter/noise = SubResource("NoiseTexture2D_hx1rf")
+shader_parameter/edge_feather = 0.0490000023275
+
+[sub_resource type="Animation" id="Animation_hx1rf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FakeDatamoshSprite:instance_shader_parameters/progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_ro78d"]
+resource_name = "datamosh"
+length = 1.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FakeDatamoshSprite:instance_shader_parameters/progress")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.3),
+"transitions": PackedFloat32Array(0.7578582, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hx1rf"]
+_data = {
+&"RESET": SubResource("Animation_hx1rf"),
+&"datamosh": SubResource("Animation_ro78d")
+}
+
+[node name="DatamoshEffectInstance" type="Node2D" unique_id=1433592823]
+z_index = -1
+script = ExtResource("1_jv6fc")
+
+[node name="FakeDatamoshSprite" type="Sprite2D" parent="." unique_id=1783727358]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_eqq8s")
+instance_shader_parameters/ending_frame = Vector4(0.1, 0.5, 0.1, 0.25)
+instance_shader_parameters/initial_frame = Vector4(0, 0, 0.1, 0.25)
+instance_shader_parameters/progress = 0.0
+texture = ExtResource("2_eqq8s")
+hframes = 10
+vframes = 4
+
+[node name="ShadowCloner" type="Node2D" parent="FakeDatamoshSprite" unique_id=1070974513]
+unique_name_in_owner = true
+position = Vector2(2, 2)
+script = ExtResource("3_ro78d")
+metadata/_custom_type_script = "uid://cfpkpmdehkp8u"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=230286734]
+libraries/ = SubResource("AnimationLibrary_hx1rf")

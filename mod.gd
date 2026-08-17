@@ -1,31 +1,53 @@
+@tool
 extends Mod
 class_name MutagenicMod
 const MUTAGEN_BUBBLES = preload("uid://xd5bu6sw7c6k")
 
-var remove_other_enemies:=true
-var exisiting_enemy_pool:Array[String]
+
+var SPELLS: Dictionary[String, String] = {
+	DATAMOSH = "datamosh"
+}
+
+var SPELL_POOL: Dictionary[String, float] = {
+	SPELLS.DATAMOSH: 200.0,
+}
+
+var SPELL_CATEGORIES: Dictionary[String, Array] = {
+	Globals.SPELL_CATEGORY.SUPPORT: [
+		SPELLS.DATAMOSH
+	]
+}
+
+#static func _static_init():
+	#print("trying my best")
+	#Sounds.register_sounds(
+		#{
+			#DIMORPH={
+				#SOUNDS = [
+					#preload("res://mods/mutagenic/overrides/sounds/dimorph/dimorph_flinch.wav"),
+					#preload("res://mods/mutagenic/overrides/sounds/dimorph/dimorph_flinch_parry.wav"),
+					#preload("res://mods/mutagenic/overrides/sounds/dimorph/dimorph_growl.wav"),
+					#preload("res://mods/mutagenic/overrides/sounds/dimorph/dimorph_gunkshot.wav"),
+					#preload("res://mods/mutagenic/overrides/sounds/dimorph/dimorph_xscissor_1.wav"),
+					#preload("res://mods/mutagenic/overrides/sounds/dimorph/dimorph_xscissor_2.wav"),
+				#]
+			#}
+		#},
+		#Sounds.SOUND_CONSTANTS,
+		#Sounds.SOUND_GROUPS,
+	#)
+	#
 
 func _ready() -> void:
 	CustomIntent.custom_status_intent_icons["mutagen"]=preload("uid://dukxvsrifradw")
-	update_remove_other_enemies()
+	#update_remove_other_enemies()
 	
-	
+	if "dimorph" not in EnemyLoader.enemy_pools[0][0]:
+		EnemyLoader.add_enemy("dimorph",2,3,"res://mods/mutagenic/arte/dimorph/miniface_dimorph.png")
+		
 	await Game.main_scene_loaded
 	Game.main.game_state_updated.connect(_game_state_updated)
 
-func update_remove_other_enemies():
-	if exisiting_enemy_pool==null:
-		exisiting_enemy_pool=EnemyLoader.enemy_pools[0][0]
-	
-	if remove_other_enemies:
-		EnemyLoader.enemy_pools[0][0].clear()
-	else:
-		for enemy in Enemies.POOLS[0][0]:
-			if enemy not in EnemyLoader.enemy_pools[0][0]:
-				EnemyLoader.enemy_pools[0][0].append(enemy)
-	if "dimorph" not in EnemyLoader.enemy_pools[0][0]:
-		EnemyLoader.add_enemy("dimorph",0,0,"res://mods/mutagenic/dimorph/miniface_dimorph.png")
-		
 func _game_state_updated():
 	if Game.word_builder != null and !Game.word_builder.has_node("MutagenBubbles"):
 		var inst = MUTAGEN_BUBBLES.instantiate()
@@ -47,3 +69,11 @@ func get_save_data() -> Dictionary:
 
 func get_run_save_data() -> Dictionary:
 	return {}
+
+func get_spell_ids() -> Array[String]:
+	return namespace_ids(SPELLS.values())
+	
+func get_spell_pool(category: String = "") -> Dictionary[String, float]:
+	var category_pool: Array = SPELL_CATEGORIES.get(category, [])
+	var pool := SpellData.get_filtered_spell_pool(SPELL_POOL, category_pool)
+	return namespace_dictionary_ids(pool)

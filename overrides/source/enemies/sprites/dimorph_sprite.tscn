@@ -362,6 +362,46 @@ tracks/1/keys = {
 "values": [Vector2(0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_4o2wc"]
+resource_name = "x_scissor_readying"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.35),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0, 2, 3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.15, 0.3, 0.37259054, 0.45),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.833, 1), Vector2(1.215, 0.96), Vector2(1.2, 0.8), Vector2(1.2, 0.8), Vector2(1.2, 1), Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.15, 0.2, 0.25, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(12, 0), Vector2(-8, 0), Vector2(8, 0), Vector2(-8, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wsfgl"]
 _data = {
 &"RESET": SubResource("Animation_4rmnv"),
@@ -369,11 +409,12 @@ _data = {
 &"dying": SubResource("Animation_cmmxp"),
 &"flinch": SubResource("Animation_pslta"),
 &"flinch_parry": SubResource("Animation_44ctu"),
-&"idle": SubResource("Animation_o1ksj")
+&"idle": SubResource("Animation_o1ksj"),
+&"x_scissor_readying": SubResource("Animation_4o2wc")
 }
 
-[node name="RubberAnimalSprite" unique_id=714641121 instance=ExtResource("1_5xrak")]
-sound_groups = PackedStringArray("RUBBER_ANIMAL")
+[node name="DimorphSprite" unique_id=714641121 instance=ExtResource("1_5xrak")]
+sound_groups = PackedStringArray("RUBBER_ANIMAL", "UMAMI_SOUNDS")
 
 [node name="Sprite" type="Sprite2D" parent="." index="0" unique_id=2080200226]
 z_index = 5
@@ -404,6 +445,9 @@ libraries/ = SubResource("AnimationLibrary_wsfgl")
 autoplay = &"idle"
 
 [node name="PhonebookPortrait" parent="." index="6" unique_id=512451111]
+visible = true
 anchors_preset = -1
-offset_top = -122.0
-offset_bottom = 18.0
+offset_left = -94.0
+offset_top = -130.0
+offset_right = 126.0
+offset_bottom = 24.0

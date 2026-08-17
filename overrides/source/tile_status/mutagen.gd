@@ -13,7 +13,8 @@ static func _static_init() -> void:
 		preload("res://mods/mutagenic/arte/mutagen_tile/mutagen_plastic_fish_flipped.png"),
 		preload("res://mods/mutagenic/arte/mutagen_tile/mutagen_plastic_fish.png")
 	]
-
+func _status_connect():
+	tile.set_instance_shader_parameter("mutagen_enabled",true)
+	
 func update_frame():
 	super.update_frame()
-	tile.set_instance_shader_parameter("mutagen_enabled",true)

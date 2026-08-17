@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://bjutnf6nidv0o"
-path="res://.godot/imported/dimorph_xscissor_2.wav-a561335196d8ee17b9bd37ab1ac5c1d5.sample"
+path="res://.godot/imported/dimorph_xscissor_2.wav-c033ed1c2ddd9cae2af89dd1991c14a3.sample"
 
 [deps]
 
-source_file="res://mods/mutagenic/overrides/sounds/dimorph_xscissor_2.wav"
-dest_files=["res://.godot/imported/dimorph_xscissor_2.wav-a561335196d8ee17b9bd37ab1ac5c1d5.sample"]
+source_file="res://mods/mutagenic/overrides/sounds/dimorph/dimorph_xscissor_2.wav"
+dest_files=["res://.godot/imported/dimorph_xscissor_2.wav-c033ed1c2ddd9cae2af89dd1991c14a3.sample"]
 
 [params]
 

@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://co76bj8haluu8"
-path="res://.godot/imported/dimorph_gunkshot.wav-761b8a0958778cba91ab795aa6fcd3c5.sample"
+path="res://.godot/imported/dimorph_gunkshot.wav-f96be794f40f3c315123d2cef09375f4.sample"
 
 [deps]
 
-source_file="res://mods/mutagenic/overrides/sounds/dimorph_gunkshot.wav"
-dest_files=["res://.godot/imported/dimorph_gunkshot.wav-761b8a0958778cba91ab795aa6fcd3c5.sample"]
+source_file="res://mods/mutagenic/overrides/sounds/dimorph/dimorph_gunkshot.wav"
+dest_files=["res://.godot/imported/dimorph_gunkshot.wav-f96be794f40f3c315123d2cef09375f4.sample"]
 
 [params]
 
