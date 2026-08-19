@@ -9,6 +9,8 @@ uniform sampler2D noise : filter_nearest;
 
 uniform float edge_feather : hint_range(0.0,0.5);
 
+uniform bool enable_glow = true;
+
 void vertex() {
 	// Called for every vertex the material is visible on.
 }
@@ -22,7 +24,7 @@ void fragment() {
 	bool glow = false;
 	if(noise_progress < noise_target) {
 		uv_target = ending_frame.xy + ending_frame.zw*uv;
-	} else {
+	} else if (enable_glow) {
 		if (noise_progress*0.8 < noise_target) {
 			glow = true;
 		}

@@ -1,9 +1,9 @@
-[gd_scene format=3 uid="uid://dsrrhj6sxkvad"]
+[gd_scene format=3 uid="uid://ndt78u3bw7yk"]
 
-[ext_resource type="Script" uid="uid://b74mxdfobsw4w" path="res://mods/mutagenic/source/datamosh/generic_tile_effect.gd" id="1_jv6fc"]
-[ext_resource type="Texture2D" uid="uid://5rmj76byr2s4" path="res://arte/tiles/wood_tiles_a.png" id="2_eqq8s"]
-[ext_resource type="Material" uid="uid://chvp0ycfo0x0e" path="res://mods/mutagenic/source/spells/datamosh_material.tres" id="2_ro78d"]
-[ext_resource type="Script" uid="uid://cfpkpmdehkp8u" path="res://source/ui/generic/shadow_cloner.gd" id="3_ro78d"]
+[ext_resource type="Script" uid="uid://b74mxdfobsw4w" path="res://mods/mutagenic/source/datamosh/generic_tile_effect.gd" id="1_d5cd6"]
+[ext_resource type="Material" uid="uid://kjo0tgl0c2d0" path="res://mods/mutagenic/source/spells/milk_material.tres" id="2_d5cd6"]
+[ext_resource type="Texture2D" uid="uid://5rmj76byr2s4" path="res://arte/tiles/wood_tiles_a.png" id="3_i3hcs"]
+[ext_resource type="Script" uid="uid://cfpkpmdehkp8u" path="res://source/ui/generic/shadow_cloner.gd" id="4_ltdev"]
 
 [sub_resource type="Animation" id="Animation_hx1rf"]
 length = 0.001
@@ -22,7 +22,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_ro78d"]
 resource_name = "datamosh"
-length = 0.7
+length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -30,8 +30,8 @@ tracks/0/path = NodePath("FakeSprite:instance_shader_parameters/progress")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.7),
-"transitions": PackedFloat32Array(0.78458405, 1),
+"times": PackedFloat32Array(0, 1.0666667),
+"transitions": PackedFloat32Array(0.50000006, 1),
 "update": 0,
 "values": [0.0, 1.0]
 }
@@ -42,13 +42,13 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.23333333, 0.36666667),
+"times": PackedFloat32Array(0.03333333, 0.2),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
-"args": [&"bounce"],
+"args": [&"play_sound"],
 "method": &"emit_signal"
 }, {
-"args": [&"change_number"],
+"args": [&"bounce"],
 "method": &"emit_signal"
 }]
 }
@@ -59,24 +59,25 @@ _data = {
 &"tile_change": SubResource("Animation_ro78d")
 }
 
-[node name="DatamoshEffectInstance" type="Node2D" unique_id=1433592823]
+[node name="MilkEffectInstance" type="Node2D" unique_id=1433592823]
 show_behind_parent = true
-script = ExtResource("1_jv6fc")
+script = ExtResource("1_d5cd6")
+default_ending_frame = Vector4(0, 64, 32, 32)
 
 [node name="FakeSprite" type="Sprite2D" parent="." unique_id=1783727358]
 unique_name_in_owner = true
-material = ExtResource("2_ro78d")
-instance_shader_parameters/ending_frame = Vector4(0.1, 0.5, 0.1, 0.25)
+material = ExtResource("2_d5cd6")
+instance_shader_parameters/ending_frame = Vector4(0, 0.5, 0.1, 0.25)
 instance_shader_parameters/initial_frame = Vector4(0, 0, 0.1, 0.25)
 instance_shader_parameters/progress = 0.0
-texture = ExtResource("2_eqq8s")
+texture = ExtResource("3_i3hcs")
 hframes = 10
 vframes = 4
 
 [node name="ShadowCloner" type="Node2D" parent="FakeSprite" unique_id=1070974513]
 unique_name_in_owner = true
 position = Vector2(2, 2)
-script = ExtResource("3_ro78d")
+script = ExtResource("4_ltdev")
 metadata/_custom_type_script = "uid://cfpkpmdehkp8u"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=230286734]

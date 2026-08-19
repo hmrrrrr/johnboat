@@ -27,6 +27,7 @@ func _run() -> void:
 func get_number_alts_for_word(target_word: String) -> PackedStringArray:
 	var game_dictionary: WordDictionary = ResourceLoader.load("res://words/compiled.res", "", ResourceLoader.CACHE_MODE_IGNORE)
 	var target_word_nums = ""
+	var common_words := game_dictionary.word_flags[WordDictionary.WordFlags.COMMON].words
 	for target_letter in target_word:
 		for key in Letters.NUMPAD_CHARACTERS.keys():
 			var options = Letters.NUMPAD_CHARACTERS[key]
@@ -34,7 +35,7 @@ func get_number_alts_for_word(target_word: String) -> PackedStringArray:
 				target_word_nums += key
 				break
 	var alts: PackedStringArray = []
-	for word in game_dictionary.words.words:
+	for word in common_words:
 		var i = 0
 		if len(word) != len(target_word):
 			continue

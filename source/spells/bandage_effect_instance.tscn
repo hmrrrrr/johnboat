@@ -1,0 +1,198 @@
+[gd_scene format=3 uid="uid://dhp2v61ogvbg7"]
+
+[ext_resource type="Script" uid="uid://gs8png1dsi6v" path="res://mods/mutagenic/source/spells/bandage_effect_instance.gd" id="1_vrab2"]
+[ext_resource type="Texture2D" uid="uid://dyhc3ysx30x8n" path="res://mods/mutagenic/arte/spells/tile_bandage.png" id="2_x7xlk"]
+[ext_resource type="Texture2D" uid="uid://snq3bktj7exm" path="res://mods/mutagenic/arte/spells/tile_inside_mask.png" id="3_bdrcb"]
+[ext_resource type="Script" uid="uid://cfpkpmdehkp8u" path="res://source/ui/generic/shadow_cloner.gd" id="4_a3284"]
+
+[sub_resource type="Animation" id="Animation_bdrcb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mask/BandageSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Mask/BandageSprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -2)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Mask/BandageSprite:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Mask/BandageSprite:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Mask:clip_children")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Mask:self_modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_x7xlk"]
+resource_name = "apply"
+length = 2.3949952
+step = 0.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mask/BandageSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.19999999, 0.26666668, 0.33333334, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 0, 1, 2, 3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Mask/BandageSprite:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2947114),
+"transitions": PackedFloat32Array(1.5157164, 1),
+"update": 0,
+"values": [Vector2(0, -6), Vector2(0, -2)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Mask/BandageSprite:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.28682995, 0.35612926, 0.4483869),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 0.8), Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Mask/BandageSprite:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Mask:clip_children")
+tracks/4/interp = 0
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Mask:self_modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath(".")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.3372701),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"applied"],
+"method": &"emit_signal"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bdrcb"]
+_data = {
+&"RESET": SubResource("Animation_bdrcb"),
+&"apply": SubResource("Animation_x7xlk")
+}
+
+[node name="BandageEffectInstance" type="Node2D" unique_id=276672881]
+script = ExtResource("1_vrab2")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1268180836]
+libraries/ = SubResource("AnimationLibrary_bdrcb")
+
+[node name="Mask" type="Sprite2D" parent="." unique_id=251608982]
+clip_children = 1
+texture = ExtResource("3_bdrcb")
+
+[node name="BandageSprite" type="Sprite2D" parent="Mask" unique_id=577899698]
+position = Vector2(0, -2)
+texture = ExtResource("2_x7xlk")
+offset = Vector2(0, -6)
+hframes = 4
+
+[node name="ShadowCloner" type="Node2D" parent="Mask/BandageSprite" unique_id=823748980]
+script = ExtResource("4_a3284")
+metadata/_custom_type_script = "uid://cfpkpmdehkp8u"

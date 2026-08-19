@@ -1,3 +1,7 @@
 :pda:
 	:put_away:
 		{"Put Away"}
+
+:word_warnings:
+	:already_in_album:
+		“{letter capital}” is already in the album!

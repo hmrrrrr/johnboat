@@ -7,13 +7,17 @@ const MUTAGEN_BUBBLES = preload("uid://xd5bu6sw7c6k")
 var SPELLS: Dictionary[String, String] = {
 	DATAMOSH = "datamosh",
 	SUPERPOSITION = "superposition",
-	PDA = "pda"
+	PDA = "pda",
+	BOOSTER_SHOT = "booster_shot",
+	TOY_CAMERA = "toy_camera",
 }
 
 var SPELL_POOL: Dictionary[String, float] = {
 	SPELLS.DATAMOSH: 1.0,
 	SPELLS.SUPERPOSITION: 1.,
-	SPELLS.PDA: 1.
+	SPELLS.PDA: 1.,
+	SPELLS.BOOSTER_SHOT:1.,
+	SPELLS.TOY_CAMERA:1.,
 }
 
 var SPELL_CATEGORIES: Dictionary[String, Array] = {
@@ -22,9 +26,14 @@ var SPELL_CATEGORIES: Dictionary[String, Array] = {
 		SPELLS.PDA
 	],
 	Globals.SPELL_CATEGORY.OFFENSIVE: [
-		SPELLS.SUPERPOSITION
-	]
+		SPELLS.SUPERPOSITION,
+		SPELLS.BOOSTER_SHOT
+	],
+	Globals.SPELL_CATEGORY.DEFENSIVE: [
+		SPELLS.TOY_CAMERA,
+	],
 }
+
 
 #static func _static_init():
 	#print("trying my best")

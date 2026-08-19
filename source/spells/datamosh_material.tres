@@ -1,0 +1,20 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://chvp0ycfo0x0e"]
+
+[ext_resource type="Shader" uid="uid://qpys61e5u7hy" path="res://mods/mutagenic/source/tile_noise_conversion.gdshader" id="1_3lvfc"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_0j7j3"]
+seed = 12
+frequency = 0.3385
+fractal_octaves = 1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_hx1rf"]
+width = 113
+height = 64
+generate_mipmaps = false
+noise = SubResource("FastNoiseLite_0j7j3")
+
+[resource]
+shader = ExtResource("1_3lvfc")
+shader_parameter/noise = SubResource("NoiseTexture2D_hx1rf")
+shader_parameter/edge_feather = 0.0490000023275
+shader_parameter/enable_glow = true

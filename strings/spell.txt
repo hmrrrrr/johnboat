@@ -10,7 +10,7 @@
 		Cursed numbers
 
 	:max_charge:
-		3
+		1
 
 	:charge_category:
 		very_common
@@ -31,7 +31,92 @@
 	:label:
 		Shimmer any tiles
 
+:booster_shot:
+	:name:
+		Booster Shot
+	
+	:charge_category:
+		common
+	
+	:exclude_characters:
+		xjqz
+		
+	:max_charge:
+		2
+	
+	:label:
+		Poison {current_face}
+	
+	:description:
+		Convert ANY tile to a poison ({current_face}).
+		Face changes each use: {cycle}
 
+:milk:
+	:name:
+		Milk
+	
+	:description:
+		Enhance wood tiles to ivory in a spelled word that you've already submitted this run.
+	
+	:label:
+		Ivory repeat
+	
+	:charge_category:
+		uncommon
+	
+	:max_charge:
+		2
+
+:toy_camera:
+	:name:
+		Toy Camera
+	
+	:description:
+		{:numbered_description: if photo_taken}
+		{:generic_description: not photo_taken}
+	
+	:numbered_description:
+		Instantly use a plastic tile.
+		Each letter can only be used this way once.
+		
+		({photos_taken}/{num_letters} photographed)
+		
+	
+	:generic_description:
+		Instantly use a plastic tile.
+		Each letter can only be used this way once.
+		
+	
+	:max_charge:
+		1
+		
+	:banner:
+		Select a unique plastic tile
+	
+	:charge_category:
+		very_common
+	
+	:label:
+		Plastic pic
+	
+	:flags:
+		removes_word
+
+:security_blanket:
+	:name:
+		Security Blanket
+		
+	:description:
+		When you would take damage, instead drain a charge from this spell if possible.
+	
+	:charge_category:
+		uncommon
+	
+	:max_charge:
+		2
+	
+	:flags:
+		shield_charges
 
 :pda:
 	:name:
