@@ -1,6 +1,6 @@
 {
 	"id": "johnboat",
-	"_packs":[
+	"packs":[
 		{
 			"path":"johnboat.pck",
 		}

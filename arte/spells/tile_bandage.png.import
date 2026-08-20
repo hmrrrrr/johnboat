@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dyhc3ysx30x8n"
-path="res://.godot/imported/tile_bandage.png-0761f57399923b9894a0fb336a80b82d.ctex"
+path="res://.godot/imported/tile_bandage.png-aae01d131fd882074ab2b54aa3154c9b.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://mods/johnboat/arte/spells/tile_bandage.png"
-dest_files=["res://.godot/imported/tile_bandage.png-0761f57399923b9894a0fb336a80b82d.ctex"]
+dest_files=["res://.godot/imported/tile_bandage.png-aae01d131fd882074ab2b54aa3154c9b.ctex"]
 
 [params]
 

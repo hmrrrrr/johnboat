@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://bdt4n5kbbdqnl"
-path="res://.godot/imported/datamosh.wav-dd73e05ba24ea8957fbfd1662ebee2a7.sample"
+path="res://.godot/imported/datamosh.wav-2bd0ccf15964f3c0353a6cc3abb1cea1.sample"
 
 [deps]
 
 source_file="res://mods/johnboat/sounds/datamosh.wav"
-dest_files=["res://.godot/imported/datamosh.wav-dd73e05ba24ea8957fbfd1662ebee2a7.sample"]
+dest_files=["res://.godot/imported/datamosh.wav-2bd0ccf15964f3c0353a6cc3abb1cea1.sample"]
 
 [params]
 

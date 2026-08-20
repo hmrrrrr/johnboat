@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://cta8e6stil4gd"
-path="res://.godot/imported/milkspill.wav-ad8c6ea63281795858209a28e9cb2f1f.sample"
+path="res://.godot/imported/milkspill.wav-fe3892313db608bde6c2ec0d2e37475b.sample"
 
 [deps]
 
 source_file="res://mods/johnboat/sounds/milkspill.wav"
-dest_files=["res://.godot/imported/milkspill.wav-ad8c6ea63281795858209a28e9cb2f1f.sample"]
+dest_files=["res://.godot/imported/milkspill.wav-fe3892313db608bde6c2ec0d2e37475b.sample"]
 
 [params]
 

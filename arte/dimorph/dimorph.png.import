@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c4075ttgqf27m"
-path="res://.godot/imported/dimorph.png-f409d1b34d05ade2f87095dc8e55b516.ctex"
+path="res://.godot/imported/dimorph.png-1a8702ab5d828aa54b2195088228dfe0.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://mods/johnboat/arte/dimorph/dimorph.png"
-dest_files=["res://.godot/imported/dimorph.png-f409d1b34d05ade2f87095dc8e55b516.ctex"]
+dest_files=["res://.godot/imported/dimorph.png-1a8702ab5d828aa54b2195088228dfe0.ctex"]
 
 [params]
 

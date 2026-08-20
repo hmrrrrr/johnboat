@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://7deiiasbsh3w"
-path="res://.godot/imported/camera.wav-609cd0a43aa070c7231a160b324a75fb.sample"
+path="res://.godot/imported/camera.wav-91597aa3b2c2796c8f2f666347c8009b.sample"
 
 [deps]
 
 source_file="res://mods/johnboat/sounds/camera.wav"
-dest_files=["res://.godot/imported/camera.wav-609cd0a43aa070c7231a160b324a75fb.sample"]
+dest_files=["res://.godot/imported/camera.wav-91597aa3b2c2796c8f2f666347c8009b.sample"]
 
 [params]
 

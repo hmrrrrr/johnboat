@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://djkds4q6uvn1c"
-path="res://.godot/imported/dimorph_growl.wav-ae782edcf2847cfd98b8139d3ad42c77.sample"
+path="res://.godot/imported/dimorph_growl.wav-153002f3e277ffde4d1d96e1b652a724.sample"
 
 [deps]
 
 source_file="res://mods/johnboat/overrides/sounds/dimorph/dimorph_growl.wav"
-dest_files=["res://.godot/imported/dimorph_growl.wav-ae782edcf2847cfd98b8139d3ad42c77.sample"]
+dest_files=["res://.godot/imported/dimorph_growl.wav-153002f3e277ffde4d1d96e1b652a724.sample"]
 
 [params]
 

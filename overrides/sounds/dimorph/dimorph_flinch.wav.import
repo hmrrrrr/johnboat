@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://da4a3f4conldj"
-path="res://.godot/imported/dimorph_flinch.wav-b0eb0408d8d403d776e0625a4ea90e97.sample"
+path="res://.godot/imported/dimorph_flinch.wav-09451e22b8cf5b2db1e4eddf19d08020.sample"
 
 [deps]
 
 source_file="res://mods/johnboat/overrides/sounds/dimorph/dimorph_flinch.wav"
-dest_files=["res://.godot/imported/dimorph_flinch.wav-b0eb0408d8d403d776e0625a4ea90e97.sample"]
+dest_files=["res://.godot/imported/dimorph_flinch.wav-09451e22b8cf5b2db1e4eddf19d08020.sample"]
 
 [params]
 
