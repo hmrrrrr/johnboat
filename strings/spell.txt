@@ -104,7 +104,7 @@
 		Select a unique plastic tile
 	
 	:charge_category:
-		very_common
+		auto
 	
 	:label:
 		Plastic pic
