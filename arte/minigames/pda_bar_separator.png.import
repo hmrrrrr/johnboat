@@ -10,7 +10,7 @@ metadata={
 
 [deps]
 
-source_file="res://mods/mutagenic/arte/minigames/pda_bar_separator.png"
+source_file="res://mods/johnboat/arte/minigames/pda_bar_separator.png"
 dest_files=["res://.godot/imported/pda_bar_separator.png-1c58e748f4f96ff49c270307dd6fc923.ctex"]
 
 [params]

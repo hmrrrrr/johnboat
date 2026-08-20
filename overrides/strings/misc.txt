@@ -5,3 +5,9 @@
 :word_warnings:
 	:already_in_album:
 		“{letter capital}” is already in the album!
+
+:linked_color:
+	:fuzzy:
+		fuzzy
+	:ziptie:
+		ziptie

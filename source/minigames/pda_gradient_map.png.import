@@ -10,7 +10,7 @@ metadata={
 
 [deps]
 
-source_file="res://mods/mutagenic/source/minigames/pda_gradient_map.png"
+source_file="res://mods/johnboat/source/minigames/pda_gradient_map.png"
 dest_files=["res://.godot/imported/pda_gradient_map.png-523e37f790fee5d3b1a8bebd98651809.ctex"]
 
 [params]

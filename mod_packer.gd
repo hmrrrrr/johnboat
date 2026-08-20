@@ -12,8 +12,8 @@ const IGNORED_EXTENSIONS = [
 	"zip"
 ]
 
-var mod_id: String = "mutagenic"
-var pack_name: = "mutagenic"
+var mod_id: String = "johnboat"
+var pack_name: = "johnboat"
 var pack_zip: = false
 
 

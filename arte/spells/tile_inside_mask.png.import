@@ -10,7 +10,7 @@ metadata={
 
 [deps]
 
-source_file="res://mods/mutagenic/arte/spells/tile_inside_mask.png"
+source_file="res://mods/johnboat/arte/spells/tile_inside_mask.png"
 dest_files=["res://.godot/imported/tile_inside_mask.png-340f682aa652e405b8595fb91b25db47.ctex"]
 
 [params]

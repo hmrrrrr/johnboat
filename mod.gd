@@ -1,6 +1,6 @@
 @tool
 extends Mod
-class_name MutagenicMod
+class_name JohnboatMod
 const MUTAGEN_BUBBLES = preload("uid://xd5bu6sw7c6k")
 
 
@@ -10,27 +10,36 @@ var SPELLS: Dictionary[String, String] = {
 	PDA = "pda",
 	BOOSTER_SHOT = "booster_shot",
 	TOY_CAMERA = "toy_camera",
+	MILK = "milk",
+	ZIPTIES = "zipties",
+	GAYDAR = "gaydar",
 }
 
 var SPELL_POOL: Dictionary[String, float] = {
-	SPELLS.DATAMOSH: 1.0,
-	SPELLS.SUPERPOSITION: 1.,
-	SPELLS.PDA: 1.,
-	SPELLS.BOOSTER_SHOT:1.,
-	SPELLS.TOY_CAMERA:1.,
+	SPELLS.PDA: 0.,
+	SPELLS.DATAMOSH: 2.5,
+	SPELLS.SUPERPOSITION: 2.5,
+	SPELLS.BOOSTER_SHOT:2.5,
+	SPELLS.TOY_CAMERA:2.5,
+	SPELLS.MILK:2.5,
+	SPELLS.ZIPTIES:2.5,
+	SPELLS.GAYDAR:2.5,
 }
 
 var SPELL_CATEGORIES: Dictionary[String, Array] = {
 	Globals.SPELL_CATEGORY.SUPPORT: [
 		SPELLS.DATAMOSH,
-		SPELLS.PDA
+		SPELLS.PDA,
+		SPELLS.BOOSTER_SHOT,
 	],
 	Globals.SPELL_CATEGORY.OFFENSIVE: [
 		SPELLS.SUPERPOSITION,
-		SPELLS.BOOSTER_SHOT
+		SPELLS.MILK,
+		SPELLS.GAYDAR,
 	],
 	Globals.SPELL_CATEGORY.DEFENSIVE: [
 		SPELLS.TOY_CAMERA,
+		SPELLS.ZIPTIES,
 	],
 }
 
@@ -41,12 +50,12 @@ var SPELL_CATEGORIES: Dictionary[String, Array] = {
 		#{
 			#DIMORPH={
 				#SOUNDS = [
-					#preload("res://mods/mutagenic/overrides/sounds/dimorph/dimorph_flinch.wav"),
-					#preload("res://mods/mutagenic/overrides/sounds/dimorph/dimorph_flinch_parry.wav"),
-					#preload("res://mods/mutagenic/overrides/sounds/dimorph/dimorph_growl.wav"),
-					#preload("res://mods/mutagenic/overrides/sounds/dimorph/dimorph_gunkshot.wav"),
-					#preload("res://mods/mutagenic/overrides/sounds/dimorph/dimorph_xscissor_1.wav"),
-					#preload("res://mods/mutagenic/overrides/sounds/dimorph/dimorph_xscissor_2.wav"),
+					#preload("res://mods/johnboat/overrides/sounds/dimorph/dimorph_flinch.wav"),
+					#preload("res://mods/johnboat/overrides/sounds/dimorph/dimorph_flinch_parry.wav"),
+					#preload("res://mods/johnboat/overrides/sounds/dimorph/dimorph_growl.wav"),
+					#preload("res://mods/johnboat/overrides/sounds/dimorph/dimorph_gunkshot.wav"),
+					#preload("res://mods/johnboat/overrides/sounds/dimorph/dimorph_xscissor_1.wav"),
+					#preload("res://mods/johnboat/overrides/sounds/dimorph/dimorph_xscissor_2.wav"),
 				#]
 			#}
 		#},
@@ -60,7 +69,7 @@ func _ready() -> void:
 	#update_remove_other_enemies()
 	
 	#if "dimorph" not in EnemyLoader.enemy_pools[0][0]:
-		#EnemyLoader.add_enemy("dimorph",2,3,"res://mods/mutagenic/arte/dimorph/miniface_dimorph.png")
+		#EnemyLoader.add_enemy("dimorph",2,3,"res://mods/johnboat/arte/dimorph/miniface_dimorph.png")
 		
 	await Game.main_scene_loaded
 	Game.main.game_state_updated.connect(_game_state_updated)

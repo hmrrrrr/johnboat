@@ -10,7 +10,7 @@ metadata={
 
 [deps]
 
-source_file="res://mods/mutagenic/arte/minigames/pda_put_away.png"
+source_file="res://mods/johnboat/arte/minigames/pda_put_away.png"
 dest_files=["res://.godot/imported/pda_put_away.png-34c40251bfa51969a47ea66a2dd34b33.ctex"]
 
 [params]

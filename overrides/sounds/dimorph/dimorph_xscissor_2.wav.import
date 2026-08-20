@@ -7,7 +7,7 @@ path="res://.godot/imported/dimorph_xscissor_2.wav-c033ed1c2ddd9cae2af89dd1991c1
 
 [deps]
 
-source_file="res://mods/mutagenic/overrides/sounds/dimorph/dimorph_xscissor_2.wav"
+source_file="res://mods/johnboat/overrides/sounds/dimorph/dimorph_xscissor_2.wav"
 dest_files=["res://.godot/imported/dimorph_xscissor_2.wav-c033ed1c2ddd9cae2af89dd1991c14a3.sample"]
 
 [params]

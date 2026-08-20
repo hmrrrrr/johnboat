@@ -7,7 +7,7 @@ path="res://.godot/imported/cameraprint.wav-fd9e0b9de23bc9325875167b834c44ba.sam
 
 [deps]
 
-source_file="res://mods/mutagenic/sounds/cameraprint.wav"
+source_file="res://mods/johnboat/sounds/cameraprint.wav"
 dest_files=["res://.godot/imported/cameraprint.wav-fd9e0b9de23bc9325875167b834c44ba.sample"]
 
 [params]

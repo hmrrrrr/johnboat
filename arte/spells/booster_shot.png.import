@@ -10,7 +10,7 @@ metadata={
 
 [deps]
 
-source_file="res://mods/mutagenic/arte/spells/booster_shot.png"
+source_file="res://mods/johnboat/arte/spells/booster_shot.png"
 dest_files=["res://.godot/imported/booster_shot.png-42260ea4cbcaa0836939aada2df6cccf.ctex"]
 
 [params]

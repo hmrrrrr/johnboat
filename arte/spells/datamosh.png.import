@@ -10,7 +10,7 @@ metadata={
 
 [deps]
 
-source_file="res://mods/mutagenic/arte/spells/datamosh.png"
+source_file="res://mods/johnboat/arte/spells/datamosh.png"
 dest_files=["res://.godot/imported/datamosh.png-7a98835760457dfac466f42f69c8c73f.ctex"]
 
 [params]

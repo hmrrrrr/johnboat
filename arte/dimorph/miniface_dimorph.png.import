@@ -10,7 +10,7 @@ metadata={
 
 [deps]
 
-source_file="res://mods/mutagenic/arte/dimorph/miniface_dimorph.png"
+source_file="res://mods/johnboat/arte/dimorph/miniface_dimorph.png"
 dest_files=["res://.godot/imported/miniface_dimorph.png-065e7de68aca9a841770433a0574b17b.ctex"]
 
 [params]

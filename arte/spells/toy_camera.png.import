@@ -10,7 +10,7 @@ metadata={
 
 [deps]
 
-source_file="res://mods/mutagenic/arte/spells/toy_camera.png"
+source_file="res://mods/johnboat/arte/spells/toy_camera.png"
 dest_files=["res://.godot/imported/toy_camera.png-2600306718e9857bb3071809da77fcc5.ctex"]
 
 [params]

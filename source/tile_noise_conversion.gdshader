@@ -4,20 +4,33 @@ instance uniform vec4 initial_frame;
 instance uniform vec4 ending_frame;
 
 instance uniform float progress : hint_range(0.0, 1.0, .2);
+instance uniform float gradient_progress : hint_range(0.0, 1.0, .2);
 
 uniform sampler2D noise : filter_nearest;
 
 uniform float edge_feather : hint_range(0.0,0.5);
 
+uniform bool local_uv_for_noise = false;
 uniform bool enable_glow = true;
+
+uniform sampler2D tint_gradient : filter_nearest;
 
 void vertex() {
 	// Called for every vertex the material is visible on.
+}
+vec4 soft_light(vec4 base, vec4 blend){
+	vec4 limit = step(0.5, blend);
+	vec4 pre_alpha = mix(2.0 * base * blend + base * base * (1.0 - 2.0 * blend), sqrt(base) * (2.0 * blend - 1.0) + (2.0 * base) * (1.0 - blend), limit);
+	
+	return mix(base,pre_alpha,blend.a);
 }
 
 void fragment() {
 	vec2 uv = (UV)/(initial_frame.zw);
 	float noise_progress = texture(noise, SCREEN_UV).r;
+	if (local_uv_for_noise) {
+		noise_progress = texture(noise, UV).r;
+	}
 	vec2 uv_target = initial_frame.xy + initial_frame.zw*uv;
 	float noise_target = progress*(1.+edge_feather*2.)-edge_feather;
 	
@@ -31,9 +44,12 @@ void fragment() {
 	}
 	
 	COLOR = texture(TEXTURE,uv_target);
+	
+	COLOR = soft_light(COLOR, texture(tint_gradient,vec2(gradient_progress,0.)));
 	if (glow) {
 		COLOR.r = 1.;	
 	}
+	
 }
 
 //void light() {

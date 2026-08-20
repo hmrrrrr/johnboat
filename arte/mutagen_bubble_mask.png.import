@@ -10,7 +10,7 @@ metadata={
 
 [deps]
 
-source_file="res://mods/mutagenic/arte/mutagen_bubble_mask.png"
+source_file="res://mods/johnboat/arte/mutagen_bubble_mask.png"
 dest_files=["res://.godot/imported/mutagen_bubble_mask.png-724b05cc0a77c586bd7d7004eb171998.ctex"]
 
 [params]

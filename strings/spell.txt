@@ -10,7 +10,7 @@
 		Cursed numbers
 
 	:max_charge:
-		1
+		2
 
 	:charge_category:
 		very_common
@@ -26,10 +26,20 @@
 	:max_charge:
 		3
 	:description:
-		Choose two tiles to combine into a shimmering enhanced tile.
+		Combine two tiles into a shimmering enhanced tile.
 		
 	:label:
 		Shimmer any tiles
+
+:subdomain:
+	:name:
+		Subdomain
+	
+	:label:
+		2× period crit
+	
+	:description:
+		Convert two random tiles in a spelled word to period crits.
 
 :booster_shot:
 	:name:
@@ -56,16 +66,16 @@
 		Milk
 	
 	:description:
-		Enhance wood tiles to ivory in a spelled word that you've already submitted this run.
+		Turn wood tiles to ivory in a spelled word that you've already submitted this run.
 	
 	:label:
 		Ivory repeat
 	
 	:charge_category:
-		uncommon
+		very_common
 	
 	:max_charge:
-		2
+		4
 
 :toy_camera:
 	:name:
@@ -118,6 +128,72 @@
 	:flags:
 		shield_charges
 
+:gaydar:
+	:name:
+		Gaydar
+		
+	:description:
+		Choose a tile. Convert its row to yuri, its column to yaoi, then make that tile a crit.
+	
+	:label:
+		Crit + gays
+	
+	:charge_category:
+		rare
+	
+	:max_charge:
+		3
+
+:zipties:
+	:name:
+		Zipties
+	
+	:description:
+		Turn two plastic tiles into linked wildcards.
+	
+	:label:
+		Plastic → linked *
+
+	:charge_category:
+		rare
+	
+	:max_charge:
+		1
+
+
+:fuzzy_handcuffs:
+	:name:
+		Fuzzy Handcuffs
+		
+	:description:
+		Turn two tiles into linked capital/period wildcards.
+	
+	:label:
+		Linked wildcards
+	
+	:charge_category:
+		uncommon
+	
+	:max_charge:
+		1
+	
+
+:fuzzy_handcuffs:
+	:name:
+		Fuzzy Handcuffs
+		
+	:description:
+		Turn two tiles into linked capital/period wildcards.
+	
+	:label:
+		Linked wildcards
+	
+	:charge_category:
+		uncommon
+	
+	:max_charge:
+		1
+	
 :pda:
 	:name:
 		PDA

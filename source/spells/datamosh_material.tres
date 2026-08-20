@@ -1,20 +1,29 @@
 [gd_resource type="ShaderMaterial" format=3 uid="uid://chvp0ycfo0x0e"]
 
-[ext_resource type="Shader" uid="uid://qpys61e5u7hy" path="res://mods/mutagenic/source/tile_noise_conversion.gdshader" id="1_3lvfc"]
+[ext_resource type="Shader" uid="uid://qpys61e5u7hy" path="res://mods/johnboat/source/tile_noise_conversion.gdshader" id="1_3lvfc"]
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_0j7j3"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_3lvfc"]
+noise_type = 0
 seed = 12
-frequency = 0.3385
+frequency = 0.5351
 fractal_octaves = 1
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_hx1rf"]
-width = 113
-height = 64
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_qrxdj"]
+width = 120
+height = 67
 generate_mipmaps = false
-noise = SubResource("FastNoiseLite_0j7j3")
+noise = SubResource("FastNoiseLite_3lvfc")
+
+[sub_resource type="Gradient" id="Gradient_3lvfc"]
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_3lvfc"]
+gradient = SubResource("Gradient_3lvfc")
 
 [resource]
 shader = ExtResource("1_3lvfc")
-shader_parameter/noise = SubResource("NoiseTexture2D_hx1rf")
+shader_parameter/noise = SubResource("NoiseTexture2D_qrxdj")
 shader_parameter/edge_feather = 0.0490000023275
+shader_parameter/local_uv_for_noise = false
 shader_parameter/enable_glow = true
+shader_parameter/tint_gradient = SubResource("GradientTexture1D_3lvfc")

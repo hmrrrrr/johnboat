@@ -7,7 +7,7 @@ path="res://.godot/imported/Undead Pixel 8.ttf-fc0c5fedf762b33cf702b8fd0675dc2f.
 
 [deps]
 
-source_file="res://mods/mutagenic/fonts/Undead Pixel 8.ttf"
+source_file="res://mods/johnboat/fonts/Undead Pixel 8.ttf"
 dest_files=["res://.godot/imported/Undead Pixel 8.ttf-fc0c5fedf762b33cf702b8fd0675dc2f.fontdata"]
 
 [params]

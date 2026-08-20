@@ -5,15 +5,15 @@ var pic_rotations: Array[float] = []
 var pic_data: Array[Image] = []
 
 var album_overlay: ToyCameraAlbumOverlay = null
-const TOY_CAMERA_ALBUM_OVERLAY = preload("res://mods/mutagenic/source/minigames/toy_camera_album_overlay.tscn")
-const TOY_CAMERA_ALBUM_ENTRY = preload("res://mods/mutagenic/source/minigames/toy_camera_album_entry.tscn")
+const TOY_CAMERA_ALBUM_OVERLAY = preload("res://mods/johnboat/source/minigames/toy_camera_album_overlay.tscn")
+const TOY_CAMERA_ALBUM_ENTRY = preload("res://mods/johnboat/source/minigames/toy_camera_album_entry.tscn")
 
 const SOUNDS = {
-	CAMERA = preload("res://mods/mutagenic/sounds/camera.wav"),
-	CAMERAPRINT = preload("res://mods/mutagenic/sounds/cameraprint.wav")
+	CAMERA = preload("res://mods/johnboat/sounds/camera.wav"),
+	CAMERAPRINT = preload("res://mods/johnboat/sounds/cameraprint.wav")
 }
 
-const FLASH_FX = preload("res://mods/mutagenic/source/spells/flash_fx.tscn")
+const FLASH_FX = preload("res://mods/johnboat/source/spells/flash_fx.tscn")
 const ARCING_PROJECTILE = preload("res://source/effects/arcing_projectile.tscn")
 
 var can_show_album := true

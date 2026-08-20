@@ -7,7 +7,7 @@ path="res://.godot/imported/booster_shot_use.wav-4f39e769f690a532f2dbae1879ef3f3
 
 [deps]
 
-source_file="res://mods/mutagenic/sounds/booster_shot_use.wav"
+source_file="res://mods/johnboat/sounds/booster_shot_use.wav"
 dest_files=["res://.godot/imported/booster_shot_use.wav-4f39e769f690a532f2dbae1879ef3f3f.sample"]
 
 [params]

@@ -10,7 +10,7 @@ metadata={
 
 [deps]
 
-source_file="res://mods/mutagenic/arte/mutagen_tile/mutagen_plastic_fish.png"
+source_file="res://mods/johnboat/arte/mutagen_tile/mutagen_plastic_fish.png"
 dest_files=["res://.godot/imported/mutagen_plastic_fish.png-3da1dd263b359c8e0c1e158752744dbe.ctex"]
 
 [params]

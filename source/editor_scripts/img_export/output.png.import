@@ -10,7 +10,7 @@ metadata={
 
 [deps]
 
-source_file="res://mods/mutagenic/source/editor_scripts/img_export/output.png"
+source_file="res://mods/johnboat/source/editor_scripts/img_export/output.png"
 dest_files=["res://.godot/imported/output.png-e3c7fefe56e7281180bea78fa92d6d93.ctex"]
 
 [params]

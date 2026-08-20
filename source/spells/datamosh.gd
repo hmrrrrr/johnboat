@@ -10,19 +10,19 @@ func set_status_tooltips():
 
 func has_valid_word() -> bool:
 	var words: WordList = word_builder.get_words()
-	return word_builder.can_submit_tiles() and word_builder.can_submit_words(words) and words.sub_lists.size() == 1 and word_builder.tiles.size() >= 1
+	return word_builder.can_submit_tiles() and word_builder.can_submit_words(words) and words.sub_lists.size() == 1
 
 func get_target_tiles():
 	return word_builder.tiles.duplicate()
 
 const SOUNDS = {
-	DATAMOSH=preload("res://mods/mutagenic/sounds/datamosh.wav"),
-	DATAMOSH_VAR1=preload("res://mods/mutagenic/sounds/datamosh1.wav"),
-	DATAMOSH_VAR2=preload("res://mods/mutagenic/sounds/datamosh2.wav"),
-	DATAMOSH_VAR3=preload("res://mods/mutagenic/sounds/datamosh3.wav"),
-	DATAMOSH_VAR4=preload("res://mods/mutagenic/sounds/datamosh4.wav"),
+	DATAMOSH=preload("res://mods/johnboat/sounds/datamosh.wav"),
+	DATAMOSH_VAR1=preload("res://mods/johnboat/sounds/datamosh1.wav"),
+	DATAMOSH_VAR2=preload("res://mods/johnboat/sounds/datamosh2.wav"),
+	DATAMOSH_VAR3=preload("res://mods/johnboat/sounds/datamosh3.wav"),
+	DATAMOSH_VAR4=preload("res://mods/johnboat/sounds/datamosh4.wav"),
 }
-const DATAMOSH_EFFECT = preload("res://mods/mutagenic/source/datamosh/datamosh_effect_instance.tscn")
+const DATAMOSH_EFFECT = preload("res://mods/johnboat/source/datamosh/datamosh_effect_instance.tscn")
 
 
 func set_tile_face_to_corresponding_numbers(tile: Tile):
@@ -58,6 +58,7 @@ func _use():
 				AudioManager.play_sound(
 					SOUNDS["DATAMOSH_VAR%d"%randi_range(1,4)],randf_range(0.5,1.5)
 				)
+				set_tile_face_to_corresponding_numbers(tile)
 			inst.frame_coords = tile.tile_sprite.base_sprite.frame_coords
 			tile.tile_sprite.add_child(inst)
 			inst.atlas = tile.tile_sprite.base_sprite.texture
@@ -65,9 +66,6 @@ func _use():
 			inst.bounce.connect(
 				func():
 					tile.animation.play("shake"))
-			inst.change_number.connect(
-				func():
-					set_tile_face_to_corresponding_numbers(tile))
 			await Game.timeout(0.05)
 			if do_curse:
 				tile.add_status(TileStatus.CURSED)

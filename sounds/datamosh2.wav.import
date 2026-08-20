@@ -7,7 +7,7 @@ path="res://.godot/imported/datamosh2.wav-e68761915d8762f49b82993085ecdb10.sampl
 
 [deps]
 
-source_file="res://mods/mutagenic/sounds/datamosh2.wav"
+source_file="res://mods/johnboat/sounds/datamosh2.wav"
 dest_files=["res://.godot/imported/datamosh2.wav-e68761915d8762f49b82993085ecdb10.sample"]
 
 [params]
