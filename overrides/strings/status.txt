@@ -14,3 +14,42 @@
 		
 	:flags:
 		no_faceless_effect
+
+
+:cursed:
+	:name:
+		Cursed
+	
+	:description:
+		{+status_value|:plus_status_tile_value:} damage taken when unplayed. {:evil_cat_description: if is_kitty}
+		Can’t be removed.
+	
+	:evil_cat_description:
+		Is also an evil kitty.
+	
+	:flags:
+		harmful indestructible
+
+:special_number_sequence:
+	:name:
+		Number
+
+	:description:
+		{string_lines}
+
+	:generic_description:
+		Numbers can be used as any letter found on their phone key.
+		Numbers are always the strongest letter possible.
+
+:ash:
+	:name:
+		Ash
+	
+	:description:
+		Tile is removed on turn end. {:kitty: if is_kitty}
+	
+	:kitty:
+		Is also a kitty.
+	
+	:flags:
+		destroy_on_turn_end neutral

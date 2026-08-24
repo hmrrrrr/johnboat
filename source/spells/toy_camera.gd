@@ -1,6 +1,8 @@
 extends Spell
-
+class_name ToyCamera
 var pics_taken: PackedStringArray = []
+var raw_faces: PackedStringArray = []
+
 var pic_rotations: Array[float] = []
 var pic_data: Array[Image] = []
 
@@ -18,6 +20,12 @@ const ARCING_PROJECTILE = preload("res://source/effects/arcing_projectile.tscn")
 
 var can_show_album := true
 
+func _ready() -> void:
+	if OS.has_feature("debug"):
+		for l in Letters.ALPHABET:
+			if l != "e":
+				pics_taken.append(l)
+				raw_faces.append(l)
 
 func get_save_data():
 	var save = super.get_save_data()
@@ -27,32 +35,15 @@ func get_save_data():
 		byte_arrays.append(pic.save_webp_to_buffer(true,.5))
 	save["pic_data"] = byte_arrays
 	save["pic_rotations"] = pic_rotations
+	save["raw_faces"] = raw_faces
 	return save
 
-func _notification(what: int) -> void:
-	if what == NOTIFICATION_PREDELETE:
-		if album_overlay:
-			album_overlay.queue_free()
-
-func on_hover():
-	if album_overlay == null and can_show_album:
-		album_overlay = TOY_CAMERA_ALBUM_OVERLAY.instantiate()
-		album_overlay.ready.connect(
-			func():
-				album_overlay.load_pics(pic_data,pic_rotations)
-		)
-		Game.main.get_node("HUDLayer").add_child(album_overlay)
-	
-func on_unhover():
-	if album_overlay:
-		album_overlay.queue_free()
-		album_overlay = null
-	
 func load_save_data(save):
 	super.load_save_data(save)
 	pics_taken = save.pics_taken
-	pic_rotations = save.pic_rotations
+	raw_faces = save.raw_faces
 	
+	pic_rotations = save.pic_rotations
 	var byte_arrays = save.pic_data
 	for byte_array in byte_arrays:
 		var img = Image.new()
@@ -60,6 +51,32 @@ func load_save_data(save):
 		pic_data.append(img)
 	description_updated.emit()
 
+
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_PREDELETE:
+		if album_overlay:
+			album_overlay.queue_free()
+
+static func add_album_ui(pics: Array[Image],rotations: Array[float]) -> ToyCameraAlbumOverlay:
+	var new_album_overlay = TOY_CAMERA_ALBUM_OVERLAY.instantiate()
+	new_album_overlay.ready.connect(
+		func():
+			new_album_overlay.load_pics(pics,rotations)
+	)
+	Game.main.get_node("HUDLayer").add_child(new_album_overlay)
+
+	return new_album_overlay
+	
+
+func on_hover():
+	if album_overlay == null and can_show_album:
+		album_overlay = add_album_ui(pic_data,pic_rotations)
+	
+func on_unhover():
+	if album_overlay:
+		album_overlay.queue_free()
+		album_overlay = null
+	
 func handle_invalid_tile(tile):
 	var would_be_valid: bool = (
 		(tile.type == TileType.DEFENSE) or (tile.has_status(TileStatus.FROZEN))
@@ -76,9 +93,8 @@ func handle_invalid_tile(tile):
 	if (would_be_valid and (breaking_letter != "")):
 		var word_hint := word_builder.word_hint as WordHint
 		(func ():
-			await Game.timeout(.1)
+			await Game.timeout(.11)
 			word_hint.temporary_warning("misc/word_warnings/already_in_album",{letter=breaking_letter})
-
 		).call()
 
 func create_flash_effect(tile: Tile) -> FlashFX:
@@ -161,9 +177,19 @@ func _use():
 	for letter in tile.face:
 		pics_taken.append(letter)
 		pic_rotations.append(randf_range(-6,6))
+	raw_faces.append(tile.face)
 	await queue_save_pic(tile)
+	if len(pics_taken) == len(Letters.ALPHABET):
+		transform_spell(
+			"johnboat:photo_album",
+			true, true, false,
+			false, false,
+			func(spell: Spell): (spell as PhotoAlbum).set_data(raw_faces,pic_data,pic_rotations)
+		)
+		_post_use(false, true)
 	
-	_post_use()
+	else:
+		_post_use()
 
 
 func is_tile_selectable(tile: Tile) -> bool:

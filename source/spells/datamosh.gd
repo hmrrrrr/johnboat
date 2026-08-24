@@ -4,9 +4,27 @@ class_name Datamosh
 const CHARS_BY_RARITY = """\
 qjxzwkvfybhgmp9udcl5otnrais8e24367\
 """
+var current_frame := 0
+
+
+func _first_spawn(is_transform: = false) -> void:
+	super(is_transform)
+	if charge_character in "e24" or has_curse(CURSE.ESOTERIC):
+		max_charge = 1
 
 func set_status_tooltips():
 	status_tooltips = [TileStatus.CURSED,TileEffect.NUMBER]
+
+func get_hv_frames() -> Vector2i:
+	return Vector2i(7,1)
+
+func get_frame() -> int:
+	
+	
+	current_frame = (current_frame + randi_range(1,2))%3
+	if randf() < .13:
+		current_frame = randi_range(3,5)
+	return current_frame
 
 func has_valid_word() -> bool:
 	var words: WordList = word_builder.get_words()
@@ -21,13 +39,15 @@ const SOUNDS = {
 	DATAMOSH_VAR2=preload("res://mods/johnboat/sounds/datamosh2.wav"),
 	DATAMOSH_VAR3=preload("res://mods/johnboat/sounds/datamosh3.wav"),
 	DATAMOSH_VAR4=preload("res://mods/johnboat/sounds/datamosh4.wav"),
+	KITTYTILE = preload("res://mods/johnboat/sounds/tiles/kittytile.wav")
 }
 const DATAMOSH_EFFECT = preload("res://mods/johnboat/source/datamosh/datamosh_effect_instance.tscn")
 
 
-func set_tile_face_to_corresponding_numbers(tile: Tile):
+func get_corresponding_numbers(face: String) -> String:
+	
 	var new_face = ""
-	for letter in tile.face:
+	for letter in face:
 		var found = false
 		for number in Letters.NUMPAD_CHARACTERS.keys():
 			var corresponding_letters = Letters.NUMPAD_CHARACTERS[number]
@@ -37,7 +57,17 @@ func set_tile_face_to_corresponding_numbers(tile: Tile):
 		
 		if !found:
 			new_face += letter
-	tile.set_face(new_face)
+	
+	return new_face
+
+func set_tile_face_to_corresponding_numbers(tile: Tile):
+	if len(tile.tile_face.slashed_faces) != 0:
+		var faces = tile.tile_face.slashed_faces.duplicate()
+		for i in range(len(faces)):
+			faces[i] = get_corresponding_numbers(faces[i])
+		tile.set_slashed(faces)
+	else:
+		tile.set_face(get_corresponding_numbers(tile.face))
 
 func _use():
 	if not has_valid_word():
@@ -49,15 +79,34 @@ func _use():
 	var apply_to = get_target_tiles()
 	rng.spell.shuffle(apply_to)
 	var last_effect: GenericTileEffect
-	for tile : Tile in apply_to:
+	for tile: Tile in apply_to:
 		if is_tile_selectable(tile):
+			
+			### kitty
+			var is_kitty: bool = tile.has_status(TileStatus.ASH)
+			if is_kitty:
+				for status in tile.get_statuses():
+					if status.id == TileStatus.ASH:
+						is_kitty = status.get("kitty")
+			
+			if !is_kitty:
+				is_kitty = tile.has_status(TileStatus.CURSED)
+				for status in tile.get_statuses():
+					if status.id == TileStatus.CURSED:
+						is_kitty = status.get("kitty")
+				
+			###
+			
 			var do_curse = !tile.has_status(TileStatus.CRIT)
-			#tile.add_poofcloud(tile.get_color())
+			
 			var inst := DATAMOSH_EFFECT.instantiate() as GenericTileEffect
 			inst.do_play_sound = func():
-				AudioManager.play_sound(
-					SOUNDS["DATAMOSH_VAR%d"%randi_range(1,4)],randf_range(0.5,1.5)
-				)
+				if is_kitty:
+					AudioManager.play_sound(SOUNDS.KITTYTILE,0.55,.1)
+				else:
+					AudioManager.play_sound(
+						SOUNDS["DATAMOSH_VAR%d"%randi_range(1,4)],randf_range(0.5,1.5)
+					)
 				set_tile_face_to_corresponding_numbers(tile)
 			inst.frame_coords = tile.tile_sprite.base_sprite.frame_coords
 			tile.tile_sprite.add_child(inst)
@@ -67,8 +116,12 @@ func _use():
 				func():
 					tile.animation.play("shake"))
 			await Game.timeout(0.05)
+			
 			if do_curse:
-				tile.add_status(TileStatus.CURSED)
+				tile.add_status(TileStatus.CURSED,{kitty=is_kitty})
+				
+				
+				
 			last_effect = inst
 		else:
 			tile.animation.play("shake")
@@ -84,4 +137,6 @@ func is_usable():
 
 
 func is_tile_selectable(tile: Tile) -> bool:
+	if randf() < .3:
+		frame_updated.emit()
 	return tile.has_face()

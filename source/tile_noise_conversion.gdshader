@@ -13,16 +13,28 @@ uniform float edge_feather : hint_range(0.0,0.5);
 uniform bool local_uv_for_noise = false;
 uniform bool enable_glow = true;
 
+uniform vec3 glow_color : source_color = vec3(1,0,0);
+
 uniform sampler2D tint_gradient : filter_nearest;
 
-void vertex() {
-	// Called for every vertex the material is visible on.
+//lightner🥀....
+uniform int tint_type : hint_enum("soft_light","lighten") = 0;
+
+vec4 lighten(vec4 base, vec4 blend){
+	vec4 mixed = max(base, blend);
+	mixed.a = base.a;
+	return mixed;
 }
 vec4 soft_light(vec4 base, vec4 blend){
 	vec4 limit = step(0.5, blend);
 	vec4 pre_alpha = mix(2.0 * base * blend + base * base * (1.0 - 2.0 * blend), sqrt(base) * (2.0 * blend - 1.0) + (2.0 * base) * (1.0 - blend), limit);
 	
 	return mix(base,pre_alpha,blend.a);
+}
+
+
+void vertex() {
+	// Called for every vertex the material is visible on.
 }
 
 void fragment() {
@@ -45,9 +57,20 @@ void fragment() {
 	
 	COLOR = texture(TEXTURE,uv_target);
 	
-	COLOR = soft_light(COLOR, texture(tint_gradient,vec2(gradient_progress,0.)));
+	vec4 effective_tint = texture(tint_gradient,vec2(gradient_progress,0.));
+	
+	switch (tint_type) {
+		case 0:
+			COLOR = soft_light(COLOR, effective_tint);
+			break;
+		case 1:
+			COLOR = lighten(COLOR, effective_tint);
+			break;
+	}
+	
+	
 	if (glow) {
-		COLOR.r = 1.;	
+		COLOR.rgb = max(COLOR.rgb,glow_color);	
 	}
 	
 }

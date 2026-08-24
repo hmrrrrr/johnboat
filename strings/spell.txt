@@ -12,8 +12,8 @@
 	:max_charge:
 		2
 
-	:charge_category:
-		very_common
+	:charge_characters:
+		rais8e24
 
 
 :superposition:
@@ -29,17 +29,23 @@
 		Combine two tiles into a shimmering enhanced tile.
 		
 	:label:
-		Shimmer any tiles
+		Combined shimmer
 
 :subdomain:
 	:name:
 		Subdomain
 	
 	:label:
-		2× period crit
+		Period crits
 	
 	:description:
 		Convert two random tiles in a spelled word to period crits.
+	
+	:charge_characters:
+		w
+
+	:max_charge:
+		3
 
 :booster_shot:
 	:name:
@@ -67,6 +73,7 @@
 	
 	:description:
 		Turn wood tiles to ivory in a spelled word that you've already submitted this run.
+		Also works if the spelled word is contained within a previously submitted word.
 	
 	:label:
 		Ivory repeat
@@ -77,25 +84,137 @@
 	:max_charge:
 		4
 
+:blt:
+	:name:
+		LGBT
+	
+	:description:
+		Choose a letter to sandwich between two ♣, and make into candy.
+	
+	:label:
+		♣sandwich♣
+	
+	:charge_characters:
+		q
+	
+	:max_charge:
+		1
+
+:shovelware:
+	:name:
+		Shovelware
+	
+	:description:
+		Choose 4 tiles to turn into tarnished ♠.
+	
+	:label:
+		♠ in spades
+	
+	:charge_characters:
+		etm
+	
+	:max_charge:
+		3
+
+:cat_tail:
+	:name:
+		{:cat_tail_name: not the_plant}
+		{:cattail_name: if the_plant}
+	
+	:cat_tail_name:
+		Cat Tail
+
+	:cattail_name:
+		Cattail
+		
+	:label:
+		Ash W + vowels
+	
+	:description:
+		Turn ANY tile to an ash W, and turn the tiles to its left and right to ash vowels.
+	
+	:charge_characters:
+		9
+
+	:exclude_characters:
+		aeiouyw
+	
+	:max_charge:
+		3
+	
+	:flags:
+		removes_word
+
+:catchy_number:
+	:name:
+		Catchy Number
+	
+	:description:
+		Turn a chosen face and the faces to its right to {number_list list_and} respectively. Burn affected tiles.
+	
+	:label:
+		Burn {number_list list_delim - }
+	
+	:charge_characters:
+		o
+		
+	:max_charge:
+		2
+	
+	:flags:
+		removes_word
+	
+:whodunit:
+	:name:
+		Cold Case
+	
+	:label:
+		Murder mystery
+	
+	:description:
+		Destroy all 1-value tiles, making a frozen mystery trigram from their letters.
+	
+	:charge_category:
+		rare
+
+	:max_charge:
+		2
+	
+	:flags:
+		removes_word
+
+:photo_album:
+	:name:
+		Scrapbook
+	
+	:description:
+		Select the left, center, or right of a tile to prepend, replace, or append the face with {face upper}.
+		Limited use.
+		
+		[color=#4f4aba]"Wish you were here!"[/color]
+	:preview_description:
+		Select the left, center, or right to prepend, replace, or append.
+
+	:label:
+		Place {face aoran} {face upper}
+	
+	:charge_category:
+		limited
+
+	:max_charge:
+		0
+		
 :toy_camera:
 	:name:
 		Toy Camera
 	
 	:description:
-		{:numbered_description: if photo_taken}
-		{:generic_description: not photo_taken}
-	
-	:numbered_description:
 		Instantly use a plastic tile.
 		Each letter can only be used this way once.
-		
+		{:photos_remaining: if photo_taken}
+	
+	:photos_remaining:
 		({photos_taken}/{num_letters} photographed)
-		
-	
-	:generic_description:
-		Instantly use a plastic tile.
-		Each letter can only be used this way once.
-		
 	
 	:max_charge:
 		1
@@ -111,22 +230,6 @@
 	
 	:flags:
 		removes_word
-
-:security_blanket:
-	:name:
-		Security Blanket
-		
-	:description:
-		When you would take damage, instead drain a charge from this spell if possible.
-	
-	:charge_category:
-		uncommon
-	
-	:max_charge:
-		2
-	
-	:flags:
-		shield_charges
 
 :gaydar:
 	:name:
@@ -160,39 +263,6 @@
 	:max_charge:
 		1
 
-
-:fuzzy_handcuffs:
-	:name:
-		Fuzzy Handcuffs
-		
-	:description:
-		Turn two tiles into linked capital/period wildcards.
-	
-	:label:
-		Linked wildcards
-	
-	:charge_category:
-		uncommon
-	
-	:max_charge:
-		1
-	
-
-:fuzzy_handcuffs:
-	:name:
-		Fuzzy Handcuffs
-		
-	:description:
-		Turn two tiles into linked capital/period wildcards.
-	
-	:label:
-		Linked wildcards
-	
-	:charge_category:
-		uncommon
-	
-	:max_charge:
-		1
 	
 :pda:
 	:name:

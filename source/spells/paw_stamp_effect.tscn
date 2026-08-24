@@ -1,0 +1,123 @@
+[gd_scene format=3 uid="uid://onin8idoxn8n"]
+
+[ext_resource type="Script" uid="uid://b8gycxjo20ssf" path="res://mods/johnboat/source/paw_stamp_effect.gd" id="1_676ep"]
+[ext_resource type="Texture2D" uid="uid://bnkv0b3jf6akr" path="res://mods/johnboat/arte/spells/paw_stamp.png" id="2_ncrj1"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_efxeb"]
+resource_local_to_scene = true
+blend_mode = 2
+
+[sub_resource type="Animation" id="Animation_ncrj1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.39215687)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -2.9999998)]
+}
+
+[sub_resource type="Animation" id="Animation_efxeb"]
+resource_name = "stamp"
+step = 0.06666667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 1),
+"transitions": PackedFloat32Array(0.39229202, 3.1383345, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.8039216), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.13333334, 0.33333334, 0.40000004, 0.6),
+"transitions": PackedFloat32Array(1.3660405, 1, 0.46651652, 1),
+"update": 0,
+"values": [Vector2(0.8, 0.8), Vector2(1, 1), Vector2(1.2, 0.8), Vector2(1, 1)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.33333334, 1),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [&"apply"],
+"method": &"emit_signal"
+}, {
+"args": [],
+"method": &"kill"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.33333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -2.9999998), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r83dn"]
+_data = {
+&"RESET": SubResource("Animation_ncrj1"),
+&"stamp": SubResource("Animation_efxeb")
+}
+
+[node name="PawStampEffect" type="Node2D" unique_id=602609604]
+script = ExtResource("1_676ep")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=866451767]
+self_modulate = Color(1, 1, 1, 0.39215687)
+material = SubResource("CanvasItemMaterial_efxeb")
+position = Vector2(0, -2.9999998)
+texture = ExtResource("2_ncrj1")
+hframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1766926291]
+libraries/ = SubResource("AnimationLibrary_r83dn")

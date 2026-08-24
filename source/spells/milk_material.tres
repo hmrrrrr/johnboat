@@ -2,31 +2,31 @@
 
 [ext_resource type="Shader" uid="uid://qpys61e5u7hy" path="res://mods/johnboat/source/tile_noise_conversion.gdshader" id="1_d05t6"]
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_0j7j3"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_s2esl"]
 seed = 10
-frequency = 0.0027
+frequency = 0.0068
 offset = Vector3(87.22, 0, 0)
 fractal_octaves = 1
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_hx1rf"]
-width = 1920
-height = 1080
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_c522f"]
+width = 320
+height = 320
 generate_mipmaps = false
-noise = SubResource("FastNoiseLite_0j7j3")
+noise = SubResource("FastNoiseLite_s2esl")
 
-[sub_resource type="Gradient" id="Gradient_d05t6"]
-interpolation_mode = 2
-offsets = PackedFloat32Array(0, 0.17482518, 0.8706294, 1)
-colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0.45638305, 1, 1, 1, 0)
+[sub_resource type="Gradient" id="Gradient_b51mk"]
+offsets = PackedFloat32Array(0, 0.15789473, 0.25263157, 0.6210526, 0.8706294, 1)
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 0.22745098, 1, 1, 1, 1, 1, 1, 1, 0.9372549, 1, 1, 1, 0.45490196, 0, 0, 0, 0)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_27aly"]
-gradient = SubResource("Gradient_d05t6")
-width = 64
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_dfda3"]
+gradient = SubResource("Gradient_b51mk")
 
 [resource]
 shader = ExtResource("1_d05t6")
-shader_parameter/noise = SubResource("NoiseTexture2D_hx1rf")
+shader_parameter/noise = SubResource("NoiseTexture2D_c522f")
 shader_parameter/edge_feather = 0.01200000057
 shader_parameter/local_uv_for_noise = true
 shader_parameter/enable_glow = false
-shader_parameter/tint_gradient = SubResource("GradientTexture1D_27aly")
+shader_parameter/glow_color = Color(0.7764706, 0.26666668, 0.41960785, 1)
+shader_parameter/tint_gradient = SubResource("GradientTexture1D_dfda3")
+shader_parameter/tint_type = 0

@@ -1,0 +1,112 @@
+[gd_scene format=3 uid="uid://cugfpenpvh0rn"]
+
+[ext_resource type="Script" uid="uid://b74mxdfobsw4w" path="res://mods/johnboat/source/datamosh/generic_tile_effect.gd" id="1_7mgbe"]
+[ext_resource type="Material" uid="uid://dlpot6cai7bts" path="res://mods/johnboat/source/spells/catchy_number_material.tres" id="2_cwq55"]
+[ext_resource type="Texture2D" uid="uid://5rmj76byr2s4" path="res://arte/tiles/wood_tiles_a.png" id="3_k0gej"]
+[ext_resource type="Script" uid="uid://cfpkpmdehkp8u" path="res://source/ui/generic/shadow_cloner.gd" id="4_s2rvj"]
+
+[sub_resource type="Animation" id="Animation_hx1rf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FakeSprite:instance_shader_parameters/progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FakeSprite:instance_shader_parameters/gradient_progress")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_ro78d"]
+resource_name = "datamosh"
+length = 2.000003437641636
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FakeSprite:instance_shader_parameters/progress")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.76666665),
+"transitions": PackedFloat32Array(0.43527517, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.099999994, 0.26666668, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": [&"play_sound"],
+"method": &"emit_signal"
+}, {
+"args": [&"bounce"],
+"method": &"emit_signal"
+}, {
+"args": [&"effect_finished"],
+"method": &"emit_signal"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FakeSprite:instance_shader_parameters/gradient_progress")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hx1rf"]
+_data = {
+&"RESET": SubResource("Animation_hx1rf"),
+&"tile_change": SubResource("Animation_ro78d")
+}
+
+[node name="MilkEffectInstance" type="Node2D" unique_id=1433592823]
+show_behind_parent = true
+script = ExtResource("1_7mgbe")
+default_ending_frame = Vector4(96, 0, 32, 32)
+
+[node name="FakeSprite" type="Sprite2D" parent="." unique_id=1783727358]
+unique_name_in_owner = true
+material = ExtResource("2_cwq55")
+instance_shader_parameters/ending_frame = Vector4(0.3, 0, 0.1, 0.25)
+instance_shader_parameters/gradient_progress = 0.0
+instance_shader_parameters/initial_frame = Vector4(0, 0, 0.1, 0.25)
+instance_shader_parameters/progress = 0.0
+texture = ExtResource("3_k0gej")
+hframes = 10
+vframes = 4
+
+[node name="ShadowCloner" type="Node2D" parent="FakeSprite" unique_id=1070974513]
+unique_name_in_owner = true
+position = Vector2(2, 2)
+script = ExtResource("4_s2rvj")
+metadata/_custom_type_script = "uid://cfpkpmdehkp8u"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=230286734]
+libraries/ = SubResource("AnimationLibrary_hx1rf")

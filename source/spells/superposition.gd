@@ -76,6 +76,9 @@ func can_merge_tile(tile):
 
 
 func are_tiles_mergeable(tile_a: Tile, tile_b: Tile):
+	if tile_a.face == tile_b.face:
+		return false
+	
 	if not can_merge_tile(tile_a) or not can_merge_tile(tile_b):
 		return false
 
@@ -93,22 +96,11 @@ func are_tiles_mergeable(tile_a: Tile, tile_b: Tile):
 	return true
 
 
-func has_merge_options(tile):
-	var tile_coords = tile.get_coord()
-	var left_tile = tile_board.get_tile_at(tile_coords + Vector2i(-1, 0))
-	if left_tile != null and are_tiles_mergeable(left_tile, tile):
-		return true
-
-	var right_tile = tile_board.get_tile_at(tile_coords + Vector2i(1, 0))
-	if right_tile != null and are_tiles_mergeable(right_tile, tile):
-		return true
-
-	return false
 
 
 func is_tile_selectable(tile: Tile) -> bool:
 	if state == SELECTING:
-		return has_merge_options(tile)
+		return true
 
 	return are_tiles_mergeable(tile, first_tile)
 
