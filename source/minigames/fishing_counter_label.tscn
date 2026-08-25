@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://ccw7l14d0hpoj"]
+
+[ext_resource type="Script" uid="uid://cfpkpmdehkp8u" path="res://source/ui/generic/shadow_cloner.gd" id="1_i88e4"]
+
+[node name="FishingCounterLabel" type="Label" unique_id=696041419]
+unique_name_in_owner = true
+offset_right = 79.0
+offset_bottom = 18.12
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_type_variation = &"BoldOutlineLabel"
+theme_override_font_sizes/font_size = 10
+text = "12"
+horizontal_alignment = 1
+
+[node name="ShadowCloner" type="Node2D" parent="." unique_id=1998334165]
+position = Vector2(2, 2)
+script = ExtResource("1_i88e4")
+metadata/_custom_type_script = "uid://cfpkpmdehkp8u"

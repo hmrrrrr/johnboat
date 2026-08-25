@@ -1,0 +1,20 @@
+extends "res://source/minigames/fishing_minigame.gd"
+
+var counter_label: Label
+const FISHING_COUNTER_LABEL = preload("res://mods/johnboat/source/minigames/fishing_counter_label.tscn")
+
+var fish_count := 0
+
+func catch_fish(fish, ignore_pair = false):
+	super(fish,ignore_pair)
+	print_debug("hi")
+	fish_count += 1
+	counter_label.text = "%d"%fish_count
+
+func _ready():
+	super()
+	counter_label = FISHING_COUNTER_LABEL.instantiate() as Label
+	add_child(counter_label)
+	counter_label.position = Vector2(-39.5,-120)
+	counter_label.text = "0"
+	

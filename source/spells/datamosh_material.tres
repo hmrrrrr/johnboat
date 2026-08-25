@@ -26,4 +26,6 @@ shader_parameter/noise = SubResource("NoiseTexture2D_qrxdj")
 shader_parameter/edge_feather = 0.0490000023275
 shader_parameter/local_uv_for_noise = false
 shader_parameter/enable_glow = true
+shader_parameter/glow_color = Color(1, 0, 0, 1)
 shader_parameter/tint_gradient = SubResource("GradientTexture1D_3lvfc")
+shader_parameter/tint_type = 0

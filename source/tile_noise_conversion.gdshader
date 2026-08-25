@@ -17,9 +17,12 @@ uniform vec3 glow_color : source_color = vec3(1,0,0);
 
 uniform sampler2D tint_gradient : filter_nearest;
 
-//lightner🥀....
-uniform int tint_type : hint_enum("soft_light","lighten") = 0;
+//lightener🥀....
+uniform int tint_type : hint_enum("soft_light","lighten","addition") = 0;
 
+vec4 addition(vec4 base, vec4 blend){
+	return vec4((base + blend).rgb,base.a);
+}
 vec4 lighten(vec4 base, vec4 blend){
 	vec4 mixed = max(base, blend);
 	mixed.a = base.a;
@@ -65,6 +68,9 @@ void fragment() {
 			break;
 		case 1:
 			COLOR = lighten(COLOR, effective_tint);
+			break;
+		case 2:
+			COLOR = addition(COLOR, effective_tint);
 			break;
 	}
 	

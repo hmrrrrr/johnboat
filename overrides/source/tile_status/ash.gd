@@ -13,7 +13,8 @@ func get_tooltip_context():
 	return {status_value = get_status_value(), is_kitty = kitty}
 	
 func load_save_data(data):
-	kitty = data.kitty
+	if data and "kitty" in data:
+		kitty = data.kitty
 	update_kittyous()
 
 func update_kittyous() -> void:
@@ -22,7 +23,9 @@ func update_kittyous() -> void:
 			overlay = Sprite2D.new()
 			overlay.texture = KITTY_OVERLAY
 			overlay.z_index = 2
+			overlay.z_as_relative = true
 			tile.tile_sprite.add_child(overlay)
+			overlay.show_behind_parent = true
 
 func apply(args={}):
 	if args.has("kitty"):

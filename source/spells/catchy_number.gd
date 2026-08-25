@@ -4,7 +4,12 @@ enum CatchyMode {
 	SEQUENTIAL, #ex. 3456
 	SEQUENTIAL_REVERSED, #ex. 7654
 	DUPED_SINGLE, #ex. 8888
-	DUPED_DOUBLE, #ex. 3939
+	DUPED_PAIRS, #ex. 5566
+	DUPED_WEAVED, #ex. 3939
+	TRIPLE_SINGLE, #ex. 5557
+	SINGLE_TRIPLE, #ex. 3222
+	ODDS, # always 3579
+	EVENS, # always 2468
 	MODE_MAX
 }
 
@@ -39,6 +44,12 @@ func generate_number_sequence() -> Array[String]:
 	num_rng.seed = get_sequence_seed()
 	
 	var catchy_mode := num_rng.randi()%CatchyMode.MODE_MAX as CatchyMode
+	if catchy_mode == CatchyMode.ODDS:
+		return ["3","5","7","9"]
+	if catchy_mode == CatchyMode.EVENS:
+		return ["2","4","6","8"]
+	
+	
 	if catchy_mode in [CatchyMode.SEQUENTIAL, CatchyMode.SEQUENTIAL_REVERSED]:
 		var starting_num_index: int = num_rng.randi()%(len(Letters.NUMBERS)-3)
 		var arr: Array[String] = Letters.NUMBERS.slice(starting_num_index,starting_num_index+4)
@@ -46,14 +57,21 @@ func generate_number_sequence() -> Array[String]:
 			arr.reverse()
 		return arr
 	
-	var the_num: String = Letters.NUMBERS[num_rng.randi()%(len(Letters.NUMBERS))]
-	if catchy_mode == CatchyMode.DUPED_DOUBLE:
+	var num1: String = Letters.NUMBERS[num_rng.randi()%(len(Letters.NUMBERS))]
+	if catchy_mode in [CatchyMode.DUPED_PAIRS, CatchyMode.DUPED_WEAVED, CatchyMode.TRIPLE_SINGLE, CatchyMode.SINGLE_TRIPLE]:
 		var remaining_nums := Letters.NUMBERS.duplicate()
-		remaining_nums.erase(the_num)
-		var the_second_num: String = remaining_nums[num_rng.randi()%len(remaining_nums)]
-		return [the_num,the_second_num,the_num,the_second_num]
+		remaining_nums.erase(num1)
+		var num2: String = remaining_nums[num_rng.randi()%len(remaining_nums)]
+		if catchy_mode == CatchyMode.DUPED_PAIRS:
+			return [num1,num1,num2,num2]
+		if catchy_mode == CatchyMode.DUPED_WEAVED:
+			return [num1,num2,num1,num2]
+		if catchy_mode == CatchyMode.SINGLE_TRIPLE:
+			return [num1,num2,num2,num2]
+		if catchy_mode == CatchyMode.TRIPLE_SINGLE:
+			return [num1,num1,num1,num2]
 		
-	return [the_num,the_num,the_num,the_num]
+	return [num1,num1,num1,num1]
 	
 	
 
@@ -76,27 +94,27 @@ func set_status_tooltips():
 		{status="special_number_sequence",string_lines=description}
 	]
 
-func apply_from_number_sequence(tile: Tile, i: int, fx_rng: RNG) -> void:
+func apply_from_number_sequence(tile: Tile, i: int, fx_rng: RNG) -> GenericTileEffect:
 	assert(i < len(number_sequence))
-	tile.set_face(number_sequence[i])
 	var next_tile := tile.get_board_neighbor(Vector2.RIGHT)
-	fx_rng
-	tile.animation.play("pressed")
-	AudioManager.play_sound(
-		fx_rng.pick_random(Sounds.PROLE_SERVICE.TONE.SOUNDS),
-		1.,
-		.5
-		)
-	AudioManager.play_sound(
-		Sounds.GENERIC.APPLY_STATUS
-	)
+	
+	
+	var picked_sound = fx_rng.pick_random(Sounds.PROLE_SERVICE.TONE.SOUNDS)
 	
 	
 	var inst := CATCHY_NUMBER_EFFECT_INSTANCE.instantiate() as GenericTileEffect
 	inst.do_play_sound = func():
-		#AudioManager.play_sound(
-			#SOUNDS["DATAMOSH_VAR%d"%randi_range(1,4)],randf_range(0.5,1.5)
-		#)
+		
+		AudioManager.play_sound(
+			picked_sound,
+			1.,
+			.5
+			)
+		AudioManager.play_sound(
+			Sounds.GENERIC.APPLY_STATUS
+		)
+		
+		tile.set_face(number_sequence[i])
 		pass
 	inst.frame_coords = tile.tile_sprite.base_sprite.frame_coords
 	tile.tile_sprite.add_child(inst)
@@ -104,7 +122,7 @@ func apply_from_number_sequence(tile: Tile, i: int, fx_rng: RNG) -> void:
 	inst.dont_change = false
 	inst.bounce.connect(
 		func():
-			pass
+			tile.animation.play("pressed")
 	)
 	
 	tile.add_status(TileStatus.SPICY)
@@ -113,15 +131,17 @@ func apply_from_number_sequence(tile: Tile, i: int, fx_rng: RNG) -> void:
 		var delay_time := CATCHY_NUMBER_DELAY_CURVE.sample(fx_rng.randf())
 		delay_time = snappedf(delay_time,.033333)
 		await Game.timeout(delay_time)
-		await apply_from_number_sequence(next_tile, i+1,fx_rng)
+		return await apply_from_number_sequence(next_tile, i+1,fx_rng)
+	return inst
 
 func apply_to_tile(tile: Tile, _real_tile: Tile, is_preview: bool, _is_preview_update: bool) -> void :
 	if not is_preview:
 		var fx_rng := RNG.new()
 		fx_rng.state = 0
 		fx_rng.seed = get_sequence_seed()
-		tile.add_poofcloud(tile.get_color())
-		await apply_from_number_sequence(tile,0,fx_rng)
+		#tile.add_poofcloud(tile.get_color())
+		var effect := await apply_from_number_sequence(tile,0,fx_rng)
+		await effect.effect_finished
 	else:
 		tile.add_status(TileStatus.SPICY)
 		tile.set_face(number_sequence[0])

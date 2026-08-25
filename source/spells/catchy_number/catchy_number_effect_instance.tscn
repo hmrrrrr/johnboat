@@ -34,18 +34,19 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_ro78d"]
 resource_name = "datamosh"
-length = 2.000003437641636
+length = 0.6250001296859118
+step = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath("FakeSprite:instance_shader_parameters/progress")
-tracks/0/interp = 2
+tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.76666665),
-"transitions": PackedFloat32Array(0.43527517, 1),
+"times": PackedFloat32Array(0, 0.186, 0.267, 0.26706666, 0.5260704),
+"transitions": PackedFloat32Array(0.9999998, 1, 1e-05, 0.84089637, 1),
 "update": 0,
-"values": [0.0, 1.0]
+"values": [0.0, 1.0, 1.0, 0.0, 1.0]
 }
 tracks/1/type = "method"
 tracks/1/imported = false
@@ -54,13 +55,13 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.099999994, 0.26666668, 0.5),
+"times": PackedFloat32Array(0.311, 0.432, 0.47066668),
 "transitions": PackedFloat32Array(1, 1, 1),
 "values": [{
-"args": [&"play_sound"],
+"args": [&"bounce"],
 "method": &"emit_signal"
 }, {
-"args": [&"bounce"],
+"args": [&"play_sound"],
 "method": &"emit_signal"
 }, {
 "args": [&"effect_finished"],
@@ -74,10 +75,34 @@ tracks/2/path = NodePath("FakeSprite:instance_shader_parameters/gradient_progres
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.526),
+"transitions": PackedFloat32Array(1.8660659, 1),
 "update": 0,
 "values": [0.0, 1.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("FakeSprite:instance_shader_parameters/initial_frame")
+tracks/3/interp = 0
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.267),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector4(0.3, 0.25, 0.1, 0.25)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("FakeSprite:instance_shader_parameters/ending_frame")
+tracks/4/interp = 0
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.268),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector4(0.3, 0.25, 0.1, 0.25), Vector4(0.3, 0, 0.1, 0.25)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hx1rf"]
@@ -86,17 +111,17 @@ _data = {
 &"tile_change": SubResource("Animation_ro78d")
 }
 
-[node name="MilkEffectInstance" type="Node2D" unique_id=1433592823]
+[node name="CNEffectInstance" type="Node2D" unique_id=1433592823]
 show_behind_parent = true
 script = ExtResource("1_7mgbe")
-default_ending_frame = Vector4(96, 0, 32, 32)
+default_ending_frame = Vector4(96, 32, 32, 32)
 
 [node name="FakeSprite" type="Sprite2D" parent="." unique_id=1783727358]
 unique_name_in_owner = true
 material = ExtResource("2_cwq55")
 instance_shader_parameters/ending_frame = Vector4(0.3, 0, 0.1, 0.25)
 instance_shader_parameters/gradient_progress = 0.0
-instance_shader_parameters/initial_frame = Vector4(0, 0, 0.1, 0.25)
+instance_shader_parameters/initial_frame = Vector4(0.3, 0.25, 0.1, 0.25)
 instance_shader_parameters/progress = 0.0
 texture = ExtResource("3_k0gej")
 hframes = 10
@@ -109,4 +134,5 @@ script = ExtResource("4_s2rvj")
 metadata/_custom_type_script = "uid://cfpkpmdehkp8u"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=230286734]
+callback_mode_process = 0
 libraries/ = SubResource("AnimationLibrary_hx1rf")

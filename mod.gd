@@ -17,7 +17,8 @@ var SPELLS: Dictionary[String, String] = {
 	WHODUNIT = "whodunit",
 	CAT_TAIL = "cat_tail",
 	BLT = "blt",
-	CATCHY_NUMBER = "catchy_number"
+	CATCHY_NUMBER = "catchy_number",
+	SUBDOMAIN = "subdomain"
 }
 
 const BASE_WEIGHT := 5.5
@@ -36,6 +37,7 @@ var SPELL_POOL: Dictionary[String, float] = {
 	SPELLS.CAT_TAIL: BASE_WEIGHT,
 	SPELLS.BLT: BASE_WEIGHT/2.,
 	SPELLS.CATCHY_NUMBER: BASE_WEIGHT,
+	SPELLS.SUBDOMAIN: BASE_WEIGHT,
 }
 
 var SPELL_CATEGORIES: Dictionary[String, Array] = {
@@ -43,12 +45,13 @@ var SPELL_CATEGORIES: Dictionary[String, Array] = {
 		SPELLS.DATAMOSH,
 		SPELLS.BOOSTER_SHOT,
 		SPELLS.CAT_TAIL,
+		SPELLS.CATCHY_NUMBER,
 	],
 	Globals.SPELL_CATEGORY.OFFENSIVE: [
 		SPELLS.SUPERPOSITION,
 		SPELLS.MILK,
 		SPELLS.GAYDAR,
-		SPELLS.CATCHY_NUMBER
+		SPELLS.SUBDOMAIN
 	],
 	Globals.SPELL_CATEGORY.DEFENSIVE: [
 		SPELLS.TOY_CAMERA,
@@ -56,8 +59,6 @@ var SPELL_CATEGORIES: Dictionary[String, Array] = {
 		SPELLS.BLT,
 		SPELLS.WHODUNIT,
 	],
-	
-	
 	
 	Globals.SPELL_CATEGORY.DIRECT_DEFENSE: [
 		SPELLS.TOY_CAMERA,

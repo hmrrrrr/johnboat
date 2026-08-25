@@ -52,10 +52,10 @@ func do_datamosh_effect() -> void:
 	if dont_change:
 		ending_frame = starting_frame
 	
+	animation_player.play("tile_change")
 	fake_sprite.set_instance_shader_parameter("initial_frame",starting_frame)
 	fake_sprite.set_instance_shader_parameter("ending_frame",ending_frame)
 	
-	animation_player.play("tile_change")
 	await play_sound
 	
 	do_play_sound.call()
