@@ -22,9 +22,9 @@ const DISSENTER_HOTLINE_DELAY_CURVE: Curve = preload("res://mods/johnboat/source
 static var STA_DEBUG_SEED := 0
 var DEBUG_SEED := 0
 
-const ONE_254_EASTER_EGG_CHANCE := 0.5 # 0.1%
+const ONE_254_EASTER_EGG_CHANCE := 0.001 # 0.1%
 
-const DO_DEBUG_SET_SEED := true
+const DO_DEBUG_SET_SEED := false
 
 func _spell_init():
 	if OS.has_feature("debug") and DO_DEBUG_SET_SEED:
@@ -159,8 +159,5 @@ func apply_to_tile(tile: Tile, _real_tile: Tile, is_preview: bool, _is_preview_u
 
 func is_tile_selectable(tile: Tile) -> bool:
 	return (
-		tile.is_face_modifiable() and 
-		!tile.has_harmful_status() and 
-		!tile.has_effect(TileEffect.SHIMMERING) and 
-		tile.has_face()
+		!(tile.has_number() and tile.has_status(TileStatus.SPICY))
 	)

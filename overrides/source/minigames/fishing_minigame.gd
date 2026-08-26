@@ -7,7 +7,6 @@ var fish_count := 0
 
 func catch_fish(fish, ignore_pair = false):
 	super(fish,ignore_pair)
-	print_debug("hi")
 	fish_count += 1
 	counter_label.text = "%d"%fish_count
 

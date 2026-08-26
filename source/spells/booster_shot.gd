@@ -29,12 +29,12 @@ func apply_to_tile(tile: Tile, _real_tile: Tile, is_preview: bool, _is_preview_u
 	var face_to_apply = SHOTS[cycle_progress]
 	if not is_preview:
 		
-		AudioManager.play_sound(BOOSTER_SHOT_USE)
+		AudioManager.play_sound(BOOSTER_SHOT_USE,1,2.5)
 		var effect := BANDAGE_EFFECT_INSTANCE.instantiate() as BandageEffectInstance
 		tile.tile_sprite.base_sprite.add_child(effect)
 		await effect.applied
 		increment_cycle()
-		#tile.animation.play("bounce")
+		tile.animation.play("bounce")
 		var c := Globals.COLORS.POISON
 		c.a /= 2.
 		tile.add_poofcloud(c)

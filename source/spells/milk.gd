@@ -7,9 +7,18 @@ func set_status_tooltips():
 func has_valid_word() -> bool:
 	var words: WordList = word_builder.get_words()
 	var repeat_word := word_builder.get_repeat_word(words)
-	return repeat_word != "" and word_builder.can_submit_tiles() and word_builder.can_submit_words(words) and words.sub_lists.size() == 1
+	
+	var valid_by_containing := false
+	if repeat_word == "" and words.words.size() == 1:
+		var currently_spelled_word := words.words[0]
+		var run_used_words: Array = main.run_stats.get_words()
+		for word in run_used_words:
+			if currently_spelled_word in word:
+				valid_by_containing = true
+	
+	return (repeat_word != "" or valid_by_containing) and word_builder.can_submit_tiles() and word_builder.can_submit_words(words) and words.sub_lists.size() == 1
 
-func get_target_tiles():
+func get_target_tiles() -> Array[Tile]:
 	return word_builder.tiles.duplicate()
 
 const SOUNDS = {
@@ -67,8 +76,29 @@ func _use():
 	
 	frame_updated.emit()
 
+func has_any_wood_tile(tiles:Array[Tile]) -> bool:
+	for tile in tiles:
+		if tile.type == TileType.DAMAGE:
+			return true
+	return false
+	
+
+func any_wood_tile_not_ivory(tiles: Array[Tile]) -> bool:
+	for tile in tiles:
+		if tile.type == TileType.DAMAGE:
+			if !tile.has_status(TileStatus.ENHANCED):
+				return true
+	return false
+
 func is_usable():
-	return super.is_usable() and has_valid_word() and any_tile_selectable(get_target_tiles())
+	var tiles := get_target_tiles()
+	return (
+		super.is_usable() and
+		has_valid_word() and
+		any_tile_selectable(tiles) and 
+		any_wood_tile_not_ivory(tiles) and
+		has_any_wood_tile(tiles)
+	)
 
 
 func get_hv_frames() -> Vector2i:

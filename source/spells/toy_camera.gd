@@ -29,13 +29,14 @@ func _ready() -> void:
 
 func get_save_data():
 	var save = super.get_save_data()
-	save["pics_taken"] = pics_taken
-	var byte_arrays = []
+	var byte_arrays: Array[PackedByteArray] = []
 	for pic in pic_data:
 		byte_arrays.append(pic.save_webp_to_buffer(true,.5))
-	save["pic_data"] = byte_arrays
-	save["pic_rotations"] = pic_rotations
-	save["raw_faces"] = raw_faces
+		
+	save["pics_taken"] = pics_taken # PackedStringArray of each individual letter
+	save["pic_data"] = byte_arrays # Array[PackedByteArray] of .webp image buffers
+	save["pic_rotations"] = pic_rotations # Array[float] of rotation data
+	save["raw_faces"] = raw_faces # PackedStringArray of raw faces to use later >:)
 	return save
 
 func load_save_data(save):
@@ -200,4 +201,4 @@ func is_tile_selectable(tile: Tile) -> bool:
 		(tile.type == TileType.DEFENSE) or (tile.has_status(TileStatus.FROZEN))
 	) and (
 		!tile.has_any_effect(Globals.WILDCARD_EFFECTS + [TileEffect.SHIMMERING])
-	)
+	) and tile.has_face()

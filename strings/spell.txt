@@ -72,8 +72,8 @@
 		Milk
 	
 	:description:
-		Turn wood tiles to ivory in a spelled word that you've already submitted this run.
-		Also works if the spelled word is contained within a previously submitted word.
+		Turn wood to ivory in a spelled word if you've already submitted it this run.
+		Also works if the spelled word is contained in a previous word.
 	
 	:label:
 		Ivory repeat

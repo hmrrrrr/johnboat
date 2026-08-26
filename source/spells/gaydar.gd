@@ -42,7 +42,7 @@ func generate_tile_tooltip(tile: Tile, tooltip: GameTooltip) -> void :
 
 
 func is_tile_selectable(tile: Tile) -> bool:
-	return not tile.has_harmful_status() and (not tile.has_status(TileStatus.CRIT)) and (not tile.has_status(TileStatus.GAY))
+	return (not tile.has_harmful_status()) and (not tile.has_status(TileStatus.CRIT)) and (not tile.has_status(TileStatus.GAY))
 
 func _use():
 	var selected_tile := await get_selection()
@@ -104,10 +104,10 @@ func _use():
 			
 			tile.animation.play("bounce")
 			
-			#AudioManager.play_sound(
-				#SOUNDS.GAYDARSFX,
-				#lerp(MIN_PITCH,MAX_PITCH,pitch_lerp),.8
-			#)
+			AudioManager.play_sound(
+				SOUNDS.GAYDARSFX,
+				lerp(MIN_PITCH,MAX_PITCH,pitch_lerp),.8
+			)
 			
 			await Game.timeout(individual_duration)
 			if (tile_count > 1):

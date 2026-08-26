@@ -3,24 +3,9 @@ extends TileModifierSpell
 func set_status_tooltips():
 	status_tooltips = [TileStatus.MYSTERY, TileStatus.FROZEN]
 
-var SPELLED_CORRECTLY := false
-
 func get_tooltip_context():
-	return {spelled_correctly=SPELLED_CORRECTLY}
+	return {}
 
-func _first_spawn(is_transform: = false) -> void :
-	SPELLED_CORRECTLY = rng.spell.randf() < .85
-	
-	super._first_spawn(is_transform)
-
-func get_save_data():
-	var save = super.get_save_data()
-	save["SPELLED_CORRECTLY"] = SPELLED_CORRECTLY
-	return save
-
-func load_save_data(save):
-	super.load_save_data(save)
-	SPELLED_CORRECTLY = save.SPELLED_CORRECTLY
 
 func is_ngram_valid(ngram: String, letter_pool: Array[String]) -> bool:
 	var remaining_letter_pool = letter_pool.duplicate()
@@ -41,7 +26,7 @@ func apply_to_tile(tile: Tile, _real_tile, is_preview, _is_preview_update):
 			sorted=true, 
 			custom_tile_check = func(tile: Tile, _parameters: Dictionary):
 				if (len(tile.face) == 1):
-					return Letters.get_face_value(tile.face) == 1
+					return Letters.get_face_value(tile.face) == 1 and tile.has_face()
 				return false
 		})
 		var letter_pool: Array[String] = []
@@ -135,5 +120,11 @@ func is_tile_selectable(tile: Tile) -> bool:
 		tile.is_face_modifiable()
 		and not (
 			tile.has_status(TileStatus.MYSTERY)
-		) and not (tile.has_status(TileEffect.SHIMMERING))
+		) and not (
+			tile.has_status(TileEffect.SHIMMERING)
+		) and not (
+			tile.has_harmful_status()
+		) and not (
+			tile.has_status(TileStatus.FROZEN) and len(tile.face) == 3
+		)
 	)
