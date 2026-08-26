@@ -13,14 +13,16 @@ enum CatchyMode {
 	MODE_MAX
 }
 
-const CATCHY_NUMBER_EFFECT_INSTANCE = preload("res://mods/johnboat/source/spells/catchy_number/catchy_number_effect_instance.tscn")
+const DISSENTER_HOTLINE_EFFECT_INSTANCE = preload("res://mods/johnboat/source/spells/dissenter_hotline/dissenter_hotline_effect_instance.tscn")
 
 
 var number_sequence: Array[String] : get=generate_number_sequence
-const CATCHY_NUMBER_DELAY_CURVE: Curve = preload("res://mods/johnboat/source/resources/catchy_number_delay_curve.tres")
+const DISSENTER_HOTLINE_DELAY_CURVE: Curve = preload("res://mods/johnboat/source/resources/dissenter_hotline_delay_curve.tres")
 
 static var STA_DEBUG_SEED := 0
 var DEBUG_SEED := 0
+
+const ONE_254_EASTER_EGG_CHANCE := 0.5 # 0.1%
 
 const DO_DEBUG_SET_SEED := true
 
@@ -42,6 +44,10 @@ func generate_number_sequence() -> Array[String]:
 	var num_rng = RNG.new()
 	num_rng.state = 0
 	num_rng.seed = get_sequence_seed()
+	
+	
+	if (num_rng.randf() < ONE_254_EASTER_EGG_CHANCE):
+		return ["one","2","5","4"]
 	
 	var catchy_mode := num_rng.randi()%CatchyMode.MODE_MAX as CatchyMode
 	if catchy_mode == CatchyMode.ODDS:
@@ -86,9 +92,10 @@ func set_status_tooltips():
 	var seq = generate_number_sequence()
 	for number in seq:
 		if !(number in already_processed):
-			var number_description = StringManager.get_string("status/number/specific_description", {number = number, letters = Letters.NUMPAD_CHARACTERS[number]})
-			description += number_description + "\n"
-			already_processed.append(number)
+			if number != "one":
+				var number_description = StringManager.get_string("status/number/specific_description", {number = number, letters = Letters.NUMPAD_CHARACTERS[number]})
+				description += number_description + "\n"
+				already_processed.append(number)
 	status_tooltips = [
 		TileStatus.SPICY, 
 		{status="special_number_sequence",string_lines=description}
@@ -102,17 +109,19 @@ func apply_from_number_sequence(tile: Tile, i: int, fx_rng: RNG) -> GenericTileE
 	var picked_sound = fx_rng.pick_random(Sounds.PROLE_SERVICE.TONE.SOUNDS)
 	
 	
-	var inst := CATCHY_NUMBER_EFFECT_INSTANCE.instantiate() as GenericTileEffect
+	
+	var inst := DISSENTER_HOTLINE_EFFECT_INSTANCE.instantiate() as GenericTileEffect
 	inst.do_play_sound = func():
 		
 		AudioManager.play_sound(
 			picked_sound,
 			1.,
-			.5
+			.15
 			)
-		AudioManager.play_sound(
-			Sounds.GENERIC.APPLY_STATUS
-		)
+		#AudioManager.play_sound(
+			#Sounds.GENERIC.APPLY_STATUS
+		#)
+		AudioManager.play_sound(Sounds.BOOKWORM.FIREBALL)
 		
 		tile.set_face(number_sequence[i])
 		pass
@@ -128,7 +137,7 @@ func apply_from_number_sequence(tile: Tile, i: int, fx_rng: RNG) -> GenericTileE
 	tile.add_status(TileStatus.SPICY)
 	
 	if next_tile and (i+1 < len(number_sequence)):
-		var delay_time := CATCHY_NUMBER_DELAY_CURVE.sample(fx_rng.randf())
+		var delay_time := DISSENTER_HOTLINE_DELAY_CURVE.sample(fx_rng.randf())
 		delay_time = snappedf(delay_time,.033333)
 		await Game.timeout(delay_time)
 		return await apply_from_number_sequence(next_tile, i+1,fx_rng)

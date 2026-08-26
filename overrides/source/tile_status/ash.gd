@@ -3,8 +3,8 @@ extends Status
 var kitty := false
 
 var overlay: Sprite2D = null
-const KITTY_OVERLAY = preload("res://mods/johnboat/arte/tiles/kitty_overlay1.png")
 
+const KITTY_OVERLAY = preload("res://mods/johnboat/source/effects/kitty_overlay.tscn")
 
 func get_save_data():
 	return {kitty=kitty}
@@ -20,12 +20,9 @@ func load_save_data(data):
 func update_kittyous() -> void:
 	if kitty:
 		if overlay == null:
-			overlay = Sprite2D.new()
-			overlay.texture = KITTY_OVERLAY
-			overlay.z_index = 2
-			overlay.z_as_relative = true
+			overlay = KITTY_OVERLAY.instantiate() as Sprite2D
+			overlay.should_be_evil = false
 			tile.tile_sprite.add_child(overlay)
-			overlay.show_behind_parent = true
 
 func apply(args={}):
 	if args.has("kitty"):

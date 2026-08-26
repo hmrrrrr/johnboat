@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://dfyjap3l4tiee"]
+
+[ext_resource type="Texture2D" uid="uid://r4pu5gxudjxi" path="res://mods/johnboat/arte/tiles/kitty_overlay.png" id="1_h0by2"]
+[ext_resource type="Script" uid="uid://duw7u015dgu05" path="res://mods/johnboat/source/effects/kitty_overlay.gd" id="2_kcg6o"]
+[ext_resource type="AudioStream" uid="uid://cgu7it8uka0wm" path="res://mods/johnboat/sounds/mangopurr.ogg" id="3_kcg6o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_34jc1"]
+
+[node name="KittyOverlay" type="Sprite2D" unique_id=1763524439]
+z_index = 2
+texture = ExtResource("1_h0by2")
+hframes = 2
+script = ExtResource("2_kcg6o")
+
+[node name="PetArea" type="Area2D" parent="." unique_id=684521878]
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PetArea" unique_id=1806488801]
+visible = false
+shape = SubResource("RectangleShape2D_34jc1")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2001282366]
+stream = ExtResource("3_kcg6o")
+volume_db = -80.0
+autoplay = true
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1324992102]
+
+[connection signal="input_event" from="PetArea" to="." method="_on_pet_area_input_event"]

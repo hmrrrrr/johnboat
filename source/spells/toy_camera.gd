@@ -21,7 +21,7 @@ const ARCING_PROJECTILE = preload("res://source/effects/arcing_projectile.tscn")
 var can_show_album := true
 
 func _ready() -> void:
-	if OS.has_feature("debug"):
+	if OS.has_feature("debug") and false:
 		for l in Letters.ALPHABET:
 			if l != "e":
 				pics_taken.append(l)

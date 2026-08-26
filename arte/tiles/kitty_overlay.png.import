@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://jrwurric8lqy"
-path="res://.godot/imported/kitty_overlay2.png-05e71a16a289c8a8a2736e000be6a995.ctex"
+uid="uid://r4pu5gxudjxi"
+path="res://.godot/imported/kitty_overlay.png-aa120eee562894effa1937a6b9deabfb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://mods/johnboat/arte/tiles/kitty_overlay2.png"
-dest_files=["res://.godot/imported/kitty_overlay2.png-05e71a16a289c8a8a2736e000be6a995.ctex"]
+source_file="res://mods/johnboat/arte/tiles/kitty_overlay.png"
+dest_files=["res://.godot/imported/kitty_overlay.png-aa120eee562894effa1937a6b9deabfb.ctex"]
 
 [params]
 

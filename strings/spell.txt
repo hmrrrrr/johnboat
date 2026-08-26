@@ -145,15 +145,15 @@
 	:flags:
 		removes_word
 
-:catchy_number:
+:dissenter_hotline:
 	:name:
-		Catchy Number
+		Dissenter Hotline
 	
 	:description:
-		Turn a chosen face and the faces to its right to {number_list list_and} respectively. Burn affected tiles.
+		Turn a chosen face and the faces to its right to {number_list list_and upper} respectively. Burn affected tiles.
 	
 	:label:
-		Burn {number_list list_delim - }
+		Burning {number_list list_delim - upper}
 	
 	:charge_characters:
 		o
