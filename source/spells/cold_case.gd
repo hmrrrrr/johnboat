@@ -22,6 +22,114 @@ func load_save_data(save):
 	super.load_save_data(save)
 	start_end_parity = save.start_end_parity
 
+const SHORT_WORD_BIGRAMS := {
+	OVERALL={
+		"ws": 0.102, "dg": 0.102, "eb": 0.104, "ah": 0.104, "yo": 0.106,
+		"oe": 0.106, "jo": 0.108, "sm": 0.108, "rl": 0.111, "ka": 0.111, "hy": 0.113,
+		"ua": 0.115, "oy": 0.115, "of": 0.115, "ft": 0.117, "wn": 0.117, "ph": 0.119,
+		"ci": 0.119, "dl": 0.119, "mm": 0.119, "ys": 0.121, "az": 0.124, "py": 0.124,
+		"ja": 0.124, "io": 0.126, "ct": 0.126, "sn": 0.128, "nu": 0.130, "wh": 0.130,
+		"rg": 0.132, "ef": 0.132, "ei": 0.132, "af": 0.134, "bs": 0.137, "fu": 0.139,
+		"vo": 0.139, "sw": 0.139, "eg": 0.141, "if": 0.141, "sy": 0.143, "bb": 0.143,
+		"ev": 0.145, "dd": 0.145, "fr": 0.150, "wo": 0.152, "ny": 0.152, "gh": 0.152,
+		"gg": 0.152, "dy": 0.154, "ld": 0.154, "ui": 0.154, "ky": 0.156, "ov": 0.158,
+		"ub": 0.165, "iv": 0.165, "ex": 0.165, "mb": 0.167, "rk": 0.169, "ze": 0.169,
+		"rm": 0.171, "ew": 0.173, "gs": 0.176, "va": 0.176, "ud": 0.176, "ye": 0.176,
+		"pp": 0.178, "sk": 0.180, "ms": 0.180, "mu": 0.182, "rr": 0.184, "au": 0.184,
+		"og": 0.184, "dr": 0.184, "ug": 0.184, "oi": 0.186, "gi": 0.189, "rn": 0.189,
+		"uc": 0.193, "gu": 0.193, "ia": 0.195, "nn": 0.195, "gl": 0.197, "du": 0.202,
+		"rd": 0.204, "ep": 0.206, "lt": 0.206, "qu": 0.206, "fo": 0.208, "pl": 0.217,
+		"ok": 0.217, "oc": 0.219, "ue": 0.219, "ff": 0.219, "nc": 0.221, "ob": 0.221,
+		"aw": 0.221, "sl": 0.230, "sc": 0.232, "ec": 0.236, "pu": 0.238, "ey": 0.241,
+		"up": 0.241, "pr": 0.243, "cu": 0.243, "su": 0.243, "cl": 0.243, "tu": 0.245,
+		"tt": 0.249, "hu": 0.249, "av": 0.251, "ki": 0.254, "fa": 0.254, "vi": 0.254,
+		"ip": 0.256, "oa": 0.256, "fi": 0.260, "em": 0.260, "fe": 0.262, "fl": 0.267,
+		"ry": 0.269, "bi": 0.277, "br": 0.284, "ss": 0.286, "ty": 0.288, "gr": 0.288,
+		"ab": 0.290, "ak": 0.293, "go": 0.293, "ay": 0.295, "ig": 0.295, "da": 0.297,
+		"so": 0.297, "im": 0.299, "ul": 0.299, "od": 0.306, "si": 0.306, "rt": 0.316,
+		"lu": 0.319, "mp": 0.321, "wi": 0.323, "om": 0.323, "nk": 0.323, "cr": 0.329,
+		"ga": 0.332, "bl": 0.332, "ps": 0.334, "bu": 0.336, "ni": 0.340, "sp": 0.340,
+		"we": 0.345, "ag": 0.345, "op": 0.351, "ds": 0.351, "no": 0.360, "ks": 0.364,
+		"sa": 0.368, "ls": 0.371, "ap": 0.371, "na": 0.375, "hi": 0.375, "ru": 0.375,
+		"ut": 0.386, "um": 0.392, "wa": 0.394, "ir": 0.401, "ly": 0.412, "pi": 0.414,
+		"tr": 0.414, "mi": 0.418, "th": 0.418, "po": 0.418, "di": 0.425, "do": 0.425,
+		"os": 0.425, "nd": 0.427, "ow": 0.429, "id": 0.436, "ns": 0.442, "ti": 0.442,
+		"ol": 0.449, "ot": 0.460, "ba": 0.462, "ad": 0.464, "ce": 0.464, "ai": 0.464,
+		"be": 0.473, "ou": 0.486, "mo": 0.494, "rs": 0.496, "nt": 0.496, "ac": 0.505,
+		"ie": 0.505, "bo": 0.505, "pa": 0.514, "us": 0.525, "et": 0.540, "is": 0.544,
+		"to": 0.548, "ic": 0.551, "ur": 0.564, "am": 0.564, "ca": 0.574, "ck": 0.574,
+		"ll": 0.583, "he": 0.590, "it": 0.600, "ha": 0.600, "ho": 0.607, "sh": 0.611,
+		"ee": 0.613, "un": 0.620, "me": 0.629, "co": 0.633, "ge": 0.633, "ta": 0.637,
+		"li": 0.642, "il": 0.642, "ve": 0.661, "ma": 0.670, "ts": 0.672, "as": 0.707,
+		"ch": 0.707, "ke": 0.709, "oo": 0.711, "at": 0.717, "pe": 0.733, "el": 0.739,
+		"lo": 0.756, "ne": 0.763, "la": 0.813, "ro": 0.819, "ea": 0.824, "ng": 0.834,
+		"ri": 0.841, "se": 0.856, "on": 0.865, "de": 0.891, "en": 0.921, "or": 0.945,
+		"st": 0.997, "al": 0.997, "te": 1.084, "ra": 1.090, "an": 1.127, "ar": 1.296,
+		"re": 1.337, "le": 1.350, "es": 1.584, "in": 1.639, "ed": 1.868, "er": 2.100,
+	},
+	START={
+	"yu": 0.106, "on": 0.106, "ed": 0.106,
+	"us": 0.106, "ic": 0.115, "ko": 0.115, "ow": 0.115, "hy": 0.115, "od": 0.115,
+	"ty": 0.124, "av": 0.124, "zi": 0.124, "ze": 0.132, "af": 0.132, "id": 0.132,
+	"ev": 0.132, "at": 0.141, "im": 0.141, "au": 0.150, "sq": 0.150, "ag": 0.159,
+	"op": 0.177, "ap": 0.185, "ph": 0.185, "aw": 0.194, "wr": 0.194, "ji": 0.203,
+	"ce": 0.203, "kn": 0.203, "ya": 0.212, "ou": 0.212, "ai": 0.221, "up": 0.221,
+	"yo": 0.221, "ka": 0.221, "el": 0.221, "je": 0.229, "nu": 0.238, "em": 0.238,
+	"ci": 0.238, "ye": 0.238, "or": 0.247, "er": 0.247, "tw": 0.265, "ea": 0.265,
+	"ab": 0.274, "ke": 0.274, "as": 0.282, "vo": 0.282, "ad": 0.282, "sm": 0.309,
+	"ju": 0.327, "ac": 0.335, "sk": 0.335, "am": 0.344, "jo": 0.353, "en": 0.353,
+	"gi": 0.362, "ex": 0.362, "ni": 0.380, "fu": 0.380, "ja": 0.397, "gl": 0.406,
+	"va": 0.406, "ge": 0.424, "lu": 0.424, "an": 0.459, "ne": 0.468, "ve": 0.477,
+	"wo": 0.485, "na": 0.494, "vi": 0.503, "qu": 0.503, "hi": 0.512, "we": 0.512,
+	"pl": 0.512, "ki": 0.512, "wh": 0.521, "gu": 0.521, "sn": 0.521, "ar": 0.538,
+	"tu": 0.556, "mu": 0.565, "no": 0.565, "sw": 0.565, "ru": 0.574, "in": 0.591,
+	"fe": 0.591, "fr": 0.591, "un": 0.600, "th": 0.618, "al": 0.627, "du": 0.635,
+	"hu": 0.644, "dr": 0.644, "bi": 0.662, "cu": 0.680, "te": 0.697, "bl": 0.733,
+	"sc": 0.733, "su": 0.733, "ri": 0.733, "da": 0.741, "go": 0.750, "fo": 0.768,
+	"pu": 0.777, "ti": 0.777, "si": 0.786, "le": 0.803, "pr": 0.821, "fi": 0.821,
+	"wi": 0.830, "sl": 0.830, "he": 0.883, "ga": 0.891, "cl": 0.900, "fa": 0.900,
+	"me": 0.918, "pi": 0.953, "li": 0.962, "so": 0.962, "fl": 0.962, "mi": 0.971,
+	"ro": 0.971, "di": 0.971, "tr": 0.980, "br": 0.997, "pe": 1.006, "wa": 1.015,
+	"to": 1.015, "se": 1.033, "do": 1.068, "gr": 1.086, "cr": 1.086, "lo": 1.121,
+	"sa": 1.121, "po": 1.121, "ha": 1.165, "bu": 1.174, "sp": 1.183, "la": 1.183,
+	"be": 1.200, "ta": 1.244, "ch": 1.262, "ho": 1.306, "ra": 1.333, "sh": 1.333,
+	"de": 1.342, "mo": 1.386, "pa": 1.509, "bo": 1.536, "ba": 1.536, "ma": 1.633,
+	"ca": 1.668, "st": 1.677, "re": 1.809, "co": 1.889,
+},
+END = {
+	"ca": 0.106, "ph": 0.106,
+	"oe": 0.106, "pa": 0.106, "tz": 0.106, "lf": 0.115, "ka": 0.115, "wl": 0.124,
+	"ek": 0.124, "ud": 0.124, "mo": 0.124, "bo": 0.124, "ba": 0.124, "co": 0.124,
+	"ea": 0.133, "ga": 0.133, "va": 0.133, "ax": 0.133, "ho": 0.133, "vy": 0.133,
+	"ok": 0.133, "da": 0.142, "un": 0.151, "he": 0.151, "be": 0.151, "cy": 0.151,
+	"gh": 0.151, "ub": 0.151, "ob": 0.151, "ig": 0.159, "sk": 0.168, "rm": 0.168,
+	"ul": 0.168, "ug": 0.177, "ol": 0.177, "em": 0.177, "ex": 0.177, "im": 0.177,
+	"go": 0.186, "og": 0.186, "ht": 0.186, "fy": 0.186, "zy": 0.186, "ep": 0.186,
+	"ha": 0.186, "pt": 0.186, "ak": 0.186, "aw": 0.195, "ld": 0.204, "ab": 0.204,
+	"lo": 0.213, "la": 0.221, "oy": 0.221, "fs": 0.230, "no": 0.230, "od": 0.230,
+	"ia": 0.230, "ze": 0.239, "wn": 0.239, "ew": 0.239, "ft": 0.239, "oo": 0.239,
+	"ah": 0.248, "ip": 0.248, "ct": 0.248, "ag": 0.248, "ir": 0.248, "cs": 0.257,
+	"gy": 0.257, "ro": 0.275, "do": 0.275, "hy": 0.283, "to": 0.283, "hs": 0.283,
+	"rk": 0.283, "om": 0.292, "by": 0.301, "my": 0.310, "ap": 0.319, "rn": 0.319,
+	"pe": 0.328, "ta": 0.328, "ur": 0.337, "rd": 0.345, "lt": 0.354, "op": 0.354,
+	"ma": 0.381, "ut": 0.390, "ff": 0.390, "na": 0.399, "ra": 0.399, "ue": 0.399,
+	"um": 0.399, "ws": 0.399, "ad": 0.399, "mp": 0.407, "ee": 0.416, "ys": 0.416,
+	"up": 0.434, "me": 0.434, "py": 0.434, "ow": 0.443, "am": 0.443, "is": 0.443,
+	"il": 0.461, "sy": 0.469, "ss": 0.469, "nd": 0.478, "ke": 0.478, "ny": 0.505,
+	"th": 0.505, "bs": 0.514, "rt": 0.523, "ay": 0.523, "ot": 0.523, "at": 0.531,
+	"as": 0.540, "nk": 0.549, "dy": 0.558, "de": 0.585, "ve": 0.585, "ll": 0.585,
+	"id": 0.593, "os": 0.629, "us": 0.629, "ky": 0.638, "ic": 0.647, "it": 0.673,
+	"gs": 0.691, "sh": 0.700, "ar": 0.700, "ms": 0.700, "ce": 0.709, "ie": 0.753,
+	"ck": 0.762, "or": 0.771, "ey": 0.779, "an": 0.797, "ge": 0.815, "el": 0.850,
+	"se": 0.850, "ne": 0.850, "nt": 0.877, "in": 0.903, "ry": 0.957, "te": 0.974,
+	"ty": 1.001, "re": 1.019, "st": 1.045, "ch": 1.054, "et": 1.063, "en": 1.134,
+	"ps": 1.187, "al": 1.231, "on": 1.258, "ds": 1.408, "ls": 1.417, "ns": 1.452,
+	"ks": 1.479, "ly": 1.550, "rs": 1.630, "le": 2.090, "ng": 2.179, "ts": 2.639,
+	"es": 5.128, "er": 5.606, "ed": 6.722,
+}
+
+}
+
 const SHORT_WORD_TRIGRAMS := {
 	END={
 	"rky": 0.103, "oof": 0.103, "try": 0.103, "ign": 0.103,
@@ -228,11 +336,21 @@ const SHORT_WORD_TRIGRAMS := {
 	"ear": 0.332, "ste": 0.345, "ked": 0.350, "res": 0.354, "per": 0.354, "der": 0.354,
 	"ine": 0.386, "ted": 0.400, "ate": 0.445, "ers": 0.454, "ter": 0.559, "ing": 1.154,
 }
+}
 
+
+const SOUNDS = {
+	GHOSTSOUND_1 = preload("res://mods/johnboat/sounds/ghostsound1.wav"),
+	GHOSTSOUND_2 = preload("res://mods/johnboat/sounds/ghostsound2.wav"),
+	GHOSTSOUND_3 = preload("res://mods/johnboat/sounds/ghostsound3.wav"),
+	
+	SUITCASE_1 = preload("res://mods/johnboat/sounds/suitcase1.wav"),
+	SUITCASE_2 = preload("res://mods/johnboat/sounds/suitcase2.wav"),
 }
 
 
 const MIN_NGRAM_WEIGHT := 0.1
+const COLD_CASE_EFFECT = preload("res://mods/johnboat/source/spells/cold_case/cold_case_effect_instance.tscn")
 
 func is_ngram_valid(ngram: String, letter_pool: Array[String]) -> bool:
 	var remaining_letter_pool = letter_pool.duplicate()
@@ -248,29 +366,30 @@ func is_ngram_valid(ngram: String, letter_pool: Array[String]) -> bool:
 func get_ngram_pool(letter_pool: Array[String]) -> Dictionary[String,float]:
 	var pool_for_value : Dictionary[String, float] = {}
 	for ngram_length in range(3,0,-1):
-		for val in range(8,2,-1):
+		for val in range(8,0,-1):
 			pool_for_value = get_ngram_pool_for_value(letter_pool,val,ngram_length)
 			print_debug(pool_for_value)
 			if len(pool_for_value) >= 3:
 				return pool_for_value
 	
-	return pool_for_value
+	return {}
 
 
 func get_ngram_pool_for_value(letter_pool: Array[String], value: int, ngram_length: int) -> Dictionary[String,float]:
 	var ngram_pool: Dictionary[String,float] = {}
-	var trigrams = SHORT_WORD_TRIGRAMS[["START","END","OVERALL"][start_end_parity]]
+	var parity_key: String = ["START","END","OVERALL"][start_end_parity]
+	var bigrams = SHORT_WORD_BIGRAMS[parity_key]
+	var trigrams = SHORT_WORD_TRIGRAMS[parity_key]
 	match ngram_length:
 		3:
 			for trigram in trigrams.keys():
 				if Letters.get_string_value(trigram) == value and is_ngram_valid(trigram,letter_pool) and trigrams[trigram] > MIN_NGRAM_WEIGHT:
 					ngram_pool[trigram] = trigrams[trigram]
 		2:
-			for bigram in Letters.BIGRAMS.keys():
-				if Letters.get_string_value(bigram) == value and is_ngram_valid(bigram,letter_pool) and Letters.BIGRAMS[bigram] > MIN_NGRAM_WEIGHT:
-					ngram_pool[bigram] = Letters.BIGRAMS[bigram]
+			for bigram in bigrams.keys():
+				if Letters.get_string_value(bigram) == value and is_ngram_valid(bigram,letter_pool) and bigrams[bigram] > MIN_NGRAM_WEIGHT:
+					ngram_pool[bigram] = bigrams[bigram]
 		1:
-			ngram_pool = {}
 			for letter in Letters.LETTERS.keys():
 				if Letters.get_string_value(letter) == value and is_ngram_valid(letter,letter_pool):
 					ngram_pool[letter] = Letters.LETTERS[letter]
@@ -290,7 +409,7 @@ func apply_to_tile(tile: Tile, _real_tile, is_preview, _is_preview_update):
 			sorted=false, 
 			custom_tile_check = func(tile: Tile, _parameters: Dictionary):
 				if (len(tile.face) == 1):
-					return tile.has_face()
+					return tile.has_face() and !tile.has_status(TileStatus.MYSTERY)
 				return false,
 			exclude_tiles = [tile]
 		})
@@ -301,11 +420,17 @@ func apply_to_tile(tile: Tile, _real_tile, is_preview, _is_preview_update):
 			
 		var ngram_pool := get_ngram_pool(letter_pool)
 		
+		AudioManager.play_sound(SOUNDS["SUITCASE_%d"%(randi_range(1,2))],.7,1.)
+		#tile.add_poofcloud(POOF_COLOR,Globals.TILE_POOF_COLOR.frozen[1])
+		
 		if len(ngram_pool.keys()) < 1:
 			tile.randomize_face([], rng.spell, false)
 			tile.add_status(TileStatus.MYSTERY, rng.spell.randi())
 			tile.add_status(TileStatus.FROZEN)
-			tile.add_poofcloud(tile.get_color())
+			#tile.add_poofcloud(tile.get_color())
+			start_end_parity = (start_end_parity + 1)%3
+			
+			# TODO UNIFY THIS WITH NORMAL VFX
 			return
 		
 		var ngram_choice = rng.spell.weighted_random(ngram_pool)
@@ -325,15 +450,13 @@ func apply_to_tile(tile: Tile, _real_tile, is_preview, _is_preview_update):
 		(chosen_ngram_options.shuffle())
 		var sseed = rng.spell.randi()
 		
-		const DESTRUCTION_TIME := .56
+		var effect: GenericTileEffect = null
+		var spelling_interval := 0.14
 		
-		AudioManager.play_sound(Sounds.SPELLS.SODA_CAN,1.23,.65)
-		
-		var spell_out_ngram_on_tile = func() -> void:
-			var spelling_interval := 0.12
+		effect = COLD_CASE_EFFECT.instantiate() as GenericTileEffect
+		effect.do_play_sound = func():
+			AudioManager.play_sound(SOUNDS["GHOSTSOUND_%d"%(start_end_parity+1)],.8,.65)
 			tile.add_status(TileStatus.FROZEN)
-			tile.add_poofcloud(POOF_COLOR,tile.get_poof_color())
-			
 			for i in len(ngram_choice):
 				tile.set_face(ngram_choice.substr(0,i+1))
 				#AudioManager.play_sound(Sounds.UI.TEXT_TYPING,1.)
@@ -341,13 +464,30 @@ func apply_to_tile(tile: Tile, _real_tile, is_preview, _is_preview_update):
 				tile.add_status(TileStatus.MYSTERY,sseed, chosen_ngram_options)
 				await Game.timeout(spelling_interval)
 		
-		spell_out_ngram_on_tile.call()
+		var do_freeze := !tile.has_status(TileStatus.FROZEN)
+		effect.frame_coords = tile.tile_sprite.base_sprite.frame_coords
+		tile.tile_sprite.add_child(effect)
+		effect.atlas = tile.tile_sprite.base_sprite.texture
+		effect.dont_change = !do_freeze
+		effect.bounce.connect(
+			func():
+				tile.animation.play("shake")
+				)
 		
 		
-		
+		await effect.effect_finished
 		start_end_parity = (start_end_parity + 1)%3
+		
+		frame_updated.emit()
 	else:
 		tile.set_face("aaa", true, false)
+
+func get_hv_frames() -> Vector2i:
+	return Vector2i(3, 1)
+
+
+func get_frame() -> int:
+	return start_end_parity
 
 
 func is_tile_selectable(tile: Tile) -> bool:

@@ -41,6 +41,9 @@ void vertex() {
 }
 
 void fragment() {
+	
+	float orig_a = COLOR.a;
+	
 	vec2 uv = (UV)/(initial_frame.zw);
 	float noise_progress = texture(noise, SCREEN_UV).r;
 	if (local_uv_for_noise) {
@@ -78,6 +81,8 @@ void fragment() {
 	if (glow) {
 		COLOR.rgb = max(COLOR.rgb,glow_color);	
 	}
+	
+	COLOR.a = orig_a;
 	
 }
 

@@ -1,0 +1,34 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://bn5108k1cnv3d"]
+
+[ext_resource type="Shader" uid="uid://qpys61e5u7hy" path="res://mods/johnboat/source/tile_noise_conversion.gdshader" id="1_2l35f"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_4wsxs"]
+noise_type = 3
+seed = 25
+frequency = 0.1173
+offset = Vector3(87.22, 0, 0)
+fractal_type = 2
+fractal_octaves = 1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jmoik"]
+width = 480
+height = 270
+generate_mipmaps = false
+noise = SubResource("FastNoiseLite_4wsxs")
+
+[sub_resource type="Gradient" id="Gradient_ayr22"]
+offsets = PackedFloat32Array(0, 0.08252427, 0.18932039, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0.35000002, 0.7941667, 1, 0.9098039, 0.44488, 0.43159997, 0.83, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_5kjg2"]
+gradient = SubResource("Gradient_ayr22")
+
+[resource]
+shader = ExtResource("1_2l35f")
+shader_parameter/noise = SubResource("NoiseTexture2D_jmoik")
+shader_parameter/edge_feather = 0.0
+shader_parameter/local_uv_for_noise = false
+shader_parameter/enable_glow = true
+shader_parameter/glow_color = Color(0.62, 1, 1, 1)
+shader_parameter/tint_gradient = SubResource("GradientTexture1D_5kjg2")
+shader_parameter/tint_type = 1

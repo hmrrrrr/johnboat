@@ -16,8 +16,8 @@ generate_mipmaps = false
 noise = SubResource("FastNoiseLite_0j7j3")
 
 [sub_resource type="Gradient" id="Gradient_d05t6"]
-offsets = PackedFloat32Array(0, 0.15483871, 0.3207547, 0.49056605, 1)
-colors = PackedColorArray(0.09083223, 0.020538136, 0.032758802, 0.11320758, 0.8901961, 0.42745098, 0.5372549, 1, 0.7602558, 0.17190194, 0.27418762, 0.947535, 0.6678418, 0.15108204, 0.23840076, 0, 0, 0, 0, 0)
+offsets = PackedFloat32Array(0, 0.15184382, 0.3207547, 0.49056605, 1)
+colors = PackedColorArray(0.09083223, 0.020538136, 0.032758802, 0.11320758, 0.8915964, 0.43353668, 0.4976986, 1, 0.76794374, 0.13824892, 0.38480365, 0.9490196, 0.66605985, 0.1110272, 0.36176142, 0, 0, 0, 0, 0)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_s2esl"]
 gradient = SubResource("Gradient_d05t6")
@@ -28,6 +28,6 @@ shader_parameter/noise = SubResource("NoiseTexture2D_hx1rf")
 shader_parameter/edge_feather = 0.0
 shader_parameter/local_uv_for_noise = false
 shader_parameter/enable_glow = true
-shader_parameter/glow_color = Color(0.77254903, 0.2627451, 0.36078432, 1)
+shader_parameter/glow_color = Color(1, 0, 0, 1)
 shader_parameter/tint_gradient = SubResource("GradientTexture1D_s2esl")
-shader_parameter/tint_type = 1
+shader_parameter/tint_type = 2
