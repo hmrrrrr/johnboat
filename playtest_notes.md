@@ -1,14 +1,21 @@
-### checklist
+# buff
 
+whodunit
+superposition
 datamosh
 booster_shot
-toy_camera
-milk
 zipties
-gaydar
-whodunit
-cat_tail
-blt
 dissenter_hotline
 subdomain
-superposition
+gaydar
+
+milk
+cat_tail
+
+
+
+
+# fix these
+FIX PURR AUDIOSTREAMPLAYER NOT SCALING WITH SOUND IN OPTIONS
+ADD A WAY TO VIEW PREV. SPELLED WORDS (ESPECIALLY WITH MILK)
+COLD CASE IS FUCKING TERRIBLE

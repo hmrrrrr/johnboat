@@ -164,24 +164,22 @@
 	:flags:
 		removes_word
 	
-:whodunit:
+:cold_case:
 	:name:
 		Cold Case
 	
 	:label:
-		Murder mystery
+		Frozen mystery
 	
 	:description:
-		Destroy all 1-value tiles, making a frozen mystery trigram from their letters.
+		Turn a tile into a frozen mystery trigram based on your other letters.
 	
 	:charge_category:
-		rare
+		common
 
 	:max_charge:
-		2
+		3
 	
-	:flags:
-		removes_word
 
 :photo_album:
 	:name:

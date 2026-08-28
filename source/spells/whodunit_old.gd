@@ -7,6 +7,8 @@ func get_tooltip_context():
 	return {}
 
 
+const MIN_TRIGRAM_WEIGHT := 0.185
+
 func is_ngram_valid(ngram: String, letter_pool: Array[String]) -> bool:
 	var remaining_letter_pool = letter_pool.duplicate()
 	for i in len(ngram):
@@ -36,7 +38,7 @@ func apply_to_tile(tile: Tile, _real_tile, is_preview, _is_preview_update):
 		var ngram_pool: Dictionary[String, float] = {}
 		
 		for trigram in Letters.TRIGRAMS.keys():
-			if is_ngram_valid(trigram,letter_pool):
+			if is_ngram_valid(trigram,letter_pool) and Letters.TRIGRAMS[trigram] > MIN_TRIGRAM_WEIGHT:
 				ngram_pool[trigram] = Letters.TRIGRAMS[trigram]
 		
 		if len(ngram_pool.keys()) < 3:

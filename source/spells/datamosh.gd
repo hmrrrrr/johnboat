@@ -44,7 +44,7 @@ const SOUNDS = {
 const DATAMOSH_EFFECT = preload("res://mods/johnboat/source/datamosh/datamosh_effect_instance.tscn")
 
 
-func get_corresponding_numbers(face: String) -> String:
+static func get_corresponding_numbers(face: String) -> String:
 	
 	var new_face = ""
 	for letter in face:
@@ -60,7 +60,7 @@ func get_corresponding_numbers(face: String) -> String:
 	
 	return new_face
 
-func set_tile_face_to_corresponding_numbers(tile: Tile):
+static func set_tile_face_to_corresponding_numbers(tile: Tile):
 	if len(tile.tile_face.slashed_faces) != 0:
 		var faces = tile.tile_face.slashed_faces.duplicate()
 		for i in range(len(faces)):
