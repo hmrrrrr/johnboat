@@ -82,20 +82,11 @@ func _use():
 	for tile: Tile in apply_to:
 		if is_tile_selectable(tile):
 			
-			### kitty
 			var is_kitty: bool = tile.has_status(TileStatus.ASH)
 			if is_kitty:
 				for status in tile.get_statuses():
-					if status.id == TileStatus.ASH:
+					if status.id == TileStatus.ASH or status.id == TileStatus.CURSED:
 						is_kitty = status.get("kitty")
-			
-			if !is_kitty:
-				is_kitty = tile.has_status(TileStatus.CURSED)
-				for status in tile.get_statuses():
-					if status.id == TileStatus.CURSED:
-						is_kitty = status.get("kitty")
-				
-			###
 			
 			var do_curse = !tile.has_status(TileStatus.CRIT)
 			

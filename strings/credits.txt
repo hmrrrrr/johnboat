@@ -3,8 +3,7 @@
 	::
 		Programming
 		Design
-		Shaders
-		Additional Art
+		Art
 ::
 	RENREN
 	::

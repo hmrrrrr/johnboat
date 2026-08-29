@@ -30,6 +30,9 @@
 		
 	:label:
 		Combined shimmer
+	
+	:banner:
+		Select tiles to shimmer
 
 :subdomain:
 	:name:
@@ -66,6 +69,7 @@
 	:description:
 		Convert ANY tile to a poison ({current_face}).
 		Face changes each use: {cycle}
+	
 
 :milk:
 	:name:
@@ -99,7 +103,10 @@
 	
 	:max_charge:
 		1
-
+	
+	:banner:
+		Select a tile to sandwich
+	
 :shovelware:
 	:name:
 		Shovelware
@@ -142,6 +149,9 @@
 	:max_charge:
 		3
 	
+	:banner:
+		Select a tile to {"meowdify" not the_plant}{"modify" if the_plant}
+	
 	:flags:
 		removes_word
 
@@ -163,6 +173,9 @@
 	
 	:flags:
 		removes_word
+		
+	:banner:
+		Select a tile to start burning
 	
 :cold_case:
 	:name:
@@ -180,6 +193,8 @@
 	:max_charge:
 		3
 	
+	:banner:
+		Select a tile to mystify
 
 :photo_album:
 	:name:
@@ -198,7 +213,7 @@
 	
 	:charge_category:
 		limited
-
+	
 	:max_charge:
 		0
 		
@@ -242,6 +257,9 @@
 	:charge_category:
 		rare
 	
+	:banner:
+		Select a row + column
+	
 	:max_charge:
 		3
 
@@ -260,6 +278,9 @@
 	
 	:max_charge:
 		1
+	
+	:banner:
+		Select tiles to ziptie
 
 	
 :pda:
