@@ -20,7 +20,8 @@ var SPELLS: Dictionary[String, String] = {
 	CAT_TAIL = "cat_tail",
 	BLT = "blt",
 	DISSENTER_HOTLINE = "dissenter_hotline",
-	SUBDOMAIN = "subdomain"
+	SUBDOMAIN = "subdomain",
+	LCD_TWEEZERS = "lcd_tweezers",
 }
 
 const BASE_WEIGHT := 5.
@@ -40,6 +41,7 @@ var SPELL_POOL: Dictionary[String, float] = {
 	SPELLS.BLT: BASE_WEIGHT/2.,
 	SPELLS.DISSENTER_HOTLINE: BASE_WEIGHT,
 	SPELLS.SUBDOMAIN: BASE_WEIGHT,
+	SPELLS.LCD_TWEEZERS: BASE_WEIGHT,
 }
 
 var SPELL_CATEGORIES: Dictionary[String, Array] = {
@@ -48,6 +50,7 @@ var SPELL_CATEGORIES: Dictionary[String, Array] = {
 		SPELLS.BOOSTER_SHOT,
 		SPELLS.CAT_TAIL,
 		SPELLS.DISSENTER_HOTLINE,
+		SPELLS.LCD_TWEEZERS
 	],
 	Globals.SPELL_CATEGORY.OFFENSIVE: [
 		SPELLS.SUPERPOSITION,
@@ -93,7 +96,7 @@ var SPELL_CATEGORIES: Dictionary[String, Array] = {
 func _ready() -> void:
 	#CustomIntent.custom_status_intent_icons["mutagen"]=preload("uid://dukxvsrifradw")
 	#update_remove_other_enemies()
-	
+	print_debug("Yay loaded \"Proverb Palace\"")
 	#if "dimorph" not in EnemyLoader.enemy_pools[0][0]:
 		#EnemyLoader.add_enemy("dimorph",2,3,"res://mods/johnboat/arte/dimorph/miniface_dimorph.png")
 		

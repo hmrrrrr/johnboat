@@ -167,7 +167,7 @@ default_ending_frame = Vector4(64, 32, 32, 32)
 [node name="FakeSprite" type="Sprite2D" parent="." unique_id=1783727358]
 unique_name_in_owner = true
 material = ExtResource("2_84u20")
-instance_shader_parameters/ending_frame = Vector4(0.2, 0.25, 0.1, 0.25)
+instance_shader_parameters/ending_frame = Vector4(0.1, 0.25, 0.1, 0.25)
 instance_shader_parameters/gradient_progress = 0.0
 instance_shader_parameters/initial_frame = Vector4(0.1, 0.25, 0.1, 0.25)
 instance_shader_parameters/progress = 0.0

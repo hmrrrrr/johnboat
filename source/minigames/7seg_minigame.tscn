@@ -1,0 +1,676 @@
+[gd_scene format=3 uid="uid://detaa38wrfify"]
+
+[ext_resource type="Script" uid="uid://uf83gua6dwhw" path="res://mods/johnboat/source/minigames/7seg_minigame.gd" id="1_ar1ey"]
+[ext_resource type="Texture2D" uid="uid://cx2dtnfkx63iv" path="res://arte/minigames/dna_icons.png" id="2_kh4tf"]
+[ext_resource type="Script" uid="uid://cfpkpmdehkp8u" path="res://source/ui/generic/shadow_cloner.gd" id="3_n66ye"]
+[ext_resource type="PackedScene" uid="uid://dgtvtcn5lo1dl" path="res://source/ui/tooltip/menu_tooltip_collision.tscn" id="4_l4w7m"]
+[ext_resource type="PackedScene" uid="uid://d4a7isuy7vbow" path="res://source/ui/generic/action_glyph.tscn" id="5_ifbes"]
+[ext_resource type="Script" uid="uid://bofahnrm24rou" path="res://source/ui/generic/action_button.gd" id="6_k248k"]
+[ext_resource type="Script" uid="uid://7xvadspst3p5" path="res://source/ui/generic/hover_handler.gd" id="7_bjdxh"]
+[ext_resource type="Texture2D" uid="uid://cm8vqhvut0b6r" path="res://mods/johnboat/arte/minigames/lcd_board.png" id="8_ar1ey"]
+[ext_resource type="Script" uid="uid://drgtw8sp4tp8n" path="res://source/library/anim_player.gd" id="9_fx5el"]
+
+[sub_resource type="Animation" id="Animation_iacmv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../LabelOffset/TurnsLabel:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../LabelOffset/TurnsLabel:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_688u4"]
+resource_name = "appear"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 5), Vector2(0, -2), Vector2(0, 1), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../LabelOffset/TurnsLabel:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 5), Vector2(0, 5), Vector2(0, -2), Vector2(0, 1), Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../LabelOffset/TurnsLabel:modulate")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_6my24"]
+resource_name = "disappear"
+length = 0.3
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.25),
+"transitions": PackedFloat32Array(1.56917, 1.56917, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.25),
+"transitions": PackedFloat32Array(0.366021, 1, 0.366021, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 2), Vector2(0, 2), Vector2(0, -3)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../LabelOffset/TurnsLabel:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1.56917, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../LabelOffset/TurnsLabel:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.3),
+"transitions": PackedFloat32Array(1, 0.366021, 1, 0.366021, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(0, 2), Vector2(0, 2), Vector2(0, -3)]
+}
+
+[sub_resource type="Animation" id="Animation_udabi"]
+resource_name = "hidden"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../LabelOffset/TurnsLabel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_udabi"]
+_data = {
+&"RESET": SubResource("Animation_iacmv"),
+&"appear": SubResource("Animation_688u4"),
+&"disappear": SubResource("Animation_6my24"),
+&"hidden": SubResource("Animation_udabi")
+}
+
+[sub_resource type="Animation" id="Animation_ssyko"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_v6jqj"]
+resource_name = "appear"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 5), Vector2(0, -2), Vector2(0, 1), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_42xj7"]
+resource_name = "disappear"
+length = 0.3
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.25),
+"transitions": PackedFloat32Array(1.56917, 1.56917, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.25),
+"transitions": PackedFloat32Array(0.366021, 1, 0.366021, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 2), Vector2(0, 2), Vector2(0, -3)]
+}
+
+[sub_resource type="Animation" id="Animation_1ugjr"]
+resource_name = "hidden"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ssyko"]
+_data = {
+&"RESET": SubResource("Animation_ssyko"),
+&"appear": SubResource("Animation_v6jqj"),
+&"disappear": SubResource("Animation_42xj7"),
+&"hidden": SubResource("Animation_1ugjr")
+}
+
+[sub_resource type="Animation" id="Animation_r0sxd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_clf3h"]
+resource_name = "appear"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3),
+"transitions": PackedFloat32Array(0.30778608, 2.0705302, 1),
+"update": 0,
+"values": [Vector2(0, 210), Vector2(0, -4), Vector2(0, 0)]
+}
+tracks/1/type = "animation"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HBoxContainer/Turns/AnimPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": PackedStringArray("appear"),
+"times": PackedFloat32Array(0.1)
+}
+tracks/2/type = "animation"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HBoxContainer/Reset/AnimPlayer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": PackedStringArray("appear"),
+"times": PackedFloat32Array(0.18)
+}
+tracks/3/type = "animation"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HBoxContainer/Confirm/AnimPlayer")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": PackedStringArray("appear"),
+"times": PackedFloat32Array(0.26)
+}
+
+[sub_resource type="Animation" id="Animation_i01po"]
+resource_name = "disappear"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.3, 0.4, 0.6),
+"transitions": PackedFloat32Array(0.3077861, 2.0705302, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -4), Vector2(0, 210)]
+}
+tracks/1/type = "animation"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HBoxContainer/Confirm/AnimPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": PackedStringArray("disappear"),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "animation"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HBoxContainer/Reset/AnimPlayer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": PackedStringArray("disappear"),
+"times": PackedFloat32Array(0.08)
+}
+tracks/3/type = "animation"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HBoxContainer/Turns/AnimPlayer")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": PackedStringArray("disappear"),
+"times": PackedFloat32Array(0.16)
+}
+
+[sub_resource type="Animation" id="Animation_w3vyy"]
+resource_name = "hidden"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 210)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1ugjr"]
+_data = {
+&"RESET": SubResource("Animation_r0sxd"),
+&"appear": SubResource("Animation_clf3h"),
+&"disappear": SubResource("Animation_i01po"),
+&"hidden": SubResource("Animation_w3vyy")
+}
+
+[node name="SevenSegMinigame" type="Node2D" unique_id=2044216600 groups=["minigame"]]
+z_index = 100
+position = Vector2(240, 151)
+script = ExtResource("1_ar1ey")
+
+[node name="BoardOffset" type="Node2D" parent="." unique_id=1029622226]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BoardOffset" unique_id=1097540088]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -43.0
+offset_top = -72.0
+offset_right = 43.0
+offset_bottom = -46.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Turns" type="Control" parent="BoardOffset/HBoxContainer" unique_id=431137176]
+custom_minimum_size = Vector2(26, 26)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="BoardOffset/HBoxContainer/Turns" unique_id=999874369]
+texture = ExtResource("2_kh4tf")
+centered = false
+hframes = 5
+
+[node name="ShadowCloner" type="Node2D" parent="BoardOffset/HBoxContainer/Turns/Sprite2D" unique_id=1614996839]
+position = Vector2(2, 2)
+script = ExtResource("3_n66ye")
+metadata/_custom_type_script = "uid://cfpkpmdehkp8u"
+
+[node name="LabelOffset" type="Control" parent="BoardOffset/HBoxContainer/Turns" unique_id=468307326]
+anchors_preset = 0
+offset_left = 16.0
+offset_top = 12.0
+offset_right = 16.0
+offset_bottom = 12.0
+
+[node name="TurnsLabel" type="Label" parent="BoardOffset/HBoxContainer/Turns/LabelOffset" unique_id=1743259071]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(8, 0)
+layout_mode = 0
+offset_right = 16.0
+offset_bottom = 18.120003
+theme_type_variation = &"BoldOutlineLabel"
+theme_override_font_sizes/font_size = 10
+text = "1/2"
+
+[node name="TurnsTooltipCollision" parent="BoardOffset/HBoxContainer/Turns" unique_id=1758529479 instance=ExtResource("4_l4w7m")]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 25.0
+offset_bottom = 25.0
+string_identifier = "misc/dna_tweezers/turns_remaining"
+position_offset = Vector2(0, -4)
+
+[node name="AnimPlayer" type="AnimationPlayer" parent="BoardOffset/HBoxContainer/Turns" unique_id=129528515]
+root_node = NodePath("../Sprite2D")
+libraries/ = SubResource("AnimationLibrary_udabi")
+autoplay = &"hidden"
+
+[node name="Reset" type="Control" parent="BoardOffset/HBoxContainer" unique_id=1859533045]
+custom_minimum_size = Vector2(26, 26)
+layout_mode = 2
+
+[node name="ResetSprite" type="Sprite2D" parent="BoardOffset/HBoxContainer/Reset" unique_id=1350573330]
+unique_name_in_owner = true
+texture = ExtResource("2_kh4tf")
+centered = false
+hframes = 5
+frame = 1
+
+[node name="ShadowCloner" type="Node2D" parent="BoardOffset/HBoxContainer/Reset/ResetSprite" unique_id=1103522506]
+position = Vector2(2, 2)
+script = ExtResource("3_n66ye")
+metadata/_custom_type_script = "uid://cfpkpmdehkp8u"
+
+[node name="ActionGlyph" parent="BoardOffset/HBoxContainer/Reset/ResetSprite" unique_id=1185166845 instance=ExtResource("5_ifbes")]
+offset_left = 17.0
+offset_top = -2.0
+offset_right = 33.0
+offset_bottom = 14.0
+action = &"menu_extra_button"
+controller_mode_only = true
+with_setting_only = true
+glyph_type = 1
+glyph_id = 3
+
+[node name="ResetButton" type="Button" parent="BoardOffset/HBoxContainer/Reset" unique_id=1502291786]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 25.0
+offset_bottom = 25.0
+flat = true
+script = ExtResource("6_k248k")
+action = &"menu_extra_button"
+metadata/_custom_type_script = "uid://bofahnrm24rou"
+
+[node name="ResetTooltipCollision" parent="BoardOffset/HBoxContainer/Reset/ResetButton" unique_id=430887105 node_paths=PackedStringArray("focus_source") instance=ExtResource("4_l4w7m")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+string_identifier = "misc/dna_tweezers/reset"
+position_offset = Vector2(0, -4)
+focus_source = NodePath("..")
+
+[node name="ResetHoverHandler" type="Node2D" parent="BoardOffset/HBoxContainer/Reset" unique_id=1649936525 node_paths=PackedStringArray("hovering", "source")]
+unique_name_in_owner = true
+script = ExtResource("7_bjdxh")
+hovering = NodePath("../ResetSprite")
+source = NodePath("../ResetButton")
+hovered_position = Vector2(0, -2)
+pressed_position = Vector2(0, 0)
+metadata/_custom_type_script = "uid://7xvadspst3p5"
+
+[node name="AnimPlayer" type="AnimationPlayer" parent="BoardOffset/HBoxContainer/Reset" unique_id=357117261]
+root_node = NodePath("../ResetSprite")
+libraries/ = SubResource("AnimationLibrary_ssyko")
+autoplay = &"hidden"
+
+[node name="Confirm" type="Control" parent="BoardOffset/HBoxContainer" unique_id=2077306257]
+custom_minimum_size = Vector2(26, 26)
+layout_mode = 2
+
+[node name="ConfirmSprite" type="Sprite2D" parent="BoardOffset/HBoxContainer/Confirm" unique_id=1246214754]
+unique_name_in_owner = true
+texture = ExtResource("2_kh4tf")
+centered = false
+hframes = 5
+frame = 3
+
+[node name="ShadowCloner" type="Node2D" parent="BoardOffset/HBoxContainer/Confirm/ConfirmSprite" unique_id=212649276]
+position = Vector2(2, 2)
+script = ExtResource("3_n66ye")
+metadata/_custom_type_script = "uid://cfpkpmdehkp8u"
+
+[node name="ActionGlyph" parent="BoardOffset/HBoxContainer/Confirm/ConfirmSprite" unique_id=1094403238 instance=ExtResource("5_ifbes")]
+custom_minimum_size = Vector2(20, 16)
+offset_left = 19.0
+offset_top = -2.0
+offset_right = 39.0
+offset_bottom = 14.0
+action = &"end_action"
+controller_mode_only = true
+with_setting_only = true
+glyph_type = 1
+glyph_id = 6
+
+[node name="ConfirmButton" type="Button" parent="BoardOffset/HBoxContainer/Confirm" unique_id=591333459]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 25.0
+offset_bottom = 25.0
+flat = true
+
+[node name="ConfirmButtonTooltip" parent="BoardOffset/HBoxContainer/Confirm/ConfirmButton" unique_id=1904204366 node_paths=PackedStringArray("focus_source") instance=ExtResource("4_l4w7m")]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+string_identifier = "misc/dna_tweezers/confirm"
+position_offset = Vector2(0, -4)
+focus_source = NodePath("..")
+
+[node name="HoverHandler" type="Node2D" parent="BoardOffset/HBoxContainer/Confirm" unique_id=90994302 node_paths=PackedStringArray("hovering", "source")]
+script = ExtResource("7_bjdxh")
+hovering = NodePath("../ConfirmSprite")
+source = NodePath("../ConfirmButton")
+hovered_position = Vector2(0, -2)
+pressed_position = Vector2(0, 0)
+metadata/_custom_type_script = "uid://7xvadspst3p5"
+
+[node name="AnimPlayer" type="AnimationPlayer" parent="BoardOffset/HBoxContainer/Confirm" unique_id=816104293]
+root_node = NodePath("../ConfirmSprite")
+libraries/ = SubResource("AnimationLibrary_ssyko")
+autoplay = &"hidden"
+
+[node name="Board" type="Sprite2D" parent="BoardOffset" unique_id=754550266]
+unique_name_in_owner = true
+texture = ExtResource("8_ar1ey")
+hframes = 2
+
+[node name="ShadowCloner" type="Node2D" parent="BoardOffset/Board" unique_id=1847263050]
+position = Vector2(2, 2)
+script = ExtResource("3_n66ye")
+metadata/_custom_type_script = "uid://cfpkpmdehkp8u"
+
+[node name="AddictTimer" type="Label" parent="BoardOffset" unique_id=1739056228]
+unique_name_in_owner = true
+offset_left = -19.0
+offset_top = -89.0
+offset_right = 19.0
+offset_bottom = -70.88
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_type_variation = &"BoldOutlineLabel"
+theme_override_font_sizes/font_size = 10
+text = "99:99:99"
+
+[node name="ShadowCloner" type="Node2D" parent="BoardOffset/AddictTimer" unique_id=402594394]
+position = Vector2(2, 2)
+script = ExtResource("3_n66ye")
+metadata/_custom_type_script = "uid://cfpkpmdehkp8u"
+
+[node name="AnimPlayer" type="AnimationPlayer" parent="." unique_id=411869505]
+unique_name_in_owner = true
+root_node = NodePath("../BoardOffset")
+libraries/ = SubResource("AnimationLibrary_1ugjr")
+autoplay = &"hidden"
+script = ExtResource("9_fx5el")
+metadata/_custom_type_script = "uid://drgtw8sp4tp8n"
+
+[connection signal="pressed" from="BoardOffset/HBoxContainer/Reset/ResetButton" to="." method="_on_reset_button_pressed"]
+[connection signal="pressed" from="BoardOffset/HBoxContainer/Confirm/ConfirmButton" to="." method="_on_confirm_button_pressed"]

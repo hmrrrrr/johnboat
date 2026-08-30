@@ -39,7 +39,7 @@
 		Subdomain
 	
 	:label:
-		Period crits
+		Critical periods
 	
 	:description:
 		Convert two random tiles in a spelled word to period crits.
@@ -87,6 +87,40 @@
 	
 	:max_charge:
 		4
+
+:lcd_tweezers:
+	:name:
+		{:name_fakeout: if fakeout}
+		{:name_normal: not fakeout}
+	
+	:name_normal:
+		LCD Tweezers
+	
+	:name_fakeout:
+		DNA Tweezers
+	
+	:description:
+		{:description_fakeout: if fakeout}
+		{:description_normal: not fakeout}
+	
+	:description_normal:
+		Modify a tile’s face using a 7-segment display.
+		
+	:description_fakeout:
+		Modify a tile’s face using a binary 3x3 grid.
+	
+	:label:
+		Modify letter
+
+	:charge_characters:
+		ascii
+
+	:max_charge:
+		2
+
+	:flags:
+		removes_word
+
 
 :blt:
 	:name:
