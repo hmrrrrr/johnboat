@@ -1,0 +1,207 @@
+[gd_scene format=3 uid="uid://b4n3fhh0xb3pl"]
+
+[ext_resource type="Script" uid="uid://uf83gua6dwhw" path="res://mods/johnboat/source/minigames/7seg_minigame.gd" id="1_uovvw"]
+[ext_resource type="Texture2D" uid="uid://rap16e47j2yt" path="res://mods/johnboat/arte/minigames/spellmaster.png" id="2_2gelt"]
+[ext_resource type="Script" uid="uid://cfpkpmdehkp8u" path="res://source/ui/generic/shadow_cloner.gd" id="3_ytdwa"]
+[ext_resource type="PackedScene" uid="uid://cog61qjchqcjh" path="res://mods/johnboat/source/minigames/spellmaster_key.tscn" id="4_qxyhd"]
+[ext_resource type="Script" uid="uid://drgtw8sp4tp8n" path="res://source/library/anim_player.gd" id="9_w5j6x"]
+
+[sub_resource type="Animation" id="Animation_r0sxd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_clf3h"]
+resource_name = "appear"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3),
+"transitions": PackedFloat32Array(0.30778608, 2.0705302, 1),
+"update": 0,
+"values": [Vector2(0, 210), Vector2(0, -4), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_i01po"]
+resource_name = "disappear"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.3, 0.4, 0.6),
+"transitions": PackedFloat32Array(0.3077861, 2.0705302, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -4), Vector2(0, 210)]
+}
+
+[sub_resource type="Animation" id="Animation_w3vyy"]
+resource_name = "hidden"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 210)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1ugjr"]
+_data = {
+&"RESET": SubResource("Animation_r0sxd"),
+&"appear": SubResource("Animation_clf3h"),
+&"disappear": SubResource("Animation_i01po"),
+&"hidden": SubResource("Animation_w3vyy")
+}
+
+[node name="SpellmasterMinigame" type="Node2D" unique_id=2044216600 groups=["minigame"]]
+z_index = 100
+position = Vector2(240, 140)
+script = ExtResource("1_uovvw")
+
+[node name="BoardOffset" type="Node2D" parent="." unique_id=1029622226]
+
+[node name="Board" type="Sprite2D" parent="BoardOffset" unique_id=754550266]
+unique_name_in_owner = true
+texture = ExtResource("2_2gelt")
+metadata/_edit_lock_ = true
+
+[node name="ShadowCloner" type="Node2D" parent="BoardOffset/Board" unique_id=1847263050]
+position = Vector2(2, 2)
+script = ExtResource("3_ytdwa")
+metadata/_custom_type_script = "uid://cfpkpmdehkp8u"
+
+[node name="AddictTimer" type="Label" parent="BoardOffset" unique_id=1739056228]
+unique_name_in_owner = true
+offset_left = -19.0
+offset_top = -70.15
+offset_right = 19.0
+offset_bottom = -52.03
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_type_variation = &"BoldOutlineLabel"
+theme_override_font_sizes/font_size = 10
+text = "99:99:99"
+
+[node name="ShadowCloner" type="Node2D" parent="BoardOffset/AddictTimer" unique_id=402594394]
+position = Vector2(2, 2)
+script = ExtResource("3_ytdwa")
+metadata/_custom_type_script = "uid://cfpkpmdehkp8u"
+
+[node name="KeyTile" parent="BoardOffset" unique_id=1819035332 instance=ExtResource("4_qxyhd")]
+position = Vector2(-84, 8)
+
+[node name="KeyTile2" parent="BoardOffset" unique_id=620743986 instance=ExtResource("4_qxyhd")]
+position = Vector2(-63, 11)
+
+[node name="KeyTile3" parent="BoardOffset" unique_id=1502406429 instance=ExtResource("4_qxyhd")]
+position = Vector2(-42, 9)
+state = true
+
+[node name="KeyTile4" parent="BoardOffset" unique_id=70432469 instance=ExtResource("4_qxyhd")]
+position = Vector2(-21, 7)
+
+[node name="KeyTile5" parent="BoardOffset" unique_id=1348603571 instance=ExtResource("4_qxyhd")]
+position = Vector2(0, 7)
+
+[node name="KeyTile6" parent="BoardOffset" unique_id=1218912124 instance=ExtResource("4_qxyhd")]
+position = Vector2(21, 7)
+state = true
+
+[node name="KeyTile7" parent="BoardOffset" unique_id=278091132 instance=ExtResource("4_qxyhd")]
+position = Vector2(42, 9)
+state = true
+
+[node name="KeyTile8" parent="BoardOffset" unique_id=1899318484 instance=ExtResource("4_qxyhd")]
+position = Vector2(63, 11)
+
+[node name="KeyTile9" parent="BoardOffset" unique_id=1029536894 instance=ExtResource("4_qxyhd")]
+position = Vector2(84, 8)
+
+[node name="KeyTile10" parent="BoardOffset" unique_id=211199503 instance=ExtResource("4_qxyhd")]
+position = Vector2(-84, 27)
+
+[node name="KeyTile11" parent="BoardOffset" unique_id=79069171 instance=ExtResource("4_qxyhd")]
+position = Vector2(-63, 30)
+
+[node name="KeyTile12" parent="BoardOffset" unique_id=1828016334 instance=ExtResource("4_qxyhd")]
+position = Vector2(-42, 28)
+state = true
+
+[node name="KeyTile13" parent="BoardOffset" unique_id=2132756568 instance=ExtResource("4_qxyhd")]
+position = Vector2(-21, 26)
+
+[node name="KeyTile14" parent="BoardOffset" unique_id=1126522508 instance=ExtResource("4_qxyhd")]
+position = Vector2(0, 26)
+
+[node name="KeyTile15" parent="BoardOffset" unique_id=264320618 instance=ExtResource("4_qxyhd")]
+position = Vector2(21, 26)
+state = true
+
+[node name="KeyTile16" parent="BoardOffset" unique_id=2050265333 instance=ExtResource("4_qxyhd")]
+position = Vector2(42, 28)
+state = true
+
+[node name="KeyTile17" parent="BoardOffset" unique_id=1903850236 instance=ExtResource("4_qxyhd")]
+position = Vector2(63, 30)
+
+[node name="KeyTile18" parent="BoardOffset" unique_id=167063883 instance=ExtResource("4_qxyhd")]
+position = Vector2(84, 27)
+
+[node name="KeyTile19" parent="BoardOffset" unique_id=38294623 instance=ExtResource("4_qxyhd")]
+position = Vector2(-84, 46)
+
+[node name="KeyTile20" parent="BoardOffset" unique_id=814791616 instance=ExtResource("4_qxyhd")]
+position = Vector2(-63, 49)
+
+[node name="KeyTile21" parent="BoardOffset" unique_id=788989553 instance=ExtResource("4_qxyhd")]
+position = Vector2(-42, 47)
+
+[node name="KeyTile22" parent="BoardOffset" unique_id=2020789699 instance=ExtResource("4_qxyhd")]
+position = Vector2(-21, 45)
+
+[node name="KeyTile23" parent="BoardOffset" unique_id=677638716 instance=ExtResource("4_qxyhd")]
+position = Vector2(0, 45)
+
+[node name="KeyTile24" parent="BoardOffset" unique_id=906637440 instance=ExtResource("4_qxyhd")]
+position = Vector2(21, 45)
+
+[node name="KeyTile25" parent="BoardOffset" unique_id=232948049 instance=ExtResource("4_qxyhd")]
+position = Vector2(42, 47)
+state = true
+
+[node name="KeyTile26" parent="BoardOffset" unique_id=716284051 instance=ExtResource("4_qxyhd")]
+position = Vector2(63, 49)
+
+[node name="KeyTile27" parent="BoardOffset" unique_id=977143802 instance=ExtResource("4_qxyhd")]
+position = Vector2(84, 46)
+
+[node name="AnimPlayer" type="AnimationPlayer" parent="." unique_id=411869505]
+unique_name_in_owner = true
+root_node = NodePath("../BoardOffset")
+libraries/ = SubResource("AnimationLibrary_1ugjr")
+autoplay = &"hidden"
+script = ExtResource("9_w5j6x")
+metadata/_custom_type_script = "uid://drgtw8sp4tp8n"

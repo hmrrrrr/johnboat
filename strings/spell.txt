@@ -16,23 +16,24 @@
 		rais8e24
 
 
-:superposition:
+:blender:
 	:name:
-		Superposition
+		Blender
 	
 	:charge_category:
-		very_common
+		uncommon
 		
 	:max_charge:
-		3
+		1
+	
 	:description:
-		Combine two tiles into a shimmering enhanced tile.
+		Choose a row to combine into slashed candy.
 		
 	:label:
-		Combined shimmer
+		Blended candy
 	
 	:banner:
-		Select tiles to shimmer
+		Select tiles to blend
 
 :subdomain:
 	:name:
@@ -230,6 +231,48 @@
 	:banner:
 		Select a tile to mystify
 
+:softboiled:
+	:name:
+		99-Year Egg
+	
+	:description:
+		Burn a tile, or turn a coal tile into a candy 99 (WXYZ×2).
+	
+	:charge_category:
+		very_common
+	
+	:max_charge:
+		1
+		
+	:exclude_characters:
+		wxyz
+	
+	:label:
+		Burn or candy 99
+
+:party_bomb:
+	:name:
+		Blowout
+	
+	:description:
+		Turn a tile into a 1-turn fuse wooden bomb trigram. Trigram rarity increases with each use.
+		Currently: {rarity capital}
+	
+	:label:
+		{rarity capital} bomb
+	
+	:charge_category:
+		very_common
+	
+	:max_charge:
+		4
+	
+	:flags:
+		removes_word
+		
+		
+	
+
 :photo_album:
 	:name:
 		Scrapbook
@@ -278,6 +321,91 @@
 	:flags:
 		removes_word
 
+:spellmaster:
+	:name:
+		Spellmaster
+	
+	:label:
+		Custom plastic
+	
+	:description:
+		Replace a random tile with a plastic tile that you spell out the face of.
+		Might be broken..?
+		
+	:charge_category:
+		uncommon
+	
+	:max_charge:
+		1
+	
+	:flags:
+		removes_word
+
+:vanilla_essence:
+	:name:
+		Vanilla Essence
+	
+	:description:
+		Select the left, center, or right of a tile to change it to a tarnished ES, SS, or SE.
+	
+	:charge_category:
+		very_common
+		
+	:exclude_characters:
+		es
+	
+	:label:
+		ES/SS/SE essence
+	
+	:max_charge:
+		4
+
+:halo:
+	:name:
+		Halo
+	
+	:description:
+		Convert a tile to an eternal hole.
+		Recharged when you are brought to 3 HP or less.
+
+	:label:
+		Eternal hole
+	
+	:charge_characters:
+		‼
+	
+	:max_charge:
+		2
+	
+:pocket_snake:
+	:name:
+		Pocket Snake
+	
+	:description:
+		Draw a curve by selecting a tile, then an adjacent tile, and so on until you cannot select another. Destroy these tiles. 
+
+	:banner:
+		{:banner_starting: if selecting_first_tile}
+		{:banner_next: not selecting_first_tile}
+	
+	:banner_starting:
+		Select a starting tile
+	
+	:banner_next:
+		Select an adjacent tile
+	
+	:label:
+		Deploy snake
+	
+	:charge_characters:
+		s
+	
+	:max_charge:
+		1
+	
+	:flags:
+		removes_word
+		
 :gaydar:
 	:name:
 		Gaydar
@@ -295,8 +423,47 @@
 		Select a row + column
 	
 	:max_charge:
-		3
+		2
+	
+	:flags:
+		removes_word
 
+:dynamo:
+	:name:
+		{:name_normal: not pancake}
+		{:name_pancake: if pancake}
+		
+	:name_normal:
+		Dynamo
+	
+	:name_pancake:
+		Pancake
+	
+	:max_charge:
+		2
+	
+	:label:
+		Arc reroll
+	
+	:description:
+		Arc lightning between two tiles.
+	
+	:charge_category:
+		auto
+	
+	:banner:
+		{:banner_first_tile: if selecting_first_tile}
+		{:banner_second_tile: not selecting_first_tile}
+	
+	:banner_first_tile:
+		Choose a starting tile
+		
+	:banner_second_tile:
+		Choose an ending tile
+	
+	:flags:
+		removes_word
+	
 :zipties:
 	:name:
 		Zipties

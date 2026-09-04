@@ -15,6 +15,25 @@
 	:flags:
 		no_faceless_effect
 
+:arc_lightning:
+	:name:
+		Lightning
+	
+	:reroll_singular:
+		Turn a face into a more common one.
+	
+	:reroll_plural:
+		Turns faces into more common ones.
+	
+	:coal_target_normal:
+		E becomes coal.
+	
+	:coal_target_ngram:
+		{targets list_and upper} become coal.
+	
+	:description:
+		{:reroll_singular: if singular}{:reroll_plural: not singular} {:coal_target_ngram: if alt_targets}{:coal_target_normal: not alt_targets}
+		Detonates bombs.
 
 :cursed:
 	:name:

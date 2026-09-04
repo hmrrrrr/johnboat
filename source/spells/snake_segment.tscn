@@ -1,0 +1,132 @@
+[gd_scene format=3 uid="uid://b65yk58dey6td"]
+
+[ext_resource type="Texture2D" uid="uid://cm1ybjd4ujehs" path="res://mods/johnboat/arte/spells/snake_effect.png" id="1_5wstw"]
+[ext_resource type="Shader" uid="uid://cdn0kgb3x726g" path="res://mods/johnboat/source/effects/snake_skin.gdshader" id="1_x5hxh"]
+[ext_resource type="Script" uid="uid://dmyxqell5j83y" path="res://mods/johnboat/source/spells/snake_segment.gd" id="2_jiw31"]
+
+[sub_resource type="Gradient" id="Gradient_x5hxh"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0.01724138, 0.6853448)
+colors = PackedColorArray(1.0865268, 1.064966, 1.208705, 1, 0.9666882, 0.9572935, 1.0982141, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_x5hxh"]
+noise_type = 3
+seed = 21
+frequency = 0.0755
+fractal_type = 2
+fractal_octaves = 1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_x5hxh"]
+width = 480
+height = 270
+noise = SubResource("FastNoiseLite_x5hxh")
+color_ramp = SubResource("Gradient_x5hxh")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n4y2n"]
+shader = ExtResource("1_x5hxh")
+shader_parameter/noise = SubResource("NoiseTexture2D_x5hxh")
+shader_parameter/color_key = Color(0.61960787, 1, 0.50980395, 1)
+
+[sub_resource type="Animation" id="Animation_x5hxh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:parent_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_jiw31"]
+resource_name = "chomp"
+length = 0.27499999999999997
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:parent_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.15, 0.25),
+"transitions": PackedFloat32Array(0.22531246, 0.22531246, 0.22531246, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.9, 1.1), Vector2(1.1, 0.9), Vector2(1, 1)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.25),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"death_finished"],
+"method": &"emit_signal"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_l01gy"]
+resource_name = "die"
+length = 0.3
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:parent_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.2),
+"transitions": PackedFloat32Array(0.37892914, 2.1435468, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.8, 1.2), Vector2(1.2, 0.8)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"death_finished"],
+"method": &"emit_signal"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_x5hxh"]
+_data = {
+&"RESET": SubResource("Animation_x5hxh"),
+&"chomp": SubResource("Animation_jiw31"),
+&"die": SubResource("Animation_l01gy")
+}
+
+[node name="SnakeSegment" type="Sprite2D" unique_id=1453208169]
+y_sort_enabled = true
+material = SubResource("ShaderMaterial_n4y2n")
+texture = ExtResource("1_5wstw")
+hframes = 4
+vframes = 4
+script = ExtResource("2_jiw31")
+
+[node name="SnakeFace" type="Sprite2D" parent="." unique_id=1841456126]
+z_index = 40
+y_sort_enabled = true
+texture = ExtResource("1_5wstw")
+hframes = 4
+vframes = 4
+frame = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1996552634]
+libraries/ = SubResource("AnimationLibrary_x5hxh")
+autoplay = &"chomp"

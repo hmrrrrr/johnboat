@@ -4,13 +4,13 @@ class_name JohnboatMod
 const MUTAGEN_BUBBLES = preload("uid://xd5bu6sw7c6k")
 
 
-var SPELLS: Dictionary[String, String] = {
+const SPELLS: Dictionary[String, String] = {
 	PDA = "pda",
 	PHOTO_ALBUM = "photo_album",
 	
 	
 	DATAMOSH = "datamosh",
-	SUPERPOSITION = "superposition",
+	BLENDER = "blender",
 	BOOSTER_SHOT = "booster_shot",
 	TOY_CAMERA = "toy_camera",
 	MILK = "milk",
@@ -22,6 +22,12 @@ var SPELLS: Dictionary[String, String] = {
 	DISSENTER_HOTLINE = "dissenter_hotline",
 	SUBDOMAIN = "subdomain",
 	LCD_TWEEZERS = "lcd_tweezers",
+	DYNAMO = "dynamo",
+	SOFTBOILED = "softboiled",
+	PARTY_BOMB = "party_bomb",
+	POCKET_SNAKE = "pocket_snake",
+	VANILLA_ESSENCE = "vanilla_essence",
+	HALO = "halo"
 }
 
 const BASE_WEIGHT := 5.
@@ -33,7 +39,7 @@ var SPELL_POOL: Dictionary[String, float] = {
 	SPELLS.GAYDAR: BASE_WEIGHT,
 	SPELLS.PDA: 0.,
 	SPELLS.PHOTO_ALBUM: 0.,
-	SPELLS.SUPERPOSITION: BASE_WEIGHT,
+	SPELLS.BLENDER: 0.,
 	SPELLS.BOOSTER_SHOT: BASE_WEIGHT,
 	SPELLS.MILK: BASE_WEIGHT,
 	SPELLS.ZIPTIES: BASE_WEIGHT,
@@ -42,6 +48,11 @@ var SPELL_POOL: Dictionary[String, float] = {
 	SPELLS.DISSENTER_HOTLINE: BASE_WEIGHT,
 	SPELLS.SUBDOMAIN: BASE_WEIGHT,
 	SPELLS.LCD_TWEEZERS: BASE_WEIGHT,
+	SPELLS.DYNAMO: BASE_WEIGHT,
+	SPELLS.PARTY_BOMB: BASE_WEIGHT/2.,
+	SPELLS.POCKET_SNAKE: BASE_WEIGHT,
+	SPELLS.VANILLA_ESSENCE: 0.,
+	SPELLS.HALO: BASE_WEIGHT/2.
 }
 
 var SPELL_CATEGORIES: Dictionary[String, Array] = {
@@ -50,19 +61,24 @@ var SPELL_CATEGORIES: Dictionary[String, Array] = {
 		SPELLS.BOOSTER_SHOT,
 		SPELLS.CAT_TAIL,
 		SPELLS.DISSENTER_HOTLINE,
-		SPELLS.LCD_TWEEZERS
+		SPELLS.LCD_TWEEZERS,
+		SPELLS.DYNAMO,
+		SPELLS.POCKET_SNAKE,
+		SPELLS.VANILLA_ESSENCE
 	],
 	Globals.SPELL_CATEGORY.OFFENSIVE: [
-		SPELLS.SUPERPOSITION,
 		SPELLS.MILK,
 		SPELLS.GAYDAR,
-		SPELLS.SUBDOMAIN
+		SPELLS.SUBDOMAIN,
+		SPELLS.PARTY_BOMB
 	],
 	Globals.SPELL_CATEGORY.DEFENSIVE: [
 		SPELLS.TOY_CAMERA,
 		SPELLS.ZIPTIES,
 		SPELLS.BLT,
 		SPELLS.COLD_CASE,
+		SPELLS.SOFTBOILED,
+		SPELLS.HALO,
 	],
 	
 	Globals.SPELL_CATEGORY.DIRECT_DEFENSE: [

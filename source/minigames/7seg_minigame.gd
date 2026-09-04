@@ -141,7 +141,7 @@ func confirm() -> void :
 
 
 func update_state() -> void :
-	var moves_remaining: = 20
+	var moves_remaining: = 2
 	for seg in lcd_segments:
 		seg.set_disabled(false)
 		if seg.state != seg.original_state:

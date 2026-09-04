@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://dgesme27ivmu4"]
+
+[ext_resource type="Script" uid="uid://c3p6nou3obs1e" path="res://mods/johnboat/source/effects/eggshell.gd" id="1_jw84j"]
+[ext_resource type="Texture2D" uid="uid://dpyoilapffxxg" path="res://mods/johnboat/arte/tiles/eggshell.png" id="2_jw84j"]
+[ext_resource type="Texture2D" uid="uid://bvrcwmuyem6s6" path="res://arte/tiles/plastic_tiles.png" id="4_1guhi"]
+[ext_resource type="Texture2D" uid="uid://bmo1c7n10oxuv" path="res://mods/johnboat/arte/tiles/yolk.png" id="4_gmtjm"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_1guhi"]
+blend_mode = 3
+
+[node name="Eggshell" type="CharacterBody2D" unique_id=1470387382]
+script = ExtResource("1_jw84j")
+metadata/_custom_type_script = "uid://cdn40f7edjvn"
+
+[node name="MaskB" type="Sprite2D" parent="." unique_id=1470398872]
+clip_children = 2
+texture = ExtResource("2_jw84j")
+hframes = 3
+vframes = 2
+
+[node name="TileSprite" type="Sprite2D" parent="MaskB" unique_id=795359752]
+material = SubResource("CanvasItemMaterial_1guhi")
+texture = ExtResource("4_1guhi")
+hframes = 10
+vframes = 4
+frame = 28
+
+[node name="Yolk" type="Sprite2D" parent="." unique_id=1988718685]
+texture = ExtResource("4_gmtjm")
+
+[node name="MaskA" type="Sprite2D" parent="." unique_id=1594657161]
+clip_children = 2
+texture = ExtResource("2_jw84j")
+hframes = 3
+vframes = 2
+frame = 5
+
+[node name="TileSprite" type="Sprite2D" parent="MaskA" unique_id=487360887]
+material = SubResource("CanvasItemMaterial_1guhi")
+texture = ExtResource("4_1guhi")
+hframes = 10
+vframes = 4
+frame = 28

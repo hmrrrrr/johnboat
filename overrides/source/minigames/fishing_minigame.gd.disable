@@ -5,6 +5,10 @@ const FISHING_COUNTER_LABEL = preload("res://mods/johnboat/source/minigames/fish
 
 var fish_count := 0
 
+func reset_fishing_properties()->void:
+	super()
+	fishing_properties.WHIRLPOOLS_ENABLED=false
+
 func catch_fish(fish, ignore_pair = false):
 	super(fish,ignore_pair)
 	fish_count += 1

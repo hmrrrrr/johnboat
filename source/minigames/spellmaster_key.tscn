@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://cog61qjchqcjh"]
+
+[ext_resource type="Script" uid="uid://dr7pcrt81vxme" path="res://mods/johnboat/source/minigames/spellmaster_key.gd" id="1_xak7f"]
+[ext_resource type="Texture2D" uid="uid://xbhmed8vd1am" path="res://mods/johnboat/arte/minigames/spellmaster_key.png" id="2_xak7f"]
+[ext_resource type="Script" uid="uid://7xvadspst3p5" path="res://source/ui/generic/hover_handler.gd" id="3_su386"]
+
+[node name="KeyTile" type="Node2D" unique_id=1819035332]
+script = ExtResource("1_xak7f")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=742627385]
+texture = ExtResource("2_xak7f")
+hframes = 2
+
+[node name="Button" type="Button" parent="." unique_id=1726305541]
+offset_left = -4.0
+offset_top = -14.0
+offset_right = 4.0
+offset_bottom = 14.0
+mouse_filter = 1
+flat = true
+metadata/_edit_use_anchors_ = true
+
+[node name="HoverHandler" type="Node2D" parent="." unique_id=393319448 node_paths=PackedStringArray("hovering", "source", "expand_control")]
+unique_name_in_owner = true
+script = ExtResource("3_su386")
+hovering = NodePath("../Sprite")
+source = NodePath("../Button")
+expand_control = NodePath("../Button")
+hovered_position = Vector2(0, -3)
+pressed_position = Vector2(0, -2)
+metadata/_custom_type_script = "uid://7xvadspst3p5"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://d3v13rq1arumf"]
+
+[ext_resource type="Script" uid="uid://dr1g8gd6lo7au" path="res://mods/johnboat/source/effects/egg_fluid_trail.gd" id="1_dgtcf"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_dgtcf"]
+blend_mode = 1
+
+[sub_resource type="Curve" id="Curve_tuao1"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.5073891, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_dgtcf"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.035897437, 0.47878787, 0.95151514)
+colors = PackedColorArray(1, 0.82, 0.841, 1, 0.98, 0.8036, 0.82418, 0.3254902, 1, 0.82, 0.841, 1)
+
+[node name="EggFluidTrail" type="Line2D" unique_id=1209603540]
+self_modulate = Color(0.08, 0.08, 0.08, 1)
+show_behind_parent = true
+material = SubResource("CanvasItemMaterial_dgtcf")
+width = 1.0
+width_curve = SubResource("Curve_tuao1")
+gradient = SubResource("Gradient_dgtcf")
+joint_mode = 1
+script = ExtResource("1_dgtcf")

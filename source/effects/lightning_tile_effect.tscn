@@ -1,0 +1,106 @@
+[gd_scene format=3 uid="uid://dqjw7scartoje"]
+
+[ext_resource type="Texture2D" uid="uid://ddjvmpyo78anr" path="res://mods/johnboat/arte/spells/lightning_tile_effect.png" id="1_xox6v"]
+[ext_resource type="Script" uid="uid://cdjg3i5hdkdye" path="res://mods/johnboat/source/effects/lightning_tile_effect.gd" id="2_4x56m"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4x56m"]
+blend_mode = 1
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x041h"]
+atlas = ExtResource("1_xox6v")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x6eko"]
+atlas = ExtResource("1_xox6v")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yis8k"]
+atlas = ExtResource("1_xox6v")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o573a"]
+atlas = ExtResource("1_xox6v")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_34jc1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x041h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x6eko")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yis8k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o573a")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 15.0
+}]
+
+[sub_resource type="Animation" id="Animation_bf4h4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_4x56m"]
+resource_name = "yay"
+length = 0.39999999999999997
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"kill"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(16.56423, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bf4h4"]
+_data = {
+&"RESET": SubResource("Animation_bf4h4"),
+&"yay": SubResource("Animation_4x56m")
+}
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" unique_id=656786966]
+modulate = Color(0.66, 0.66, 0.66, 1)
+material = SubResource("CanvasItemMaterial_4x56m")
+sprite_frames = SubResource("SpriteFrames_34jc1")
+frame_progress = 0.8714614
+script = ExtResource("2_4x56m")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=74951502]
+libraries/ = SubResource("AnimationLibrary_bf4h4")
+
+[connection signal="frame_changed" from="." to="." method="_on_frame_changed"]
